@@ -52,4 +52,4 @@ class Event(models.Model):
         ordering = ['-created_on']
 
     def __str__(self):
-        return self.event_id
+        return str(self.event_id)

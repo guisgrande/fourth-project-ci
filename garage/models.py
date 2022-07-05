@@ -34,7 +34,7 @@ class Car(models.Model):
         ordering = ['-created_on']
 
     def __str__(self):
-        return self.car_id
+        return str(self.car_id)
 
     def number_of_favorites(self):
         """
