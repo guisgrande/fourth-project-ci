@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<div class="container-fluid">
+    <div class="row">
+        <h1>HOME PAGE</h1>
+    </div>
+
+    <div>
+        <h2>ABOUT</h2>
+    </div>
+
+    <div class="col-12 mt-3 left">
+        <div>
+            <h2>Garage</h2>
+        </div>
+        <div class="row">
+        {% for car in car_list %}
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <a href="#">
+                            <h2>{{ car.car_id }}</h2>
+                            <p>{{ car.brand}}</p>
+                            <p>{{ car.model }}</p>
+                            <p>{{ car.username }}</p>
+                        </a>                    
+                    </div>
+                </div>
+            </div>
+            {% if forloop.counter|divisibleby:4 %}
+                </div>
+                <div class="row">
+            {% endif %}
+        {% endfor %}
+    </div>
+
+    <div class="col-12 mt-3 left">
+        <div>
+            <h2>Events</h2>
+        </div>
+        <div class="row">
+        {% for event in event_list %}
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <a href="#">
+                            <h2>{{ event.event_id }}</h2>
+                            <p>{{ event.title}}</p>
+                            <p>{{ event.date }}</p>
+                            <p>{{ event.category }}</p>
+                        </a>                    
+                    </div>
+                </div>
+            </div>
+            {% if forloop.counter|divisibleby:4 %}
+                </div>
+                <div class="row">
+            {% endif %}
+        {% endfor %}
+    </div>
+
+    <div>
+        <h2>JOIN US</h2>
+    </div>
+
+</div>
+
+{%endblock%}
