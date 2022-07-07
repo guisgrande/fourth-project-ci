@@ -1,4 +1,6 @@
+import datetime
 from django.db import models
+from django.utils import timezone
 from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
 
@@ -16,12 +18,11 @@ class Event(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now_add=True)
     event_title = models.CharField(max_length=200, unique=True)
-    event_date = models.DurationField()
+    start_date = models.DateField(null=True, blank=True)
+    start_time = models.TimeField(null=True, blank=True)
     local = models.CharField(max_length=300)
     description = models.TextField(max_length=500)
     featured_image = CloudinaryField('image', default='placeholder')
-    slug = models.SlugField(unique=True)
-    status = models.IntegerField(choices=STATUS, default=0)
     
     ROAD = 'Road Trip'
     TRACK = 'Track Day'
@@ -44,6 +45,9 @@ class Event(models.Model):
         choices=EVENT_CATEGORIES,
         blank=False, default=OTHER
         )
+        
+    slug = models.SlugField(unique=True)
+    status = models.IntegerField(choices=STATUS, default=0)
 
     class Meta:
         """
