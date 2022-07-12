@@ -25,6 +25,7 @@
                             <p>{{ car.brand}}</p>
                             <p>{{ car.model }}</p>
                             <p>{{ car.username }}</p>
+                            <img class="card-img-top" src=" {{ car.featured_image.url }}">
                         </a>                    
                     </div>
                 </div>
@@ -41,7 +42,25 @@
             <h2>Events</h2>
         </div>
     </div>
-
+    <div class="row">
+        {% for event in event_list %}
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <a href="#">
+                            <h2>{{ event.event_id }}</h2>
+                            <p>{{ event.event_title}}</p>
+                            <p>{{ event.category }}</p>
+                            <img class="card-img-top" src=" {{ event.featured_image.url }}">
+                        </a>                    
+                    </div>
+                </div>
+            </div>
+            {% if forloop.counter|divisibleby:4 %}
+                </div>
+                <div class="row">
+            {% endif %}
+        {% endfor %}
     <div>
         <h2>JOIN US</h2>
     </div>
