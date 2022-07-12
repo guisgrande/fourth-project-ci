@@ -20,6 +20,7 @@ class Car(models.Model):
     price = models.FloatField(max_length=11)
     hp = models.FloatField(max_length=4)
     speed = models.FloatField(max_length=6)
+    description = models.TextField(max_length=500, null=True)
     featured_image = CloudinaryField('image', default='placeholder')
     favorite = models.ManyToManyField(
         User, related_name='favorite_car',
