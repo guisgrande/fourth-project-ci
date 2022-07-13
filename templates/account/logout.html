@@ -1,4 +1,4 @@
-{% extends "account/base.html" %}
+{% extends "base.html" %}
 
 {% load i18n %}
 
@@ -17,5 +17,6 @@
   <button type="submit">{% trans 'Sign Out' %}</button>
 </form>
 
+<p>Continue logged in, back to <a href="{% url 'home' %}">Home page</a>.</p>
 
 {% endblock %}
