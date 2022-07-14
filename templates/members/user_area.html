@@ -1,9 +1,35 @@
 {% extends "base.html" %}
-{% load static %}
+{% load i18n %}
 {% block content %}
 
 <div>
     <h2>Member Area</h2>
 </div>
 
+{% if user.is_authenticated %}
+
+<div>
+    <h3>Hello </h3>
+    <p>Be welcome to the club. Enjoy your ride and be part of our community!</p>
+</div>
+
+{% else %}
+
+<div>
+    <p>To have access to this page you must be a member.</p>
+</div>
+
+<div>
+    <p>If you have an account, log in first.</p>
+    <a href="{% url 'account_login' %}">Sign in</a>
+
+</div>
+
+<div>
+    <p>If you do not have an account, create one.</p>
+    <a href="{% url 'account_signup' %}">Sign up</a>
+
+</div>
+
+{% endif %}
 {%endblock%}
