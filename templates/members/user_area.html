@@ -7,10 +7,34 @@
 </div>
 
 {% if user.is_authenticated %}
+{% load account %}
 
 <div>
-    <h3>Hello </h3>
+    <h3>Hello {% user_display user %},</h3>
     <p>Be welcome to the club. Enjoy your ride and be part of our community!</p>
+</div>
+
+<div>
+    <div>
+        <button>Add new car</button>
+    </div>
+    <div>
+        <button>Add new event</button>
+    </div>
+</div>
+
+<div>
+    <div>
+        <h4>My cars</h4>
+    </div>
+    <div>
+        <h4>My events</h4>
+    </div>
+</div>
+
+<div>
+    <h5>Account settings</h5>
+    <button>Delete account</button>
 </div>
 
 {% else %}
