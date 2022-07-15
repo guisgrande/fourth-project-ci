@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block content %}
+
+<div>
+    <h2>Delete account</h2>
+</div>
+
+{% if user.is_authenticated %}
+{% load account %}
+
+<form method="POST">
+    {% csrf_token %}
+    <fieldset class="form-group">
+        <legend class="border-bottom mb-4">Delete User: {% user_display user %}</legend>
+            <p>Are you sure you want to delete your account?</p>  
+            <p>This will permanently delete your profile and any content you have generated.</p>
+            {{ form }}
+    </fieldset>
+    <div class="form-group">
+        <button class="btn btn-danger" type="submit">Delete Account</button>
+            <a class="btn btn-primary-custom" style="float:right;" 
+               href="{% url 'home' %}">Cancel</a>
+    </div>
+</form>
+
+{% else %}
+
+<div>
+    <p>To have access to this page you must be a member.</p>
+</div>
+
+<div>
+    <p>If you have an account, log in first.</p>
+    <a href="{% url 'account_login' %}">Sign in</a>
+
+</div>
+
+<div>
+    <p>If you do not have an account, create one.</p>
+    <a href="{% url 'account_signup' %}">Sign up</a>
+
+</div>
+
+{% endif %}
+{%endblock%}
