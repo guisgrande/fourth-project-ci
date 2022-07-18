@@ -24,6 +24,10 @@
     </div>
 </form>
 
+<div>
+    <p>Back to the <a href="{% url 'members' %}">Member area</a></p>
+</div>
+
 {% else %}
 
 <div>
@@ -33,13 +37,11 @@
 <div>
     <p>If you have an account, log in first.</p>
     <a href="{% url 'account_login' %}">Sign in</a>
-
 </div>
 
 <div>
     <p>If you do not have an account, create one.</p>
     <a href="{% url 'account_signup' %}">Sign up</a>
-
 </div>
 
 {% endif %}
