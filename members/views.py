@@ -6,11 +6,17 @@ from django.contrib import messages
 
 
 class MemberArea(generic.TemplateView):
+    """
+    Class used to display member areas page.
+    """
     template_name = 'members/user_area.html'
 
 
 @login_required
 def deleteuser(request):
+    """
+    Function for delete account, permanently.
+    """
     if request.method == 'POST':
         delete_form = UserDeleteForm(request.POST, instance=request.user)
         user = request.user
@@ -24,4 +30,4 @@ def deleteuser(request):
         'delete_form': delete_form
     }
 
-    return render(request, 'members/delete.html', context)
+    return render(request, 'members/delete_account.html', context)
