@@ -38,16 +38,3 @@ class AddCarPost(SuccessMessageMixin, LoginRequiredMixin, generic.CreateView):
         form.instance.username = self.request.user
         form.instance.status = 1
         return super(AddCarPost, self).form_valid(form)
-
-#    def auto_slug(self, form):
-#        """
-#        Sets slug field to auto field
-#        """
-#
-#        first_field = self.request.user
-#        second_field = self.request.model
-#        third_field = self.request.year
-#        autofield = first_field + second_field + third_field
-#        
-#        form.instance.slug = autofield
-#        return super(AddCarPost, self).form_valid(form)
