@@ -23,4 +23,5 @@ urlpatterns = [
     path('', include('garage.urls'), name='garage_urls'),
     path('', include('events.urls'), name='events_urls'),
     path('', include('members.urls'), name='members_urls'),
+    path('', include('general.urls'), name='general_urls'),
 ]
