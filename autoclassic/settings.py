@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'garage',
     'events',
     'members',
+    'general',
 ]
 
 SITE_ID = 1
