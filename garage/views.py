@@ -24,7 +24,7 @@ class AddCarPost(SuccessMessageMixin, LoginRequiredMixin, generic.CreateView):
         'hp',
         'speed',
         'description',
-        'featured_image',
+        'car_image',
         ]
     template_name = 'members/add_car.html'
     success_url = reverse_lazy('members')
