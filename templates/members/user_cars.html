@@ -1,0 +1,32 @@
+{% extends "members/user_area.html" %}
+{% load i18n %}
+{% block content %}
+
+<h2>TEST LOAD 2</h2>
+<p>Back to <a href="{% url 'members' %}">Member area</a></p>
+
+
+<div class="col-12 mt-3 left">
+    <div class="row">
+    {% for car in user_car_list %}
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <a href="#">
+                        <h2>{{ car.car_id }}</h2>
+                        <p>{{ car.brand}}</p>
+                        <p>{{ car.model }}</p>
+                        <p>{{ car.username }}</p>
+                    </a> 
+                </div>                   
+            </div>
+        </div>
+    {% if forloop.counter|divisibleby:1 %}
+    </div> 
+    <div class="row">        
+    {% endif %}
+    {% endfor %}
+    </div>
+</div>
+
+{%endblock%}
