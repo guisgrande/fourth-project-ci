@@ -4,6 +4,44 @@
 
 <div>
     <h2>Garage</h2>
+    <p>Explore our garage and see the unique and historic cars that our members have driven.</p>
 </div>
 
+<div class="col-12 mt-3 left">
+    <div class="row">
+    {% for car in car_list %}
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <a href="#">
+                        <h2>{{ car.car_id }}</h2>
+                        <p>{{ car.brand}}</p>
+                        <p>{{ car.model }}</p>
+                        <p>{{ car.username }}</p>
+                        <img class="card-img-top" src=" {{ car.car_image.url }}">
+                    </a> 
+                </div>                   
+            </div>
+        </div>
+    {% if forloop.counter|divisibleby:3 %}
+    </div> 
+    <div class="row">        
+    {% endif %}
+    {% endfor %}
+    </div>
+
+    {% if is_paginated %}
+    <nav arial-label="Page navigation">
+        <ul class="pagination justify-content-center">
+            {% if page_obj.has_previous %}
+            <li><a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; PREV </a></li>
+            {% endif %}
+            {% if page_obj.has_next %}
+            <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT &raquo;</a></li>
+        </ul>
+    </nav>
+    {% endif %}
+
+</div>
+{% endif %}
 {%endblock%}
