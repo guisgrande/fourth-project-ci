@@ -1,9 +1,33 @@
 {% extends "base.html" %}
-{% load static %}
 {% block content %}
 
 <div>
     <h2>Car Detail</h2>
+</div>
+
+<div class="card mb-4">
+    <img class="card-img-top" src=" {{ car.car_image.url }}">
+</div>
+
+<div>
+    <p>Created by {{ car.username }}</p>
+    <p>Last update - {{ car.updated_on}}</p>
+</div>
+
+<div class="card mb-6">
+    <div class="card-body">
+        <h2>{{ car.car_id }}</h2>
+        <p>Brand: {{ car.brand}}</p>
+        <p>Model: {{ car.model }}</p>
+        <p>Year: {{ car.year }}</p>
+        <p>Price: {{ car.price }}</p>
+        <p>HP: {{ car.hp }}</p>
+        <p>Max speed: {{ car.speed }}</p>             
+    </div>
+    <div class="card-body">
+        <h3>Description</h3>
+        <p>{{ car.description }}</p>
+    </div>
 </div>
 
 {%endblock%}
