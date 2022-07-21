@@ -7,8 +7,12 @@ from django.urls import reverse_lazy
 from .models import Car
 
 
-class GarageView(generic.TemplateView):
+class GarageView(generic.ListView):
+    model = Car
     template_name = 'garage.html'
+    context_object_name = 'car_list'
+    queryset = Car.objects.filter(status=1).order_by('-created_on')
+    paginate_by = 6
 
 
 class AddCarPost(SuccessMessageMixin, LoginRequiredMixin, generic.CreateView):
