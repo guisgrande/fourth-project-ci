@@ -3,6 +3,7 @@ from django.views import generic, View
 from .forms import UserDeleteForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from garage.models import Car
 
 
 class MemberArea(generic.TemplateView):
@@ -10,6 +11,18 @@ class MemberArea(generic.TemplateView):
     Class used to display member areas page.
     """
     template_name = 'members/user_area.html'
+
+
+@login_required
+def membercars(request):
+    """
+    Function filter just the car of the current user
+    and display at user 'My cars' page.
+    """
+    current_user = request.user.id
+    context = {}
+    context['user_car_list'] = Car.objects.filter(username_id=current_user).order_by('-created_on')
+    return render(request, "members/user_cars.html", context)
 
 
 @login_required
