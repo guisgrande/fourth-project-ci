@@ -12,7 +12,7 @@
         <div class="col-md-4">
             <div class="card mb-4">
                 <div class="card-body">
-                    <a href="#">
+                    <a href="{% url 'car_detail' car.slug %}">
                         <h2>{{ car.car_id }}</h2>
                         <p>{{ car.brand}}</p>
                         <p>{{ car.model }}</p>
