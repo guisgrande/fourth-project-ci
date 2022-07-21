@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views import generic, View
 from django.contrib.auth.models import User
 from django.contrib.messages.views import SuccessMessageMixin
@@ -13,6 +13,16 @@ class GarageView(generic.ListView):
     context_object_name = 'car_list'
     queryset = Car.objects.filter(status=1).order_by('-created_on')
     paginate_by = 6
+
+class CarDetail(View):
+    """
+    Class to display car details.
+    """
+    def get(self, request, slug, *args, **kwargs):
+        queryset = Car.objects.filter(status=1)
+        car = get_object_or_404(queryset, slug=slug)
+    
+        return render(request, "car_details.html", {"car": car})
 
 
 class AddCarPost(SuccessMessageMixin, LoginRequiredMixin, generic.CreateView):
