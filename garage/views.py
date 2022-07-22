@@ -14,7 +14,7 @@ class GarageView(generic.ListView):
     Ordered by new one show first an paginated by 6.
     """
     model = Car
-    template_name = 'garage.html'
+    template_name = 'garage/garage.html'
     context_object_name = 'car_list'
     queryset = Car.objects.filter(status=1).order_by('-created_on')
     paginate_by = 6
@@ -27,7 +27,7 @@ class CarDetail(View):
         queryset = Car.objects.filter(status=1)
         car = get_object_or_404(queryset, slug=slug)
     
-        return render(request, "car_details.html", {"car": car})
+        return render(request, "garage/car_details.html", {"car": car})
 
 
 class AddCarPost(SuccessMessageMixin, LoginRequiredMixin, generic.CreateView):
@@ -45,7 +45,7 @@ class AddCarPost(SuccessMessageMixin, LoginRequiredMixin, generic.CreateView):
         'description',
         'car_image',
         ]
-    template_name = 'members/add_car.html'
+    template_name = 'garage/add_car.html'
     success_url = reverse_lazy('members')
     success_message = "You have added car to the garage!"
 
@@ -75,7 +75,7 @@ class EditCarPost(SuccessMessageMixin, LoginRequiredMixin, generic.UpdateView):
         'description',
         'car_image',
         ]
-    template_name = 'members/add_car.html'
+    template_name = 'garage/add_car.html'
     success_url = reverse_lazy('members')
     success_message = "All right! You updated your car details. Thanks."
 
