@@ -6,4 +6,33 @@
     <h2>Add new event</h2>
 </div>
 
+{% if user.is_authenticated %}
+{% load account %}
+
+<div class="container-fluid">
+    <form method="POST" enctype='multipart/form-data'>
+        
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">Add your event info here.</legend>
+            <p>User: {% user_display user %}</p>         
+        </fieldset>
+               
+            <div class="container">
+                <div class="row">
+                {% for field in form  %}
+                {% csrf_token %}
+                  <div class="col-sm-6">
+                    <b>{{ field.label_tag }}</b> - {{ field }} 
+                  </div>
+                {% endfor %}
+                </div>  
+            </div>
+
+        <input type="submit" value="Submit" class="btn btn-lg">
+        <a href="{% url 'members' %}" class="btn btn-lg">Cancel</a>
+
+    </form>
+</div>
+
+{% endif %}
 {%endblock%}
