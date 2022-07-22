@@ -14,3 +14,14 @@ class EventsView(generic.ListView):
     context_object_name = 'event_list'
     queryset = Event.objects.filter(status=1).order_by('-created_on')
     paginate_by = 6
+
+class EventDetail(View):
+    """
+    Class to display event details.
+    """
+    def get(self, request, slug, *args, **kwargs):
+        queryset = Event.objects.filter(status=1)
+        event = get_object_or_404(queryset, slug=slug)
+    
+        return render(request, "events/event_details.html", {"event": event})
+
