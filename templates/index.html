@@ -30,7 +30,7 @@
                     </div>
                 </div>
             </div>
-            {% if forloop.counter|divisibleby:4 %}
+            {% if forloop.counter|divisibleby:2 %}
                 </div>
                 <div class="row">
             {% endif %}
@@ -47,16 +47,16 @@
             <div class="col-md-4">
                 <div class="card mb-4">
                     <div class="card-body">
-                        <a href="#">
+                        <a href="{% url 'event_detail' event.slug %}">
                             <h2>{{ event.event_id }}</h2>
                             <p>{{ event.event_title}}</p>
                             <p>{{ event.category }}</p>
-                            <img class="card-img-top" src=" {{ event.featured_image.url }}">
+                            <img class="card-img-top" src=" {{ event.event_image.url }}">
                         </a>                    
                     </div>
                 </div>
             </div>
-            {% if forloop.counter|divisibleby:4 %}
+            {% if forloop.counter|divisibleby:2 %}
                 </div>
                 <div class="row">
             {% endif %}
