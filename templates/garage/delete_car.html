@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<div>
+    <h2>Delete your car.</h2>
+</div>
+
+<div class="card-body">
+        <p>{{ car.brand}}</p>
+        <p>{{ car.model }}</p>
+        <p>{{ car.year }}</p>
+        <img class="card-img-top rounded" style="width: 350px; height: 200px" src=" {{ car.car_image.url }}">                
+</div>
+
+<form method="POST" action="">
+    {% csrf_token %}
+    <div>
+        <p>Attention! Are you sure?</p>
+        <p>Do you want to delete your car post?</p>
+    </div>
+    <div>
+        <input type="submit" value="Delete" class="btn btn-lg btn-danger">
+        <a href="{% url 'membercars' %}" class="btn btn-lg btn-success">Go Back</a>
+    </div>
+</form>
+
+{%endblock%}
