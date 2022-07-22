@@ -8,6 +8,10 @@ from .models import Car
 
 
 class GarageView(generic.ListView):
+    """
+    Class to display all cars posts at garage page.
+    Ordered by new one show first an paginated by 6.
+    """
     model = Car
     template_name = 'garage.html'
     context_object_name = 'car_list'
@@ -52,3 +56,23 @@ class AddCarPost(SuccessMessageMixin, LoginRequiredMixin, generic.CreateView):
         form.instance.username = self.request.user
         form.instance.status = 1
         return super(AddCarPost, self).form_valid(form)
+
+
+class EditCarPost(SuccessMessageMixin, LoginRequiredMixin, generic.UpdateView):
+    """
+    Logged in user can edit your car details.
+    """
+    model = Car
+    fields = [
+        'brand',
+        'model',
+        'year',
+        'price',
+        'hp',
+        'speed',
+        'description',
+        'car_image',
+        ]
+    template_name = 'members/add_car.html'
+    success_url = reverse_lazy('members')
+    success_message = "All right! You updated your car details. Thanks."
