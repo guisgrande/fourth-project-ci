@@ -6,4 +6,28 @@
     <h2>Event Detail</h2>
 </div>
 
+<div class="card mb-4">
+    <img class="card-img-top" src=" {{ event.event_image.url }}">
+</div>
+
+<div>
+    <p>Created by {{ event.username }}</p>
+    <p>Last update - {{ event.updated_on}}</p>
+</div>
+
+<div class="card mb-6">
+    <div class="card-body">
+        <h2>{{ event.event_id }}</h2>
+        <p>Title: {{ event.event_title}}</p>
+        <p>Start date: {{ event.start_date }}</p>
+        <p>Start date: {{ event.start_time }}</p>
+        <p>Local: {{ event.local }}</p>
+        <p>Category: {{ event.category }}</p>        
+    </div>
+    <div class="card-body">
+        <h3>Description</h3>
+        <p>{{ event.description }}</p>
+    </div>
+</div>
+
 {%endblock%}
