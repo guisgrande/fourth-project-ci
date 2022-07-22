@@ -25,6 +25,7 @@
             <div>
                 <button><a href="{% url 'car_detail' car.slug %}">View</a></button>
                 <button><a href="{% url 'edit_car' car.slug %}">Edit</a></button>
+                <button><a href="{% url 'delete_car' car.slug %}">Delete</a></button>
             </div>
         </div>
     {% if forloop.counter|divisibleby:1 %}
