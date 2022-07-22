@@ -11,4 +11,4 @@ from .models import Event
 
 
 class EventsView(generic.TemplateView):
-    template_name = 'events.html'
+    template_name = 'events/events.html'
