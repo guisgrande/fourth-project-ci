@@ -3,6 +3,7 @@ from django.views import generic, View
 from django.contrib.auth.models import User
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib import messages
 from django.urls import reverse_lazy
 from .models import Car
 
@@ -31,7 +32,7 @@ class CarDetail(View):
 
 class AddCarPost(SuccessMessageMixin, LoginRequiredMixin, generic.CreateView):
     """
-    Logged in user can create a car post
+    Logged in user can create a car post.
     """
     model = Car
     fields = [
@@ -61,6 +62,7 @@ class AddCarPost(SuccessMessageMixin, LoginRequiredMixin, generic.CreateView):
 class EditCarPost(SuccessMessageMixin, LoginRequiredMixin, generic.UpdateView):
     """
     Logged in user can edit your car details.
+    From My Cars list page.
     """
     model = Car
     fields = [
@@ -76,3 +78,17 @@ class EditCarPost(SuccessMessageMixin, LoginRequiredMixin, generic.UpdateView):
     template_name = 'members/add_car.html'
     success_url = reverse_lazy('members')
     success_message = "All right! You updated your car details. Thanks."
+
+class DeleteCarPost(SuccessMessageMixin, LoginRequiredMixin, generic.DeleteView):
+    """
+    Logged in user can delete your car.
+    From My Cars list page.
+    """
+    model = Car
+    success_url = reverse_lazy('members')
+    success_message = "It's done! You deleted your car post."
+    template_name = 'garage/delete_car.html'
+
+    def delete(self, request, *args, **kwargs):
+        messages.warning(self.request, self.success_message)
+        return super(DeleteCarPost, self).delete(request, *args, **kwargs)
