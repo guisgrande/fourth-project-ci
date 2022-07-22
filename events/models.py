@@ -2,6 +2,7 @@ import datetime
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
+from django.utils.text import slugify
 from cloudinary.models import CloudinaryField
 
 STATUS = ((0, "Draft"), (1, "Published"))
@@ -57,3 +58,11 @@ class Event(models.Model):
 
     def __str__(self):
         return str(self.event_id)
+    
+    def save(self, *args, **kwargs):
+        """
+        Function to auto generate slugfield
+        """
+        autoslug = self.event_title
+        self.slug = slugify(autoslug)
+        super(Event, self).save(*args, **kwargs)
