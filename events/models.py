@@ -22,7 +22,7 @@ class Event(models.Model):
     start_time = models.TimeField(null=True, blank=True)
     local = models.CharField(max_length=300)
     description = models.TextField(max_length=500)
-    featured_image = CloudinaryField('image', default='placeholder')
+    event_image = CloudinaryField('image', default='placeholder')
     
     ROAD = 'Road Trip'
     TRACK = 'Track Day'
