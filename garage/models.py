@@ -3,7 +3,9 @@ from django.contrib.auth.models import User
 from django.utils.text import slugify
 from cloudinary.models import CloudinaryField
 
+
 STATUS = ((0, "Draft"), (1, "Published"))
+
 
 class Car(models.Model):
     """
@@ -51,3 +53,25 @@ class Car(models.Model):
         Function to count number of favorites
         """
         return self.favorite.count()
+
+
+class CommentCar(models.Model):
+    """
+    Class model to comments, for car posts.
+    """
+    car = models.ForeignKey(Car, on_delete=models.CASCADE,
+                             related_name="car_comments")
+    name = models.ForeignKey(User, on_delete=models.CASCADE,
+                             related_name="car_comments")
+    body = models.TextField()
+    created_on = models.DateTimeField(auto_now_add=True)
+    approved = models.BooleanField(default=False)
+
+    class Meta:
+        ordering = ["created_on"]
+
+    def __str__(self):
+        return f"""
+        Comment by {self.name} ({self.created_on})
+        - {self.body}
+        """
