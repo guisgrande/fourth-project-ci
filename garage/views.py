@@ -1,10 +1,11 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, reverse
 from django.views import generic, View
 from django.contrib.auth.models import User
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 from django.urls import reverse_lazy
+from django.http import HttpResponseRedirect
 from .models import Car
 from .forms import CommentForm
 
@@ -28,11 +29,15 @@ class CarDetail(View):
         queryset = Car.objects.filter(status=1)
         car = get_object_or_404(queryset, slug=slug)
         car_comments = car.car_comments.filter(approved=True).order_by("-created_on")
-    
+        favourited = False
+        if car.favourite.filter(id=self.request.user.id).exists():
+            favourited = True
+        
         return render(request, "garage/car_details.html", {
             "car": car,
             "car_comments": car_comments,
             "commented": False,
+            "favourited": favourited,
             "comment_form": CommentForm()
             })
     
@@ -41,6 +46,9 @@ class CarDetail(View):
         car = get_object_or_404(queryset, slug=slug)
         car_comments = car.car_comments.filter(approved=True).order_by("-created_on")
         comment_form = CommentForm(data=request.POST)
+        favourited = False
+        if car.favourite.filter(id=self.request.user.id).exists():
+            favourited = True
 
         if comment_form.is_valid():
             comment_form.instance.name = request.user
@@ -54,8 +62,23 @@ class CarDetail(View):
             "car": car,
             "car_comments": car_comments,
             "commented": True,
+            "favourited": favourited,
             "comment_form": CommentForm()
             })
+
+
+class FavouriteCar(LoginRequiredMixin, View):
+    """
+    Class to logged user favourite or unfavorite car post.
+    """ 
+    def post(self, request, slug, *args, **kwargs):
+        car = get_object_or_404(Car, slug=slug)
+        if car.favorite.filter(id=request.user.id).exists():
+            car.favourite.remove(request.user)
+        else:
+            car.favourite.add(request.user)
+
+        return HttpResponseRedirect(reverse('car_detail', args=[slug]))
 
 
 class AddCarPost(SuccessMessageMixin, LoginRequiredMixin, generic.CreateView):
