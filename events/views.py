@@ -6,6 +6,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 from django.urls import reverse_lazy
 from .models import Event
+from .forms import CommentForm
 
 
 class EventsView(generic.ListView):
@@ -27,8 +28,35 @@ class EventDetail(View):
     def get(self, request, slug, *args, **kwargs):
         queryset = Event.objects.filter(status=1)
         event = get_object_or_404(queryset, slug=slug)
+        event_comments = event.event_comments.filter(approved=True).order_by("-created_on")
     
-        return render(request, "events/event_details.html", {"event": event})
+        return render(request, "events/event_details.html", {
+            "event": event,
+            "event_comments": event_comments,
+            "commented": False,
+            "comment_form": CommentForm()
+            })
+
+    def post(self, request, slug, *args, **kwargs):
+        queryset = Event.objects.filter(status=1)
+        event = get_object_or_404(queryset, slug=slug)
+        event_comments = event.event_comments.filter(approved=True).order_by("-created_on")
+        comment_form = CommentForm(data=request.POST)
+
+        if comment_form.is_valid():
+            comment_form.instance.name = request.user
+            comment = comment_form.save(commit=False)
+            comment.event = event
+            comment.save()
+        else:
+            comment_form = CommentForm()
+        
+        return render(request, "events/event_details.html", {
+            "event": event,
+            "event_comments": event_comments,
+            "commented": True,
+            "comment_form": CommentForm()
+            })
 
 
 class AddEventPost(SuccessMessageMixin, LoginRequiredMixin, generic.CreateView):
