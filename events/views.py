@@ -19,6 +19,7 @@ class EventsView(generic.ListView):
     queryset = Event.objects.filter(status=1).order_by('-created_on')
     paginate_by = 6
 
+
 class EventDetail(View):
     """
     Class to display event details.
@@ -56,3 +57,23 @@ class AddEventPost(SuccessMessageMixin, LoginRequiredMixin, generic.CreateView):
         form.instance.username = self.request.user
         form.instance.status = 1
         return super(AddEventPost, self).form_valid(form)
+
+
+class EditEventPost(SuccessMessageMixin, LoginRequiredMixin, generic.UpdateView):
+    """
+    Logged in user can edit your event details.
+    From My Event list page.
+    """
+    model = Event
+    fields = [
+        'event_title',
+        'category',
+        'start_date',
+        'start_time',
+        'description',
+        'local',
+        'event_image',
+        ]
+    template_name = 'events/add_event.html'
+    success_url = reverse_lazy('members')
+    success_message = "All right! You updated your event details. Thanks."
