@@ -39,7 +39,7 @@
 <div class="col-1">
     <strong>
         {% if user.is_authenticated %}
-        <form class="d-inline" action="{% url 'favorite_car' car.slug %}" method="POST">
+        <form class="d-inline" action="{% url 'favourite_car' car.slug %}" method="POST">
             {% csrf_token %}
             {% if favourited %}
             <button type="submit" name="car_id" value="{{car.slug}}"><i class="fa fa-star"></i></button>
