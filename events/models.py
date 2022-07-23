@@ -66,3 +66,25 @@ class Event(models.Model):
         autoslug = self.event_title
         self.slug = slugify(autoslug)
         super(Event, self).save(*args, **kwargs)
+
+
+class CommentEvent(models.Model):
+    """
+    Class model to comments, for event posts.
+    """
+    event = models.ForeignKey(Event, on_delete=models.CASCADE,
+                             related_name="event_comments")
+    name = models.ForeignKey(User, on_delete=models.CASCADE,
+                             related_name="event_comments")
+    body = models.TextField()
+    created_on = models.DateTimeField(auto_now_add=True)
+    approved = models.BooleanField(default=False)
+
+    class Meta:
+        ordering = ["created_on"]
+
+    def __str__(self):
+        return f"""
+        Comment by {self.name} ({self.created_on})
+        - {self.body}
+        """
