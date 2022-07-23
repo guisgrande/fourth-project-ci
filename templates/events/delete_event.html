@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<div>
+    <h2>Delete your event.</h2>
+</div>
+
+<div class="card-body">
+        <p>{{ event.event_title }}</p>
+        <p>{{ event.category }}</p>
+        <p>{{ event.start_date }}</p>
+        <img class="card-img-top rounded" style="width: 350px; height: 200px" src=" {{ event.event_image.url }}">                
+</div>
+
+<form method="POST" action="">
+    {% csrf_token %}
+    <div>
+        <p>Attention! Are you sure?</p>
+        <p>Do you want to delete your event post?</p>
+    </div>
+    <div>
+        <input type="submit" value="Delete" class="btn btn-lg btn-danger">
+        <a href="{% url 'membercars' %}" class="btn btn-lg btn-success">Go Back</a>
+    </div>
+</form>
+
+{%endblock%}
