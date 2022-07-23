@@ -8,4 +8,5 @@ urlpatterns = [
     path('edit-car/<slug:slug>/', views.EditCarPost.as_view(), name='edit_car'),
     path('delete-car/<slug:slug>/', views.DeleteCarPost.as_view(), name='delete_car'),
     path('car-detail/<slug:slug>/', views.CarDetail.as_view(), name='car_detail'),
+    path('favourite/<slug:slug>/', views.FavouriteCar.as_view(), name='favourite_car'),
 ]
