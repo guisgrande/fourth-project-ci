@@ -24,6 +24,7 @@
             </div>
             <div>
                 <button><a href="{% url 'event_detail' event.slug %}">View</a></button>
+                <button><a href="{% url 'edit_event' event.slug %}">Edit</a></button>
             </div>
         </div>
     {% if forloop.counter|divisibleby:1 %}
