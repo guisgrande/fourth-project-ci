@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
+{% load static %}
 {% load crispy_forms_tags %}
 
 <div>
@@ -32,6 +33,26 @@
         <h3>Description</h3>
         <p>{{ car.description }}</p>
     </div>
+</div>
+
+<!-- Favorite -->
+<div class="col-1">
+    <strong>
+        {% if user.is_authenticated %}
+        <form class="d-inline" action="{% url 'favorite_car' car.slug %}" method="POST">
+            {% csrf_token %}
+            {% if favourited %}
+            <button type="submit" name="car_id" value="{{car.slug}}"><i class="fa fa-star"></i></button>
+            {% else %}
+            <button type="submit" name="car_id" value="{{car.slug}}"><i class="far fa-star"></i></button>
+            {% endif %}
+        </form>
+        {% else %}
+        <span><i class="far fa-star"></i></span>
+        {% endif %}
+    <!-- The number of likes goes before the closing strong tag -->
+    <span>{{ car.number_of_favourites }} </span>
+    </strong>
 </div>
 
 <!-- Comments section -->
