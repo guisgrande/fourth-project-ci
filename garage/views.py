@@ -6,6 +6,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 from django.urls import reverse_lazy
 from .models import Car
+from .forms import CommentForm
 
 
 class GarageView(generic.ListView):
@@ -26,8 +27,34 @@ class CarDetail(View):
     def get(self, request, slug, *args, **kwargs):
         queryset = Car.objects.filter(status=1)
         car = get_object_or_404(queryset, slug=slug)
+        car_comments = car.car_comments.filter(approved=True).order_by("-created_on")
     
-        return render(request, "garage/car_details.html", {"car": car})
+        return render(request, "garage/car_details.html", {
+            "car": car,
+            "car_comments": car_comments,
+            "commented": False,
+            "comment_form": CommentForm()
+            })
+    
+    def post(self, request, slug, *args, **kwargs):
+        queryset = Car.objects.filter(status=1)
+        car = get_object_or_404(queryset, slug=slug)
+        car_comments = car.car_comments.filter(approved=True).order_by("-created_on")
+        comment_form = CommentForm(data=request.POST)
+
+        if comment_form.is_valid():
+            comment_form.instance.name = request.user.username
+            car_comment.car = car
+            car_comment.save()
+        else:
+            comment_form = CommentForm()
+        
+        return render(request, "garage/car_details.html", {
+            "car": car,
+            "car_comments": car_comments,
+            "commented": True,
+            "comment_form": CommentForm()
+            })
 
 
 class AddCarPost(SuccessMessageMixin, LoginRequiredMixin, generic.CreateView):
