@@ -4,6 +4,7 @@ from .forms import UserDeleteForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from garage.models import Car
+from events.models import Event
 
 
 class MemberArea(generic.TemplateView):
@@ -23,6 +24,18 @@ def membercars(request):
     context = {}
     context['user_car_list'] = Car.objects.filter(username_id=current_user).order_by('-created_on')
     return render(request, "members/user_cars.html", context)
+
+
+@login_required
+def memberevents(request):
+    """
+    Function filter just the events of the current user
+    and display at user 'My events' page.
+    """
+    current_user = request.user.id
+    context = {}
+    context['user_event_list'] = Event.objects.filter(username_id=current_user).order_by('-created_on')
+    return render(request, "members/user_events.html", context)
 
 
 @login_required
