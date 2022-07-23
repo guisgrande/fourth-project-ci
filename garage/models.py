@@ -25,8 +25,8 @@ class Car(models.Model):
     speed = models.FloatField(max_length=6)
     description = models.TextField(max_length=500, null=True)
     car_image = CloudinaryField('image', default='placeholder')
-    favorite = models.ManyToManyField(
-        User, related_name='favorite_car',
+    favourite = models.ManyToManyField(
+        User, related_name='favourite_car',
         blank=True)
     slug = models.SlugField(unique=True)
     status = models.IntegerField(choices=STATUS, default=0)
@@ -50,9 +50,9 @@ class Car(models.Model):
 
     def number_of_favorites(self):
         """
-        Function to count number of favorites
+        Function to count number of favourites
         """
-        return self.favorite.count()
+        return self.favourite.count()
 
 
 class CommentCar(models.Model):
