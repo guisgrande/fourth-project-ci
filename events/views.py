@@ -77,3 +77,18 @@ class EditEventPost(SuccessMessageMixin, LoginRequiredMixin, generic.UpdateView)
     template_name = 'events/add_event.html'
     success_url = reverse_lazy('members')
     success_message = "All right! You updated your event details. Thanks."
+
+
+class DeleteEventPost(SuccessMessageMixin, LoginRequiredMixin, generic.DeleteView):
+    """
+    Logged in user can delete your event.
+    From My Events list page.
+    """
+    model = Event
+    success_url = reverse_lazy('members')
+    success_message = "It's done! You deleted your event post."
+    template_name = 'events/delete_event.html'
+
+    def delete(self, request, *args, **kwargs):
+        messages.warning(self.request, self.success_message)
+        return super(DeleteEventPost, self).delete(request, *args, **kwargs)
