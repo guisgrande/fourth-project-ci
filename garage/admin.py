@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Car
+from .models import Car, CommentCar
 from django_summernote.admin import SummernoteModelAdmin
 
 
@@ -11,3 +11,14 @@ class GarageAdmin(SummernoteModelAdmin):
     list_filter = ('status', 'created_on')
     prepopulated_fields = {'slug': ('username', 'model', 'year',)}
     summernote_fields = ('description')
+
+@admin.register(CommentCar)
+class CommentCarAdmin(admin.ModelAdmin):
+    
+    list_display = ('name', 'body', 'car', 'created_on', 'approved')
+    list_filter = ('approved', 'created_on')
+    search_fields = ('name', 'car', 'body')
+    actions = ['approve_comments']
+
+    def approve_comments(self, request, queryset):
+        queryset.update(approved=True)
