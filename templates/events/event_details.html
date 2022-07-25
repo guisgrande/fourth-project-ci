@@ -33,6 +33,45 @@
     </div>
 </div>
 
+<!-- Presence section -->
+<div class="col-1">
+    <strong>
+        {% if user.is_authenticated %}
+        <form class="d-inline" action="{% url 'presence_go_event' event.slug %}" method="POST">
+            {% csrf_token %}
+            {% if presence_go_ok %}
+            <button type="submit" name="event_id" value="{{event.slug}}"><i class="fa fa-star">GO</i></button>
+            {% else %}
+            <button type="submit" name="event_id" value="{{event.slug}}"><i class="far fa-star">GO</i></button>
+            {% endif %}
+        </form>
+        {% else %}
+        <span><i class="far fa-star">GO</i></span>
+        {% endif %}
+    <!-- The number of likes goes before the closing strong tag -->
+    <span>{{ event.number_of_go }} </span>
+    </strong>
+</div>
+
+<div class="col-1">
+    <strong>
+        {% if user.is_authenticated %}
+        <form class="d-inline" action="{% url 'presence_maybe_event' event.slug %}" method="POST">
+            {% csrf_token %}
+            {% if presence_maybe_ok %}
+            <button type="submit" name="event_id" value="{{event.slug}}"><i class="fa fa-star">MAYBE</i></button>
+            {% else %}
+            <button type="submit" name="event_id" value="{{event.slug}}"><i class="far fa-star">MAYBE</i></button>
+            {% endif %}
+        </form>
+        {% else %}
+        <span><i class="far fa-star">MAYBE</i></span>
+        {% endif %}
+    <!-- The number of likes goes before the closing strong tag -->
+    <span>{{ event.number_of_maybe }} </span>
+    </strong>
+</div>
+
 <!-- Comments section -->
 <div class="row">
     <div class="col-md-8 card mb-4  mt-3 ">
