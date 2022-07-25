@@ -24,6 +24,12 @@ class Event(models.Model):
     local = models.CharField(max_length=300)
     description = models.TextField(max_length=500)
     event_image = CloudinaryField('image', default='placeholder')
+    presence_go = models.ManyToManyField(
+        User, related_name='presence_go',
+        blank=True)
+    presence_maybe = models.ManyToManyField(
+        User, related_name='presence_maybe',
+        blank=True)
     
     ROAD = 'Road Trip'
     TRACK = 'Track Day'
@@ -58,7 +64,19 @@ class Event(models.Model):
 
     def __str__(self):
         return str(self.event_id)
+
+    def number_of_go(self):
+        """
+        Function to count number of presence go
+        """
+        return self.presence_go.count()
     
+    def number_of_maybe(self):
+        """
+        Function to count number of presence maybe
+        """
+        return self.presence_maybe.count()
+
     def save(self, *args, **kwargs):
         """
         Function to auto generate slugfield
