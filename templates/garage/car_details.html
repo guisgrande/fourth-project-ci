@@ -55,6 +55,37 @@
     </strong>
 </div>
 
+<!-- Rate section -->
+<div class="row">
+    <div class="col-md-8 card mb-4  mt-3 ">
+        <h3>Rate reviews</h3>
+        <div class="card-body">
+            <!-- For loop to iterate through each rate in rate list -->
+            {% for rate in car_rate %}
+            <div class="comments" style="padding: 10px;">
+                <p class="font-weight-bold">
+                    {{ rate.name }}
+                    <span class=" text-muted font-weight-normal">
+                        <p>Price: {{ rate.price }} | Aesthetics: {{ rate.aesthetics }} | Speed: {{ rate.speed }} | Drivability: {{ rate.drivability }} | Overall: {{ rate.overall }}</p>
+                    </span>
+                </p>
+            </div>
+            <!-- For loop ends here -->
+            {% endfor %}
+        </div>
+    </div>
+    <div class="col-md-4 card mb-4  mt-3 ">
+        <div class="card-body">
+            {% if user.is_authenticated %}
+            <a class="btn btn-primary" href="{% url 'rate_car' car.slug %}">
+                Rate this car.
+            </a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+</div>
+
 <!-- Comments section -->
 <div class="row">
     <div class="col-md-8 card mb-4  mt-3 ">
