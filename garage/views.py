@@ -6,6 +6,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect
+from django.db.models import Avg
 from .models import Car, RateCar
 from .forms import CommentForm, RateForm
 
@@ -31,6 +32,19 @@ class CarDetail(View):
         car = get_object_or_404(queryset, slug=slug)
         car_comments = car.car_comments.filter(approved=True).order_by("-created_on")
         car_rate = car.car_rate.filter(rated=True).order_by("-created_on")
+        
+        avg_price = car.car_rate.aggregate(price=Avg('price'))['price']
+        avg_aest = car.car_rate.aggregate(aesthetics=Avg('aesthetics'))['aesthetics']
+        avg_speed = car.car_rate.aggregate(speed=Avg('speed'))['speed']
+        avg_driv = car.car_rate.aggregate(drivability=Avg('drivability'))['drivability']
+        avg_overall = car.car_rate.aggregate(overall=Avg('overall'))['overall']
+        avg_total = {
+            "avg_price": avg_price,
+            "avg_aest": avg_aest,
+            "avg_speed": avg_speed,
+            "avg_driv": avg_driv,
+            "avg_overall": avg_overall,
+        }
 
         favourited = False
         rated = False
@@ -51,6 +65,7 @@ class CarDetail(View):
             "commented": False,
             "car_rate": car_rate,
             "len_rate": len_rate,
+            "avg_total": avg_total,
             "rated": rated,
             "favourited": favourited,
             "comment_form": CommentForm(),
