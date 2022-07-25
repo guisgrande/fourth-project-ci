@@ -6,8 +6,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect
-from .models import Car
-from .forms import CommentForm
+from .models import Car, RateCar
+from .forms import CommentForm, RateForm
 
 
 class GarageView(generic.ListView):
@@ -21,6 +21,7 @@ class GarageView(generic.ListView):
     queryset = Car.objects.filter(status=1).order_by('-created_on')
     paginate_by = 6
 
+
 class CarDetail(View):
     """
     Class to display car details.
@@ -29,6 +30,7 @@ class CarDetail(View):
         queryset = Car.objects.filter(status=1)
         car = get_object_or_404(queryset, slug=slug)
         car_comments = car.car_comments.filter(approved=True).order_by("-created_on")
+        car_rate = car.car_rate.filter(rated=True).order_by("-created_on")
         favourited = False
         if car.favourite.filter(id=self.request.user.id).exists():
             favourited = True
@@ -37,8 +39,9 @@ class CarDetail(View):
             "car": car,
             "car_comments": car_comments,
             "commented": False,
+            "car_rate": car_rate,
             "favourited": favourited,
-            "comment_form": CommentForm()
+            "comment_form": CommentForm(),
             })
     
     def post(self, request, slug, *args, **kwargs):
@@ -47,9 +50,12 @@ class CarDetail(View):
         car_comments = car.car_comments.filter(approved=True).order_by("-created_on")
         comment_form = CommentForm(data=request.POST)
         favourited = False
+
+        #Favourite
         if car.favourite.filter(id=self.request.user.id).exists():
             favourited = True
 
+        # Comment
         if comment_form.is_valid():
             comment_form.instance.name = request.user
             comment = comment_form.save(commit=False)
@@ -67,13 +73,53 @@ class CarDetail(View):
             })
 
 
+class RateCarView(LoginRequiredMixin, View):
+    model = RateCar
+    template_name = 'garage/rate_car.html'
+
+    def get(self, request, slug, *args, **kwargs):
+        queryset = Car.objects.filter(status=1)
+        car = get_object_or_404(queryset, slug=slug)
+        car_rate = car.car_rate.filter(rated=True).order_by("-created_on")
+        rate_form = RateForm()
+        return render(request, "garage/rate_car.html", {
+            "car": car,
+            "car_rate": car_rate,
+            "rated": False,
+            "rate_form": RateForm()
+            })
+        
+    def post(self, request, slug, *args, **kwargs):
+        queryset = Car.objects.filter(status=1)
+        car = get_object_or_404(queryset, slug=slug)
+        car_rate = car.car_rate.all()
+        rate_form = RateForm(data=request.POST)
+
+        # Rate
+        if rate_form.is_valid():
+            rate = rate_form.save(commit=False)
+            rate.name = request.user
+            rate.car = car
+            rate.rated = True
+            rate.save()
+        else:
+            rate_form = RateForm()
+
+        return render(request, "garage/rate_car.html", {
+            "car": car,
+            "car_rate": car_rate,
+            "rated": True,
+            "rate_form": RateForm()
+            })
+
+
 class FavouriteCar(LoginRequiredMixin, View):
     """
     Class to logged user favourite or unfavorite car post.
     """ 
     def post(self, request, slug, *args, **kwargs):
         car = get_object_or_404(Car, slug=slug)
-        if car.favorite.filter(id=request.user.id).exists():
+        if car.favourite.filter(id=request.user.id).exists():
             car.favourite.remove(request.user)
         else:
             car.favourite.add(request.user)
@@ -129,6 +175,7 @@ class EditCarPost(SuccessMessageMixin, LoginRequiredMixin, generic.UpdateView):
     template_name = 'garage/add_car.html'
     success_url = reverse_lazy('members')
     success_message = "All right! You updated your car details. Thanks."
+
 
 class DeleteCarPost(SuccessMessageMixin, LoginRequiredMixin, generic.DeleteView):
     """
