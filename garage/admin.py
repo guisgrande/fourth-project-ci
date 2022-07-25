@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Car, CommentCar
+from .models import Car, CommentCar, RateCar
 from django_summernote.admin import SummernoteModelAdmin
 
 
@@ -22,3 +22,8 @@ class CommentCarAdmin(admin.ModelAdmin):
 
     def approve_comments(self, request, queryset):
         queryset.update(approved=True)
+
+@admin.register(RateCar)
+class RateCarAdmin(admin.ModelAdmin):
+
+    list_display = ('name', 'created_on', 'price', 'aesthetics', 'speed', 'drivability', 'overall')
