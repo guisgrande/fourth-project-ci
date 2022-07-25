@@ -77,9 +77,14 @@
     <div class="col-md-4 card mb-4  mt-3 ">
         <div class="card-body">
             {% if user.is_authenticated %}
-            <a class="btn btn-primary" href="{% url 'rate_car' car.slug %}">
-                Rate this car.
-            </a>
+            {% csrf_token %}
+                {% if rated %}
+                <p> You already rated this car.</p>          
+                {% else %}
+                <a class="btn btn-primary" href="{% url 'rate_car' car.slug %}">
+                    Rate this car.
+                </a>   
+                {% endif %}
             {% endif %}
         </div>
     </div>
