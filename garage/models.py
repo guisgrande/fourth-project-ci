@@ -73,7 +73,7 @@ class RateCar(models.Model):
                              related_name="car_rate")
     created_on = models.DateTimeField(auto_now_add=True)
     rated = models.BooleanField(default=False)
-    
+
     price = models.IntegerField(choices=RATE_VALUE, default=5)
     aesthetics = models.IntegerField(choices=RATE_VALUE, default=5)
     speed = models.IntegerField(choices=RATE_VALUE, default=5)
@@ -81,17 +81,10 @@ class RateCar(models.Model):
     overall = models.IntegerField(choices=RATE_VALUE, default=5)
     
     class Meta:
-       ordering = ["created_on"]
+        ordering = ["created_on"]
 
     def __str__(self):
-        return f"""
-        Rate by: {self.name}
-        Price: {self.price}
-        Aesthetics: {self.aesthetics}
-        Speed: {self.speed}
-        Drivability: {self.drivability}
-        Overall: {self.overall}
-        """
+        return str(self.car)
 
 
 class CommentCar(models.Model):
