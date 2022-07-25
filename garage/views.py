@@ -31,20 +31,26 @@ class CarDetail(View):
         car = get_object_or_404(queryset, slug=slug)
         car_comments = car.car_comments.filter(approved=True).order_by("-created_on")
         car_rate = car.car_rate.filter(rated=True).order_by("-created_on")
+
         favourited = False
         rated = False
+
+        len_rate = len(car_rate)
+        if len_rate == 0:
+            len_rate = "0"
 
         if car_rate.filter(name=self.request.user).exists():
             rated = True
 
         if car.favourite.filter(id=self.request.user.id).exists():
             favourited = True
-        
+
         return render(request, "garage/car_details.html", {
             "car": car,
             "car_comments": car_comments,
             "commented": False,
             "car_rate": car_rate,
+            "len_rate": len_rate,
             "rated": rated,
             "favourited": favourited,
             "comment_form": CommentForm(),
@@ -86,15 +92,6 @@ class RateCarView(LoginRequiredMixin, View):
     """
     model = RateCar
     template_name = 'garage/rate_car.html'
-
-#    def user_check(self, request, slug):
-#        queryset = Car.objects.filter(status=1)
-#        car = get_object_or_404(queryset, slug=slug)
-#        current_user = request.user
-#        car_rate_check = car.car_rate.filter(name=current_user)
-#        if leg(car_rate_check) == 1:
-#            messages.info(request, "You've already done your review.")
-#            return HttpResponseRedirect(reverse('car_detail', args=(car.slug,)))
 
     def get(self, request, slug, *args, **kwargs):
         queryset = Car.objects.filter(status=1)
