@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+<div class="card-body">
+    <p>{{ car.brand}}</p>
+    <p>{{ car.model }}</p>
+    <p>{{ car.year }}</p>
+    <img class="card-img-top rounded" style="width: 350px; height: 200px" src=" {{ car.car_image.url }}">                
+</div>
+
+<div class="col-md-4 card mb-4  mt-3 ">
+    <div class="card-body">
+        {% if rated %}
+        <div class="alert alert-success" role="alert">
+            You rated this car! Thanks for your avaliation.
+        </div>
+        {% else %}
+        {% if user.is_authenticated %}
+
+        <h3>Leave a rate review:</h3>
+        <p>Rating as: {{ user.username }}</p>
+        <form method="post" style="margin-top: 1.3em;">
+            {{ rate_form | crispy }}
+            {% csrf_token %}
+            <button type="submit" class="btn btn-signup btn-lg">Submit</button>
+        </form>
+        {% endif %}
+        {% endif %}
+    </div>
+</div>
+
+{%endblock%}
