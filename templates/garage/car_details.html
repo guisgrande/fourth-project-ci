@@ -59,6 +59,9 @@
 <div class="row">
     <div class="col-md-8 card mb-4  mt-3 ">
         <h3>Rate reviews</h3>
+        <div>
+            <p>Total rates: {{ len_rate }}</p>
+        </div>
         <div class="card-body">
             <!-- For loop to iterate through each rate in rate list -->
             {% for rate in car_rate %}
