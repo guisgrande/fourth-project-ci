@@ -48,11 +48,50 @@ class Car(models.Model):
         self.slug = slugify(autoslug)
         super(Car, self).save(*args, **kwargs)
 
-    def number_of_favorites(self):
+    def number_of_favourites(self):
         """
         Function to count number of favourites
         """
         return self.favourite.count()
+
+
+class RateCar(models.Model):
+    """
+    Class model to Rate car review.
+    """
+    RATE_VALUE = (
+        (1, '1'),
+        (2, '2'),
+        (3, '3'),
+        (4, '4'),
+        (5, '5'),
+    )
+
+    car = models.ForeignKey(Car, on_delete=models.CASCADE,
+                             related_name="car_rate")
+    name = models.ForeignKey(User, on_delete=models.CASCADE,
+                             related_name="car_rate")
+    created_on = models.DateTimeField(auto_now_add=True)
+    rated = models.BooleanField(default=False)
+    
+    price = models.IntegerField(choices=RATE_VALUE, default=5)
+    aesthetics = models.IntegerField(choices=RATE_VALUE, default=5)
+    speed = models.IntegerField(choices=RATE_VALUE, default=5)
+    drivability = models.IntegerField(choices=RATE_VALUE, default=5)
+    overall = models.IntegerField(choices=RATE_VALUE, default=5)
+    
+    class Meta:
+       ordering = ["created_on"]
+
+    def __str__(self):
+        return f"""
+        Rate by: {self.name}
+        Price: {self.price}
+        Aesthetics: {self.aesthetics}
+        Speed: {self.speed}
+        Drivability: {self.drivability}
+        Overall: {self.overall}
+        """
 
 
 class CommentCar(models.Model):
