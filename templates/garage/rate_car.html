@@ -4,10 +4,10 @@
 {% load crispy_forms_tags %}
 
 <div class="card-body">
-    <p>{{ car.brand}}</p>
-    <p>{{ car.model }}</p>
-    <p>{{ car.year }}</p>
-    <img class="card-img-top rounded" style="width: 350px; height: 200px" src=" {{ car.car_image.url }}">                
+        <p>{{ car.brand}}</p>
+        <p>{{ car.model }}</p>
+        <p>{{ car.year }}</p>
+        <img class="card-img-top rounded" style="width: 350px; height: 200px" src=" {{ car.car_image.url }}">                
 </div>
 
 <div class="col-md-4 card mb-4  mt-3 ">
@@ -16,6 +16,7 @@
         <div class="alert alert-success" role="alert">
             You rated this car! Thanks for your avaliation.
         </div>
+        <p>Back to <a href="{% url 'car_detail' car.slug %}">car details</a></p>
         {% else %}
         {% if user.is_authenticated %}
 
