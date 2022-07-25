@@ -61,6 +61,11 @@
         <h3>Rate reviews</h3>
         <div>
             <p>Total rates: {{ len_rate }}</p>
+            <p>Price: {{ avg_total.avg_price }}</p>
+            <p>Aesthetics: {{ avg_total.avg_aest }}</p>
+            <p>Speed: {{ avg_total.avg_speed }}</p>
+            <p>Drivability: {{ avg_total.avg_driv }}</p>
+            <p>Overall: {{ avg_total.avg_overall }}</p>
         </div>
         <div class="card-body">
             <!-- For loop to iterate through each rate in rate list -->
