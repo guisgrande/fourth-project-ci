@@ -27,7 +27,7 @@ def garage(request):
             if sortkey == 'date':
                 sortkey = '-created_on'
             if sortkey == '-date':
-                sortkey == 'created_on'
+                sortkey = 'created_on'
             sort = sortkey
             car_list = car_list.order_by(sortkey)
         else:
