@@ -20,6 +20,21 @@
         <li><a class="dropdown-item" href="/garage/?sort=-model">By model: Z to A</a></li>
     </ul>
 
+    <div class="row">
+        <div class="col-lg-3">
+            <form method="POST" class="d-flex" role="search" action="{% url 'search_car' %}">
+                {% csrf_token %}
+                <div class="input-group mb3">
+                    <input type="text" name="searched" class="form-control mr-sm-2" placeholder="Search brand or model here"
+                        aria-label="Search cars" value="{{search_input}}" required>
+                    <button type="submit" class="input-group-text grn-btn mr-sm-2" value="Search">
+                        <i class="fa fa-search"></i></button>
+                    <a href="{% url 'garage' %}" class="btn btn-outline-secondary grn-btn">&#x2715;</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
 <div class="col-12 mt-3 left">
     <div class="row">
     {% for car in car_list %}
