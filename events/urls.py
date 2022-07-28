@@ -9,4 +9,5 @@ urlpatterns = [
     path('event-detail/<slug:slug>/', views.EventDetail.as_view(), name='event_detail'),
     path('presence-go-event/<slug:slug>/', views.PresenceGoEvent.as_view(), name='presence_go_event'),
     path('presence-maybe-event/<slug:slug>/', views.PresenceMaybeEvent.as_view(), name='presence_maybe_event'),
+    path('search-event/', views.search_event, name='search_event'),
 ]
