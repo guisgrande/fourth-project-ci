@@ -10,16 +10,32 @@ from .models import Event
 from .forms import CommentForm
 
 
-class EventsView(generic.ListView):
+def events(request):
     """
-    Class to display all event posts at events page.
-    Ordered by new one show first an paginated by 6.
+    Function to display all event posts at events page.
+    By default ordered by date, new one show first.
+    Sort request to display in a diferent order.
     """
-    model = Event
-    template_name = 'events/events.html'
-    context_object_name = 'event_list'
-    queryset = Event.objects.filter(status=1).order_by('-created_on')
-    paginate_by = 6
+    event_list = Event.objects.filter(status=1)
+    sort = None
+
+    if request.GET:
+        if 'sort' in request.GET:
+            sortkey = request.GET['sort']
+            if sortkey == 'date':
+                sortkey = '-created_on'
+            if sortkey == '-date':
+                sortkey = 'created_on'
+            sort = sortkey
+            event_list = event_list.order_by(sortkey)
+        else:
+            event_list = event_list.order_by('-created_on')
+
+    context = {
+        "event_list": event_list,
+    }
+
+    return render(request, 'events/events.html', context)
 
 
 class EventDetail(View):
