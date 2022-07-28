@@ -8,6 +8,7 @@ from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect
 from .models import Event
 from .forms import CommentForm
+from django.db.models import Q
 
 
 def events(request):
@@ -36,6 +37,28 @@ def events(request):
     }
 
     return render(request, 'events/events.html', context)
+
+
+def search_event(request):
+    """
+    Function to search events from events page and display in a new template
+    Request POST from form and return Searched word to 
+    look into title, local or category fields before return search results
+    """
+    if request.method == 'POST':
+        searched = request.POST['searched']
+        queries = Q(event_title__contains=searched) | Q(local__contains=searched) | Q(category__contains=searched)
+        event_list = Event.objects.filter(queries)
+
+        context = {
+            "searched": searched,
+            "event_list": event_list,
+        }
+        return render(request, 'events/event_search.html', context)
+
+    else:
+        context = {}
+        return render(request, 'events/event_search.html', context)
 
 
 class EventDetail(View):
