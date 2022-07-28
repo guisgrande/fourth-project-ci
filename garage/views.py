@@ -9,7 +9,7 @@ from django.http import HttpResponseRedirect
 from django.db.models import Avg
 from .models import Car, RateCar
 from .forms import CommentForm, RateForm
-from django.core.paginator import Paginator
+from django.db.models import Q
 
 
 def garage(request):
@@ -38,6 +38,28 @@ def garage(request):
     }
 
     return render(request, 'garage/garage.html', context)
+
+
+def search_car(request):
+    """
+    Function to search cars from garage page and display in a new template
+    Request POST from form and return Searched word to 
+    look into brand or model fields before return search results
+    """
+    if request.method == 'POST':
+        searched = request.POST['searched']
+        queries = Q(brand__contains=searched) | Q(model__contains=searched)
+        car_list = Car.objects.filter(queries)
+
+        context = {
+            "searched": searched,
+            "car_list": car_list,
+        }
+        return render(request, 'garage/car_search.html', context)
+
+    else:
+        context = {}
+        return render(request, 'garage/car_search.html', context)
 
 
 class CarDetail(View):
