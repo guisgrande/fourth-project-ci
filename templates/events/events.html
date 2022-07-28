@@ -19,6 +19,21 @@
         <li><a class="dropdown-item" href="/events/?sort=-start_date">By event date: Old to new</a></li>
     </ul>
 
+    <div class="row">
+        <div class="col-lg-3">
+            <form method="POST" class="d-flex" role="search" action="{% url 'search_event' %}">
+                {% csrf_token %}
+                <div class="input-group mb3">
+                    <input type="text" name="searched" class="form-control mr-sm-2" placeholder="Search event title, local or category here"
+                        aria-label="Search events" value="{{search_input}}" required>
+                    <button type="submit" class="input-group-text grn-btn mr-sm-2" value="Search">
+                        <i class="fa fa-search"></i></button>
+                    <a href="{% url 'events' %}" class="btn btn-outline-secondary grn-btn">&#x2715;</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
 <div class="col-12 mt-3 left">
     <div class="row">
     {% for event in event_list %}
