@@ -6,6 +6,19 @@
     <h2>Events</h2>
 </div>
 
+<div class="dropdown">
+    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Sort by
+    </a>
+    <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="/events/?sort=date">By post date: New to old</a></li>
+        <li><a class="dropdown-item" href="/events/?sort=-date">By post date: Old to new</a></li>
+        <li><a class="dropdown-item" href="/events/?sort=event_title">By title: A to Z</a></li>
+        <li><a class="dropdown-item" href="/events/?sort=-event_title">By title: Z to A</a></li>
+        <li><a class="dropdown-item" href="/events/?sort=start_date">By event date: New to old</a></li>
+        <li><a class="dropdown-item" href="/events/?sort=-start_date">By event date: Old to new</a></li>
+    </ul>
+
 <div class="col-12 mt-3 left">
     <div class="row">
     {% for event in event_list %}
@@ -28,19 +41,6 @@
     {% endif %}
     {% endfor %}
     </div>
-
-    {% if is_paginated %}
-    <nav arial-label="Page navigation">
-        <ul class="pagination justify-content-center">
-            {% if page_obj.has_previous %}
-            <li><a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; PREV </a></li>
-            {% endif %}
-            {% if page_obj.has_next %}
-            <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT &raquo;</a></li>
-        </ul>
-    </nav>
-    {% endif %}
-
 </div>
-{% endif %}
+
 {%endblock%}
