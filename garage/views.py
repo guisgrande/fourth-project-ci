@@ -9,23 +9,42 @@ from django.http import HttpResponseRedirect
 from django.db.models import Avg
 from .models import Car, RateCar
 from .forms import CommentForm, RateForm
+from django.core.paginator import Paginator
 
 
-class GarageView(generic.ListView):
+def garage(request):
     """
-    Class to display all cars posts at garage page.
-    Ordered by new one show first an paginated by 6.
+    Function to display all cars posts at garage page.
+    By default ordered by date, new one show first.
+    Sort request to display in a diferent order.
     """
-    model = Car
-    template_name = 'garage/garage.html'
-    context_object_name = 'car_list'
-    queryset = Car.objects.filter(status=1).order_by('-created_on')
-    paginate_by = 6
+    car_list = Car.objects.filter(status=1)
+    sort = None
+
+    if request.GET:
+        if 'sort' in request.GET:
+            sortkey = request.GET['sort']
+            if sortkey == 'date':
+                sortkey = '-created_on'
+            if sortkey == '-date':
+                sortkey == 'created_on'
+            sort = sortkey
+            car_list = car_list.order_by(sortkey)
+        else:
+            car_list = car_list.order_by('-created_on')
+
+    context = {
+        "car_list": car_list,
+    }
+
+    return render(request, 'garage/garage.html', context)
 
 
 class CarDetail(View):
     """
     Class to display car details.
+    Get and post favourite action from users
+    Get and post comments from users
     """
     def get(self, request, slug, *args, **kwargs):
         queryset = Car.objects.filter(status=1)
@@ -53,7 +72,7 @@ class CarDetail(View):
         if len_rate == 0:
             len_rate = "0"
 
-        if car_rate.filter(name=self.request.user).exists():
+        if car_rate.filter(id=self.request.user.id).exists():
             rated = True
 
         if car.favourite.filter(id=self.request.user.id).exists():
