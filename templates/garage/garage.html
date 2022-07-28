@@ -7,6 +7,19 @@
     <p>Explore our garage and see the unique and historic cars that our members have driven.</p>
 </div>
 
+<div class="dropdown">
+    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Sort by
+    </a>
+    <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="/garage/?sort=date">By date: New to old</a></li>
+        <li><a class="dropdown-item" href="/garage/?sort=-date">By date: Old to new</a></li>
+        <li><a class="dropdown-item" href="/garage/?sort=brand">By brand: A to Z</a></li>
+        <li><a class="dropdown-item" href="/garage/?sort=-brand">By brand: Z to A</a></li>
+        <li><a class="dropdown-item" href="/garage/?sort=model">By model: A to Z</a></li>
+        <li><a class="dropdown-item" href="/garage/?sort=-model">By model: Z to A</a></li>
+    </ul>
+
 <div class="col-12 mt-3 left">
     <div class="row">
     {% for car in car_list %}
@@ -29,19 +42,6 @@
     {% endif %}
     {% endfor %}
     </div>
-
-    {% if is_paginated %}
-    <nav arial-label="Page navigation">
-        <ul class="pagination justify-content-center">
-            {% if page_obj.has_previous %}
-            <li><a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; PREV </a></li>
-            {% endif %}
-            {% if page_obj.has_next %}
-            <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT &raquo;</a></li>
-        </ul>
-    </nav>
-    {% endif %}
-
 </div>
-{% endif %}
+
 {%endblock%}
