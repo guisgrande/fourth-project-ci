@@ -5,16 +5,17 @@
 
 <head>
     <title>Auto Classic Club</title>
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous">
-    </script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous">
+    </script>
 </head>
 
 <body class="d-flex flex-column h-100 main-bg">
@@ -65,10 +66,72 @@
         {% endblock content %}
     </main>
 
-    <!-- Footer -->
-    <footer class="footer mt-auto py-3">
-        <p>FOOTER</p>
-    </footer>
+<!-- Footer -->
+<footer class="footer mt-auto py-3">
+
+    <!-- Separator line -->
+    <div id="footer-line">
+    </div>
+
+    <!-- Container for footer content -->
+    <div class="container-fluid mt-3">
+        <div class="row">
+            <!-- Website pages links-->
+            <div class="col">
+                <ul class="list-clear">
+                    <li>
+                        <a class="footer-link" href="{% url 'home' %}">Home</a>
+                    </li>
+                    <li>
+                        <a class="footer-link" href="{% url 'garage' %}">Garage</a>
+                    </li>
+                    <li>
+                        <a class="footer-link" href="{% url 'events' %}">Events</a>
+                    </li>
+                    {% if user.is_authenticated %}
+                    <li>
+                        <a class="footer-link" href="{% url 'account_logout' %}">Logout</a>
+                    </li>
+                    <li>
+                        <a class="footer-link" href="{% url 'members' %}">Member</a>
+                    </li>
+                    {% else %}
+                    <li>
+                        <a class="footer-link" href="{% url 'account_signup' %}">Signup</a>
+                    </li>
+                    <li>
+                        <a class="footer-link" href="{% url 'account_login' %}">Signin</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+
+            <div class="col">
+            </div>
+
+            <!-- Social icons links -->
+            <div class="col">
+                <ul class="list-clear d-flex justify-content-around">
+                    <li>
+                        <a href="https://facebook.com" target="_blank" rel="noopener" aria-label="Check our Facebook page 
+                        (opens in a new tab)"><i class="bi bi-facebook"></i></a>
+                    </li>
+                    <li>
+                        <a href="https://instagram.com" target="_blank" rel="noopener" aria-label="Check our Instagram page 
+                        (opens in a new tab)"><i class="bi bi-instagram"></i></a>
+                    </li>
+                    <li>
+                        <a href="https://youtube.com" target="_blank" rel="noopener" aria-label="Check our Youtube page 
+                        (opens in a new tab)"><i class="bi bi-youtube"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</footer>
+
+
 </body>
 
 </html>
