@@ -2,6 +2,7 @@
 {% load static %}
 {% block content %}
 
+<!-- Header section and hero image-->
 <header>
     <div class="container-fluid hero-image">
         <div class="px-4 text-center">
@@ -19,12 +20,21 @@
     </div>
 </header>
 
+<!-- About section -->
 <div class="container-fluid">
-
-    <div>
-        <h2>ABOUT</h2>
+    <div class="px-4 m-3 text-center">
+        <h2 class="txt-shadow-y">About</h2>
     </div>
+    <div class="px-4 m-2 text-center">
+        <p>The Auto Classic club is a community created to facilitate the promotion of classic cars and interaction among site members.</p>
+    </div>
+    <div class="px-4 m-1 text-center">
+        <p>Members can add their cars, suggest events, comment and leave their opinion, rate other cars.</p>
+        <p>And most importantly create connections with the community.</p>
+    </div>
+</div>
 
+<div class="container-fluid">
     <div class="col-12 mt-3 left">
         <div>
             <h2>Garage</h2>
@@ -50,6 +60,8 @@
             {% endif %}
         {% endfor %}
     </div>
+</div>
+
 
     <div class="col-12 mt-3 left">
         <div>
@@ -78,7 +90,5 @@
     <div>
         <h2>JOIN US</h2>
     </div>
-
-</div>
 
 {% endblock content %}
