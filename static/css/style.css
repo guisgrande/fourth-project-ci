@@ -19,6 +19,20 @@
 
 /* Style for buttons */
 
+.btn-one {
+    background-color: #FF6607;
+    border: 1px solid #181818;
+    border-radius: 8px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.btn-one:hover {
+    background-color: #ff660700;
+    border: 1px solid #FF6607;
+    color: #FF6607;
+}
+
 .btn-two {
     background-color: #ff660700;
     border: 1px solid #FF6607;
@@ -30,6 +44,7 @@
 
 .btn-two:hover {
     background-color: #FF6607;
+    color: #F0F0F0;
     border: 1px solid #F0F0F0;
 }
 
