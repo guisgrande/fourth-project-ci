@@ -98,9 +98,30 @@
 </div>
 
 <!-- Join us section -->
-<div class="container-fluid">
-    <div>
-        <h2>JOIN US</h2>
+<div class="bck-grd-black">
+    <div class="col-12 p-3 left">
+        {% if user.is_authenticated %}
+        {% load account %}
+        <div class="px-4 m-3 text-center">
+            <h2 class="txt-shadow-y txt-white pt-3">Hello, {% user_display user %}</h2>
+        </div>
+        <div class="px-4 m-1 text-center">
+            <p class="txt-white">Welcome again, access your area and keep up with the news.</p>
+        </div>
+        <div class="px-4 mt-1 mb-3 text-center">
+            <a class="btn btn-two" href="{% url 'members' %}">Your area</a>
+        </div>
+        {% else %}
+        <div class="px-4 m-3 text-center">
+            <h2 class="txt-shadow-y txt-white pt-3">Join us</h2>
+        </div>
+        <div class="px-4 m-1 text-center">
+            <p class="txt-white">Be part of our community, registration is fast and easy. Start sharing and interacting with our members.</p>
+        </div>
+        <div class="px-4 mt-1 mb-3 text-center">
+            <a class="btn btn-two" href="{% url 'account_signup' %}">Register</a>
+        </div>
+        {% endif %}
     </div>
 </div>
 {% endblock content %}
