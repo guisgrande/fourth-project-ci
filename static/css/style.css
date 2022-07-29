@@ -5,6 +5,19 @@
     background-color: #181818;
 }
 
+.bck-grd-gray {
+    background-color: #F0F0F0;
+}
+
+/* Style for footer elements */
+
+.hover-link {
+    border-radius: 10px;
+}
+
+.hover-link:hover {
+    background-color: #FFA14A;
+}
 
 /* Style for footer elements */
 
