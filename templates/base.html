@@ -78,7 +78,7 @@
         <div class="row">
             <!-- Website pages links-->
             <div class="col">
-                <ul class="list-clear">
+                <ul id="list-web-link" class="list-clear">
                     <li>
                         <a class="footer-link" href="{% url 'home' %}">Home</a>
                     </li>
@@ -106,22 +106,19 @@
                 </ul>
             </div>
 
-            <div class="col">
-            </div>
-
             <!-- Social icons links -->
-            <div class="col">
-                <ul class="list-clear d-flex justify-content-around">
-                    <li>
-                        <a href="https://facebook.com" target="_blank" rel="noopener" aria-label="Check our Facebook page 
+            <div class="col d-flex align-items-center justify-content-around">
+                <ul class="list-clear p-0 d-flex justify-content-around">
+                    <li id="social-list" class="shadow rounded bck-grd-black m-1">
+                        <a class="social-link" href="https://facebook.com" target="_blank" rel="noopener" aria-label="Check our Facebook page 
                         (opens in a new tab)"><i class="bi bi-facebook"></i></a>
                     </li>
-                    <li>
-                        <a href="https://instagram.com" target="_blank" rel="noopener" aria-label="Check our Instagram page 
+                    <li id="social-list" class="shadow rounded bck-grd-black m-1">
+                        <a class="social-link" href="https://instagram.com" target="_blank" rel="noopener" aria-label="Check our Instagram page 
                         (opens in a new tab)"><i class="bi bi-instagram"></i></a>
                     </li>
-                    <li>
-                        <a href="https://youtube.com" target="_blank" rel="noopener" aria-label="Check our Youtube page 
+                    <li id="social-list" class="shadow rounded bck-grd-black m-1">
+                        <a class="social-link" href="https://youtube.com" target="_blank" rel="noopener" aria-label="Check our Youtube page 
                         (opens in a new tab)"><i class="bi bi-youtube"></i></a>
                     </li>
                 </ul>
@@ -130,7 +127,6 @@
     </div>
 
 </footer>
-
 
 </body>
 
