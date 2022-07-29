@@ -45,7 +45,7 @@
             <div class="col-md-6">
                 <div class="card mb-4 m-3">
                         <div class="card-body m-1">
-                            <img class="card-img-top rounded" alt="Car details" src=" {{ car.car_image.url }}">
+                            <img class="card-img-top rounded" alt="Car image" src=" {{ car.car_image.url }}">
                             <p class="card-text mt-2">Brand: {{ car.brand}}</p>
                             <p class="card-text">Model: {{ car.model }}</p>
                             <p class="card-text">Year: {{ car.year }}</p>
@@ -59,8 +59,8 @@
                 <div class="row">
             {% endif %}
         {% endfor %}
-        <div class="px-4 m-3 text-center">
-            <button type="button" class="btn btn-two">Explore</button>
+        <div class="px-4 mt-1 mb-3 text-center">
+            <a class="btn btn-two" href="{% url 'garage' %}">Explore</a>
         </div>
     </div>
 </div>
@@ -68,21 +68,21 @@
 <!-- Events section -->
 <div class="bck-grd-gray">
     <div class="col-12 mt-3 left">
-        <div>
-            <h2>Events</h2>
+        <div class="px-4 m-3 text-center">
+            <h2 class="txt-shadow-y pt-3">Events</h2>
         </div>
     </div>
     <div class="row">
         {% for event in event_list %}
-            <div class="col-md-4">
-                <div class="card mb-4">
-                    <div class="card-body">
-                        <a href="{% url 'event_detail' event.slug %}">
-                            <h2>{{ event.event_id }}</h2>
-                            <p>{{ event.event_title}}</p>
-                            <p>{{ event.category }}</p>
-                            <img class="card-img-top" src=" {{ event.event_image.url }}">
-                        </a>                    
+            <div class="col-md-6">
+                <div class="card mb-4 m-3">
+                    <div class="card-body m-1">
+                        <img class="card-img-top rounded" alt="Event image" src=" {{ event.event_image.url }}">
+                            <p class="card-text mt-2">Title: {{ event.event_title }}</p>
+                            <p class="card-text">Category: {{ event.category }}</p>
+                            <p class="card-text">Local: {{ event.local }}</p>
+                            <p class="card-text">Date: {{ event.start_date }}</p>
+                            <a class="btn btn-card" href="{% url 'event_detail' event.slug %}">View more</a>                  
                     </div>
                 </div>
             </div>
@@ -91,6 +91,9 @@
                 <div class="row">
             {% endif %}
         {% endfor %}
+        <div class="px-4 mt-1 mb-3 text-center">
+            <a class="btn btn-one" href="{% url 'events' %}">Check out</a>
+        </div>
     </div>
 </div>
 
