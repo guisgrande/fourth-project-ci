@@ -1,0 +1,21 @@
+
+/* Style for footer elements */
+
+#footer-line {
+    background-color: #FF6607;
+    width: auto;
+    height: 8px;
+}
+
+.list-clear {
+    list-style: none;
+}
+
+.footer-link {
+    text-decoration: none;
+    color: black;
+}
+
+.footer-link:hover {
+    color:#FFA14A
+}
