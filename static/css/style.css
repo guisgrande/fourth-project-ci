@@ -59,6 +59,12 @@
 
 @media screen and (max-width: 400px) {
 
+/* Querie for navbar elements */
+#logo {
+    width: 140px;
+    height: auto;
+}
+
 /* Querie for footer elements */
 
 #list-web-link {
