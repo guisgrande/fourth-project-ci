@@ -34,24 +34,24 @@
     </div>
 </div>
 
-<div class="container-fluid">
+<!-- Garage cars section -->
+<div class="bck-grd-black">
     <div class="col-12 mt-3 left">
-        <div>
-            <h2>Garage</h2>
+        <div class="px-4 m-3 text-center">
+            <h2 class="txt-shadow-y txt-white pt-3">Garage</h2>
         </div>
         <div class="row">
         {% for car in car_list %}
-            <div class="col-md-4">
-                <div class="card mb-4">
-                    <div class="card-body">
-                        <a href="{% url 'car_detail' car.slug %}">
-                            <h2>{{ car.car_id }}</h2>
-                            <p>{{ car.brand}}</p>
-                            <p>{{ car.model }}</p>
-                            <p>{{ car.username }}</p>
-                            <img class="card-img-top" src=" {{ car.car_image.url }}">
-                        </a>                    
-                    </div>
+            <div class="col-md-6">
+                <div class="card mb-4 m-3">
+                        <div class="card-body m-1">
+                            <img class="card-img-top rounded" alt="Car details" src=" {{ car.car_image.url }}">
+                            <p class="card-text mt-2">Brand: {{ car.brand}}</p>
+                            <p class="card-text">Model: {{ car.model }}</p>
+                            <p class="card-text">Year: {{ car.year }}</p>
+                            <p class="card-text">Created by: {{ car.username }}</p>
+                            <a class="btn btn-card" href="{% url 'car_detail' car.slug %}">View more</a>                   
+                        </div>
                 </div>
             </div>
             {% if forloop.counter|divisibleby:2 %}
@@ -59,10 +59,14 @@
                 <div class="row">
             {% endif %}
         {% endfor %}
+        <div class="px-4 m-3 text-center">
+            <button type="button" class="btn btn-two">Explore</button>
+        </div>
     </div>
 </div>
 
-
+<!-- Events section -->
+<div class="bck-grd-gray">
     <div class="col-12 mt-3 left">
         <div>
             <h2>Events</h2>
@@ -87,8 +91,13 @@
                 <div class="row">
             {% endif %}
         {% endfor %}
+    </div>
+</div>
+
+<!-- Join us section -->
+<div class="container-fluid">
     <div>
         <h2>JOIN US</h2>
     </div>
-
+</div>
 {% endblock content %}
