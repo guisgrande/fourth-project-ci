@@ -2,36 +2,42 @@
 {% load static %}
 {% block content %}
 
-<div>
-    <h2>Add new car</h2>
+<div class="container text-center">
+    <h2 class="m-2">Add new car</h2>
 </div>
 
 {% if user.is_authenticated %}
 {% load account %}
+<div class="container text-center">
+    <div class="row">
+        <div class="col-md-6 mt-4 offset-md-3 bck-grd-gray rounded shadow">
 
-<div class="container-fluid">
-    <form method="POST" enctype='multipart/form-data'>
-        
-        <fieldset class="form-group">
-            <legend class="border-bottom mb-4">Add your car info here.</legend>
-            <p>User: {% user_display user %}</p>         
-        </fieldset>
-               
-            <div class="container">
-                <div class="row">
-                {% for field in form  %}
-                {% csrf_token %}
-                  <div class="col-sm-6">
-                    <b>{{ field.label_tag }}</b> - {{ field }} 
-                  </div>
-                {% endfor %}
-                </div>  
-            </div>
+            <form method="POST" enctype='multipart/form-data'>
+                
+                <fieldset class="form-group">
+                    <legend class="border-bottom mb-4">Add your car info here.</legend>
+                    <p>User: {% user_display user %}</p>         
+                </fieldset>
+                    
+                    <div class="container">
+                        <div class="row">
+                        {% for field in form  %}
+                        {% csrf_token %}
+                        <div class="col-sm-12 m-1">
+                            <b>{{ field.label_tag }}</b> - {{ field }} 
+                        </div>
+                        {% endfor %}
+                        </div>  
+                    </div>
+                
+                <div class="mt-3 p-3">
+                    <input class="btn btn-success m-1" type="submit" value="Submit">
+                    <a class="btn btn-primary m-1" href="{% url 'members' %}" class="btn btn-lg">Cancel</a>
+                </div>
+            </form>
 
-        <input type="submit" value="Submit" class="btn btn-lg">
-        <a href="{% url 'members' %}" class="btn btn-lg">Cancel</a>
-
-    </form>
+        </div>
+    </div>
 </div>
 
 {% endif %}
