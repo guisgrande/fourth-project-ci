@@ -135,6 +135,7 @@
 
 /* !!Media queries!! */
 
+
 @media screen and (max-width: 400px) {
 
 /* Querie for navbar elements */
@@ -155,6 +156,18 @@
 .social-link {
     font-size: 20px;
     padding: 8px;
+}
+
+/* Querie for forms elements */
+
+/* Querie for add car form */
+
+#id_description {
+    width: 181px;
+}
+
+#id_car_image {
+    font-size: 12px;
 }
 
 }
