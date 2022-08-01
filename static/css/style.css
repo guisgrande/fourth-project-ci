@@ -160,10 +160,14 @@
 
 /* Querie for forms elements */
 
-/* Querie for add car form */
-
+/* Querie for add car and event form */
+/* id_description - same id for both text field forms */
 #id_description {
     width: 181px;
+}
+
+#id_event_image {
+    font-size: 12px;
 }
 
 #id_car_image {
