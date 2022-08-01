@@ -1,4 +1,4 @@
-/* Style for fonts and text classes */
+/* !! Style for fonts and text classes !! */
 
 .txt-white {
     color: white;
@@ -8,7 +8,8 @@
     text-shadow: 2px 2px 4px #FBBF34
 }
 
-/* Style for backgrounds classes */
+/* !! Style for backgrounds classes !! */
+
 .bck-grd-black {
     background-color: #181818;
 }
@@ -17,7 +18,9 @@
     background-color: #F0F0F0;
 }
 
-/* Style for buttons */
+/* !! Style for buttons !! */
+
+/* Three different buttons, for use all website (except forms submitions) */
 
 .btn-one {
     background-color: #FF6607;
@@ -57,6 +60,7 @@
     color: #FFA14A;
 }
 
+/* Button to card element (car and event) */
 
 .btn-card {
     background-color: #FBBF34;
@@ -68,7 +72,10 @@
     border: 1px solid #FBBF34;
 }
 
-/* Style for navbar elements */
+/* Button to user car and events list (view, edit, delete) */
+
+
+/* !! Style for navbar elements !! */
 
 .hover-link {
     border-radius: 10px;
@@ -78,7 +85,7 @@
     background-color: #FFA14A;
 }
 
-/* Style for footer elements */
+/* !! Style for footer elements !! */
 
 #footer-line {
     background-color: #FF6607;
@@ -114,6 +121,8 @@
     color:#FFA14A
 }
 
+/* !! Style for each page elements !! */
+
 /* Index page style */
 
 .hero-image {
@@ -133,8 +142,7 @@
 }
 
 
-/* !!Media queries!! */
-
+/* !! Media queries !! */
 
 @media screen and (max-width: 400px) {
 
