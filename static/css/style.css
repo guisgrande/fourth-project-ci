@@ -72,6 +72,19 @@
     border: 1px solid #FBBF34;
 }
 
+.image-container {
+    position: relative;
+}
+
+.image-flash {
+    position: absolute;
+    border: 1px solid rgba(0, 0, 0, 0.26);
+    border-radius: 10px;
+    bottom: 1%;
+    left: 1%;
+    background-color: #00000080;
+}
+
 /* Button to user car and events list (view, edit, delete) */
 
 
