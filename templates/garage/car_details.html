@@ -59,12 +59,12 @@
 </div>
 
 <!-- Rate section -->
-<div class="container text-center back">
+<div class="container text-center">
     <div class="row">
         <div class="col-md-8 card mb-4 mt-3 bck-grd-black txt-white">
-            <h3 class="m-2">Rate reviews <i class="bi bi-check-square"></i></h3>
+            <h3 class="m-2"><i class="bi bi-check-square"></i> Rate reviews</h3>
             <div>
-                <p class="border p-1">Total rates: {{ len_rate }} </p>
+                <p class="border p-1"><i class="bi bi-check-square-fill"></i> {{ len_rate }} </p>
                 <p>Price: {{ avg_total.avg_price }}</p>
                 <p>Aesthetics: {{ avg_total.avg_aest }}</p>
                 <p>Speed: {{ avg_total.avg_speed }}</p>
@@ -111,46 +111,52 @@
 </div>
 
 <!-- Comments section -->
-<div class="row">
-    <div class="col-md-8 card mb-4  mt-3 ">
-        <h3>Comments:</h3>
-        <div class="card-body">
-            <!-- For loop to iterate through each comment in comments -->
-            {% for comment in car_comments %}
-            <div class="comments" style="padding: 10px;">
-                <p class="font-weight-bold">
-                    {{ comment.name }}
-                    <span class=" text-muted font-weight-normal">
-                        {{ comment.created_on }}
-                    </span> wrote:
-                </p>
-                {{ comment.body | linebreaks }}
+<div class="container text-center">
+    <div class="row">
+        <div class="col-md-8 card mb-4  mt-3 ">
+            <h3 class="m-2"><i class="bi bi-chat-square-text"></i> Comments</h3>
+            <div>
+                {% with car_comments.count as total_comments %}
+                    <p class="border p-1"><i class="bi bi-chat-square-text-fill p-1"></i> {{ total_comments }} </p>
+                {% endwith %}
             </div>
-            <!-- For loop ends here -->
-            {% endfor %}
+            <div class="card-body">
+                <!-- For loop to iterate through each comment in comments -->
+                {% for comment in car_comments %}
+                <div class="comments border rounded p-1">
+                    <p class="font-weight-bold">
+                        {{ comment.name }}
+                        <span class=" text-muted font-weight-normal">
+                            {{ comment.created_on }}
+                        </span> wrote:
+                    </p>
+                    {{ comment.body | linebreaks }}
+                </div>
+                <!-- For loop ends here -->
+                {% endfor %}
+            </div>
         </div>
-    </div>
-    <div class="col-md-4 card mb-4  mt-3 ">
-        <div class="card-body">
-            {% if commented %}
-            <div class="alert alert-success" role="alert">
-                Your comment is awaiting approval
-            </div>
-            {% else %}
-            {% if user.is_authenticated %}
+        <div class="col-md-4 card mb-4  mt-3 ">
+            <div class="card-body">
+                {% if commented %}
+                <div class="alert alert-success" role="alert">
+                    Your comment is awaiting approval
+                </div>
+                {% else %}
+                {% if user.is_authenticated %}
 
-            <h3>Leave a comment:</h3>
-            <p>Posting as: {{ user.username }}</p>
-            <form method="post" style="margin-top: 1.3em;">
-                {{ comment_form | crispy }}
-                {% csrf_token %}
-                <button type="submit" class="btn btn-signup btn-lg">Submit</button>
-            </form>
-            {% endif %}
-            {% endif %}
+                <h3>Leave a comment:</h3>
+                <p>Posting as: {{ user.username }}</p>
+                <form method="post" class="mb-2" style="margin-top: 1.3em;">
+                    {{ comment_form | crispy }}
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-one mt-2" style="font-size: 14px;">Submit</button>
+                </form>
+                {% endif %}
+                {% endif %}
+            </div>
         </div>
     </div>
-</div>
 </div>
 
 {%endblock%}
