@@ -48,6 +48,16 @@
     border: 1px solid #F0F0F0;
 }
 
+.btn-three {
+    color: #FF6607;
+    font-weight: bold;
+}
+
+.btn-three:hover {
+    color: #FFA14A;
+}
+
+
 .btn-card {
     background-color: #FBBF34;
     font-weight: bold;
