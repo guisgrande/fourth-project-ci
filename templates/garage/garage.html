@@ -2,53 +2,65 @@
 {% load static %}
 {% block content %}
 
-<div>
-    <h2>Garage</h2>
+<!-- Garage page title -->
+<div class="container text-center">
+    <h2 class="m-2">Garage</h2>
     <p>Explore our garage and see the unique and historic cars that our members have driven.</p>
 </div>
 
-<div class="dropdown">
-    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-        Sort by
-    </a>
-    <ul class="dropdown-menu">
-        <li><a class="dropdown-item" href="/garage/?sort=date">By date: New to old</a></li>
-        <li><a class="dropdown-item" href="/garage/?sort=-date">By date: Old to new</a></li>
-        <li><a class="dropdown-item" href="/garage/?sort=brand">By brand: A to Z</a></li>
-        <li><a class="dropdown-item" href="/garage/?sort=-brand">By brand: Z to A</a></li>
-        <li><a class="dropdown-item" href="/garage/?sort=model">By model: A to Z</a></li>
-        <li><a class="dropdown-item" href="/garage/?sort=-model">By model: Z to A</a></li>
-    </ul>
+<!-- Sort and search section -->
+<div class="container-fluid text-center bck-grd-black">
+    <!-- Sort list -->
+    <div class="dropdown p-2">
+        <a class="btn btn-outline-light dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Sort by
+        </a>
+        <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/garage/?sort=date">By date: New to old</a></li>
+            <li><a class="dropdown-item" href="/garage/?sort=-date">By date: Old to new</a></li>
+            <li><a class="dropdown-item" href="/garage/?sort=brand">By brand: A to Z</a></li>
+            <li><a class="dropdown-item" href="/garage/?sort=-brand">By brand: Z to A</a></li>
+            <li><a class="dropdown-item" href="/garage/?sort=model">By model: A to Z</a></li>
+            <li><a class="dropdown-item" href="/garage/?sort=-model">By model: Z to A</a></li>
+        </ul>
+    </div>
 
-    <div class="row">
-        <div class="col-lg-3">
+    <!-- Search bar -->
+    <div class="col-md-auto p-2">
+        <div class="container col-sm-8 col-lg-4">
             <form method="POST" class="d-flex" role="search" action="{% url 'search_car' %}">
                 {% csrf_token %}
                 <div class="input-group mb3">
                     <input type="text" name="searched" class="form-control mr-sm-2" placeholder="Search brand or model here"
                         aria-label="Search cars" value="{{search_input}}" required>
-                    <button type="submit" class="input-group-text grn-btn mr-sm-2" value="Search">
-                        <i class="fa fa-search"></i></button>
-                    <a href="{% url 'garage' %}" class="btn btn-outline-secondary grn-btn">&#x2715;</a>
+                    <button type="submit" class="btn btn-outline-light" value="Search"><i class="bi bi-search"></i></button>
+                    <a href="{% url 'garage' %}" class="btn btn-outline-light"><i class="bi bi-x-lg"></i></a>
                 </div>
             </form>
         </div>
     </div>
 
+</div>
+
+<!-- All cars card list display -->
 <div class="col-12 mt-3 left">
     <div class="row">
     {% for car in car_list %}
         <div class="col-md-4">
-            <div class="card mb-4">
-                <div class="card-body">
-                    <a href="{% url 'car_detail' car.slug %}">
-                        <h2>{{ car.car_id }}</h2>
-                        <p>{{ car.brand}}</p>
-                        <p>{{ car.model }}</p>
-                        <p>{{ car.username }}</p>
-                        <img class="card-img-top" src=" {{ car.car_image.url }}">
-                    </a> 
-                </div>                   
+            <div class="card mb-4 m-3">
+                <div class="card-body m-1">
+                    <div class="image-container">
+                        <img class="card-img-top rounded" alt="Car image" src=" {{ car.car_image.url }}">
+                        <div class="image-flash">
+                            <span class="txt-white p-2"><i class="far fa-star p-1"></i> {{ car.number_of_favourites }}</span>
+                        </div>
+                    </div>
+                    <p class="card-text mt-2">Brand: {{ car.brand}}</p>
+                    <p class="card-text">Model: {{ car.model }}</p>
+                    <p class="card-text">Year: {{ car.year }}</p>
+                    <p class="card-text">Created by: {{ car.username }}</p>
+                    <a class="btn btn-card" href="{% url 'car_detail' car.slug %}">View more</a>                   
+                </div>
             </div>
         </div>
     {% if forloop.counter|divisibleby:3 %}
