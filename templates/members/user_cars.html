@@ -2,38 +2,41 @@
 {% load i18n %}
 {% block content %}
 
-<h2>My cars list</h2>
+<div class="container text-center">
+    <h2>My cars list</h2>
+</div>
 
 {% if user.is_authenticated %}
 {% load account %}
 
-<p>Logged as: {% user_display user %}</p>
-<p>Back to <a href="{% url 'members' %}">Member area</a></p>
+<div class="container text-center">
+    <p>Logged as: {% user_display user %}</p>
+    <p>Back to <a class="btn-three" href="{% url 'members' %}">Member area</a></p>
+</div>
 
-<div class="col-12 mt-3 left">
-    <div class="row">
-    {% for car in user_car_list %}
-        <div class="col-md-4">
-            <div class="card mb-4">
-                <div class="card-body">
-                        <h2>{{ car.car_id }}</h2>
-                        <p>{{ car.brand}}</p>
-                        <p>{{ car.model }}</p>
-                        <p>{{ car.username }}</p>
-                </div>                   
+<div class="container text-center d-flex flex-column">
+    <div class="row d-flex justify-content-center">
+            {% for car in user_car_list %}
+            <div id="card-hold" class="card mb-4 m-3 col-lg-6">
+                <div class="card-body m-1">
+                    <p class="mb-1">Brand: {{ car.brand}}</p>
+                    <p class="mb-1">Model: {{ car.model }}</p>
+                    <p class="mb-1">Year: {{ car.year }}</p>
+                    <p class="mb-1">Last update: {{ car.updated_on }}</p>
+                </div>
+                <div class="container text-center mb-2">
+                    <a class="btn btn-card btn-sm" href="{% url 'car_detail' car.slug %}">View</a>
+                    <a class="btn btn-outline-info btn-sm" href="{% url 'edit_car' car.slug %}">Edit</a>
+                    <a class="btn btn-outline-danger btn-sm" href="{% url 'delete_car' car.slug %}">Delete</a>
+                </div>            
             </div>
-            <div>
-                <button><a href="{% url 'car_detail' car.slug %}">View</a></button>
-                <button><a href="{% url 'edit_car' car.slug %}">Edit</a></button>
-                <button><a href="{% url 'delete_car' car.slug %}">Delete</a></button>
+            {% if forloop.counter|divisibleby:1 %}
+            </div> 
+            <div class="row d-flex justify-content-center">        
+            {% endif %}
+            {% endfor %}
             </div>
-        </div>
-    {% if forloop.counter|divisibleby:1 %}
-    </div> 
-    <div class="row">        
-    {% endif %}
-    {% endfor %}
-    </div>
+    </div>        
 </div>
 {% endif %}
 {%endblock%}
