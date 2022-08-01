@@ -2,52 +2,66 @@
 {% load static %}
 {% block content %}
 
-<div>
-    <h2>Events</h2>
+<!-- Events page title -->
+<div class="container text-center">
+    <h2 class="m-2">Events</h2>
+    <p>View events near you and interact with other members. </p>
 </div>
 
-<div class="dropdown">
-    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-        Sort by
-    </a>
-    <ul class="dropdown-menu">
-        <li><a class="dropdown-item" href="/events/?sort=date">By post date: New to old</a></li>
-        <li><a class="dropdown-item" href="/events/?sort=-date">By post date: Old to new</a></li>
-        <li><a class="dropdown-item" href="/events/?sort=event_title">By title: A to Z</a></li>
-        <li><a class="dropdown-item" href="/events/?sort=-event_title">By title: Z to A</a></li>
-        <li><a class="dropdown-item" href="/events/?sort=start_date">By event date: New to old</a></li>
-        <li><a class="dropdown-item" href="/events/?sort=-start_date">By event date: Old to new</a></li>
-    </ul>
+<!-- Sort and search section -->
+<div class="container-fluid text-center bck-grd-black">
+    <!-- Sort list -->
+    <div class="dropdown p-2">
+        <a class="btn btn-outline-light dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Sort by
+        </a>
+        <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/events/?sort=date">By post date: New to old</a></li>
+            <li><a class="dropdown-item" href="/events/?sort=-date">By post date: Old to new</a></li>
+            <li><a class="dropdown-item" href="/events/?sort=event_title">By title: A to Z</a></li>
+            <li><a class="dropdown-item" href="/events/?sort=-event_title">By title: Z to A</a></li>
+            <li><a class="dropdown-item" href="/events/?sort=start_date">By event date: New to old</a></li>
+            <li><a class="dropdown-item" href="/events/?sort=-start_date">By event date: Old to new</a></li>
+        </ul>
+    </div>
 
-    <div class="row">
-        <div class="col-lg-3">
+    <!-- Search bar -->
+    <div class="col-md-auto p-2">
+        <div class="container col-sm-8 col-lg-4">
             <form method="POST" class="d-flex" role="search" action="{% url 'search_event' %}">
                 {% csrf_token %}
                 <div class="input-group mb3">
                     <input type="text" name="searched" class="form-control mr-sm-2" placeholder="Search event title, local or category here"
                         aria-label="Search events" value="{{search_input}}" required>
-                    <button type="submit" class="input-group-text grn-btn mr-sm-2" value="Search">
-                        <i class="fa fa-search"></i></button>
-                    <a href="{% url 'events' %}" class="btn btn-outline-secondary grn-btn">&#x2715;</a>
+                        <button type="submit" class="btn btn-outline-light" value="Search"><i class="bi bi-search"></i></button>
+                        <a href="{% url 'events' %}" class="btn btn-outline-light"><i class="bi bi-x-lg"></i></a>
                 </div>
             </form>
         </div>
     </div>
 
+</div>
+
+<!-- All events card list display -->
 <div class="col-12 mt-3 left">
     <div class="row">
     {% for event in event_list %}
         <div class="col-md-4">
-            <div class="card mb-4">
-                <div class="card-body">
-                    <a href="{% url 'event_detail' event.slug %}">
-                        <h2>{{ event.event_id }}</h2>
-                        <p>{{ event.event_title }}</p>
-                        <p>{{ event.start_date }}</p>
-                        <p>{{ event.local }}</p>
-                        <img class="card-img-top" src=" {{ event.event_image.url }}">
-                    </a> 
-                </div>                   
+            <div class="card mb-4 m-3">
+                <div class="card-body m-1">
+                    <div class="image-container">
+                        <img class="card-img-top rounded" alt="Event image" src=" {{ event.event_image.url }}">
+                        <div class="image-flash">
+                            <span class="txt-white p-2"><i class="bi bi-calendar2-check p-1"></i> {{ event.number_of_go }}</span>
+                            <span class="txt-white p-2"><i class="bi bi-calendar2 p-1"></i> {{ event.number_of_maybe }}</span>
+                        </div>
+                    </div>
+                    <p class="card-text mt-2">Title: {{ event.event_title }}</p>
+                    <p class="card-text">Category: {{ event.category }}</p>
+                    <p class="card-text">Local: {{ event.local }}</p>
+                    <p class="card-text">Date: {{ event.start_date }}</p>
+                    <a class="btn btn-card" href="{% url 'event_detail' event.slug %}">View more</a>                  
+                </div>
             </div>
         </div>
     {% if forloop.counter|divisibleby:3 %}
