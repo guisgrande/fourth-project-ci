@@ -34,25 +34,28 @@
 
 <div class="container text-center">
     <p class="mt-5">Account settings</p>
-    <a class="btn btn-three"href="{% url 'delete' %}">Delete account</a>
+    <a class="btn btn-three" href="{% url 'delete' %}">Delete account</a>
 </div>
 
 {% else %}
 
-<div>
-    <p>To have access to this page you must be a member.</p>
-</div>
+<!-- Display if user are not logged in -->
+<div class="container text-center">
+    <div class="col-md-4 mt-4 offset-md-4 bck-grd-gray rounded shadow">
+        <div>
+            <p>To have access to this page you must be a member.</p>
+        </div>
 
-<div>
-    <p>If you have an account, log in first.</p>
-    <a href="{% url 'account_login' %}">Sign in</a>
+        <div>
+            <p class="m-0">If you have an account, log in first.</p>
+            <a class="btn btn-three" href="{% url 'account_login' %}">Sign in</a>
+        </div>
 
-</div>
-
-<div>
-    <p>If you do not have an account, create one.</p>
-    <a href="{% url 'account_signup' %}">Sign up</a>
-
+        <div>
+            <p class="m-0 pt-4">If you do not have an account, create one.</p>
+            <a class="btn btn-three" href="{% url 'account_signup' %}">Sign up</a>
+        </div>
+    </div>
 </div>
 
 {% endif %}
