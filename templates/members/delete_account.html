@@ -2,46 +2,57 @@
 {% load i18n %}
 {% block content %}
 
-<div>
-    <h2>Delete account</h2>
+<div class="container text-center">
+    <h2 class="m-2">Delete account</h2>
 </div>
 
 {% if user.is_authenticated %}
 {% load account %}
+<div class="container text-center">
+    <div class="row">
+        <div class="col-md-4 mt-4 offset-md-4 bck-grd-gray rounded shadow">
 
-<form method="POST">
-    {% csrf_token %}
-    <fieldset class="form-group">
-        <legend class="border-bottom mb-4">Delete User: {% user_display user %}</legend>
-            <p>Are you sure you want to delete your account?</p>  
-            <p>This will permanently delete your profile and any content you have generated.</p>
-            {{ form }}
-    </fieldset>
-    <div class="form-group">
-        <button class="btn btn-danger" type="submit">Delete Account</button>
-            <a class="btn btn-primary-custom" style="float:right;" 
-               href="{% url 'home' %}">Cancel</a>
+            <form method="POST">
+                {% csrf_token %}
+                <fieldset class="form-group">
+                    <legend class="border-bottom mb-4">Delete User: {% user_display user %}</legend>
+                        <p>Are you sure you want to delete your account?</p>  
+                        <p>This will permanently delete your profile and any content you have generated.</p>
+                        {{ form }}
+                </fieldset>
+                <div class="row">
+                    <button class="btn btn-danger mb-3 p-1" type="submit">Delete Account</button>
+                    <a class="btn btn-primary mt-3 p-1" style="float:right;" href="{% url 'home' %}">Cancel</a>
+                </div>
+            </form>
+        </div>
     </div>
-</form>
+</div>
 
-<div>
-    <p>Back to the <a href="{% url 'members' %}">Member area</a></p>
+
+<div class="container text-center">
+    <p class="mt-4">Back to the <a class="btn btn-three" href="{% url 'members' %}">Member area</a></p>
 </div>
 
 {% else %}
 
-<div>
-    <p>To have access to this page you must be a member.</p>
-</div>
+<!-- Display if user are not logged in -->
+<div class="container text-center">
+    <div class="col-md-4 mt-4 offset-md-4 bck-grd-gray rounded shadow">
+        <div>
+            <p>To have access to this page you must be a member.</p>
+        </div>
 
-<div>
-    <p>If you have an account, log in first.</p>
-    <a href="{% url 'account_login' %}">Sign in</a>
-</div>
+        <div>
+            <p class="m-0">If you have an account, log in first.</p>
+            <a class="btn btn-three" href="{% url 'account_login' %}">Sign in</a>
+        </div>
 
-<div>
-    <p>If you do not have an account, create one.</p>
-    <a href="{% url 'account_signup' %}">Sign up</a>
+        <div>
+            <p class="m-0 pt-4">If you do not have an account, create one.</p>
+            <a class="btn btn-three" href="{% url 'account_signup' %}">Sign up</a>
+        </div>
+    </div>
 </div>
 
 {% endif %}
