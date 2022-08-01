@@ -2,27 +2,33 @@
 {% load static %}
 {% block content %}
 
-<div>
-    <h2>Delete your event.</h2>
+<div class="container text-center">
+    <h2 class="m-2">Delete your event.</h2>
 </div>
 
-<div class="card-body">
-        <p>{{ event.event_title }}</p>
-        <p>{{ event.category }}</p>
-        <p>{{ event.start_date }}</p>
+<div class="container text-center d-flex flex-column">
+    <div class="card-body">
+        <p class="mb-1">Title: {{ event.event_title }}</p>
+        <p class="mb-1">Category: {{ event.category }}</p>
+        <p class="mb-1">Date: {{ event.start_date }}</p>
         <img class="card-img-top rounded" style="width: 350px; height: 200px" src=" {{ event.event_image.url }}">                
+    </div>
 </div>
 
-<form method="POST" action="">
-    {% csrf_token %}
-    <div>
-        <p>Attention! Are you sure?</p>
-        <p>Do you want to delete your event post?</p>
+<div class="container text-center">
+    <div class="col-md-4 mb-4 offset-md-4 bck-grd-gray rounded shadow">
+        <form method="POST" action="">
+            {% csrf_token %}
+            <div>
+                <p>Attention! Are you sure?</p>
+                <p>Do you want to delete your event post?</p>
+            </div>
+            <div>
+                <input type="submit" value="Delete" class="btn btn-danger m-2">
+                <a href="{% url 'memberevents' %}" class="btn btn-primary m-2">Go Back</a>
+            </div>
+        </form>
     </div>
-    <div>
-        <input type="submit" value="Delete" class="btn btn-lg btn-danger">
-        <a href="{% url 'membercars' %}" class="btn btn-lg btn-success">Go Back</a>
-    </div>
-</form>
+</div>
 
 {%endblock%}
