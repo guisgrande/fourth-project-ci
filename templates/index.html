@@ -45,7 +45,12 @@
             <div class="col-md-6">
                 <div class="card mb-4 m-3">
                         <div class="card-body m-1">
-                            <img class="card-img-top rounded" alt="Car image" src=" {{ car.car_image.url }}">
+                            <div class="image-container">
+                                <img class="card-img-top rounded" alt="Car image" src=" {{ car.car_image.url }}">
+                                <div class="image-flash">
+                                    <span class="txt-white p-2"><i class="far fa-star p-1"></i> {{ car.number_of_favourites }}</span>
+                                </div>
+                            </div>
                             <p class="card-text mt-2">Brand: {{ car.brand}}</p>
                             <p class="card-text">Model: {{ car.model }}</p>
                             <p class="card-text">Year: {{ car.year }}</p>
@@ -77,12 +82,18 @@
             <div class="col-md-6">
                 <div class="card mb-4 m-3">
                     <div class="card-body m-1">
-                        <img class="card-img-top rounded" alt="Event image" src=" {{ event.event_image.url }}">
-                            <p class="card-text mt-2">Title: {{ event.event_title }}</p>
-                            <p class="card-text">Category: {{ event.category }}</p>
-                            <p class="card-text">Local: {{ event.local }}</p>
-                            <p class="card-text">Date: {{ event.start_date }}</p>
-                            <a class="btn btn-card" href="{% url 'event_detail' event.slug %}">View more</a>                  
+                        <div class="image-container">
+                            <img class="card-img-top rounded" alt="Event image" src=" {{ event.event_image.url }}">
+                            <div class="image-flash">
+                                <span class="txt-white p-2"><i class="bi bi-calendar2-check p-1"></i> {{ event.number_of_go }}</span>
+                                <span class="txt-white p-2"><i class="bi bi-calendar2 p-1"></i> {{ event.number_of_maybe }}</span>
+                            </div>
+                        </div>
+                        <p class="card-text mt-2">Title: {{ event.event_title }}</p>
+                        <p class="card-text">Category: {{ event.category }}</p>
+                        <p class="card-text">Local: {{ event.local }}</p>
+                        <p class="card-text">Date: {{ event.start_date }}</p>
+                        <a class="btn btn-card" href="{% url 'event_detail' event.slug %}">View more</a>                  
                     </div>
                 </div>
             </div>
