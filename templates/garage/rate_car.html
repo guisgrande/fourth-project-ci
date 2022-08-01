@@ -3,14 +3,17 @@
 {% load static %}
 {% load crispy_forms_tags %}
 
-<div class="card-body">
-        <p>{{ car.brand}}</p>
-        <p>{{ car.model }}</p>
-        <p>{{ car.year }}</p>
-        <img class="card-img-top rounded" style="width: 350px; height: 200px" src=" {{ car.car_image.url }}">                
+<div class="container text-center d-flex flex-column">
+    <div class="card-body">
+            <p>Brand: {{ car.brand}}</p>
+            <p>Model: {{ car.model }}</p>
+            <p>Year: {{ car.year }}</p>
+            <p>Add by user: {{ car.username }}</p>
+            <img class="card-img-top rounded" style="width: 250px; height: 150px" src=" {{ car.car_image.url }}">                
+    </div>
 </div>
 
-<div class="col-md-4 card mb-4  mt-3 ">
+<div class="col-md-4 mb-4 offset-md-4 bck-grd-gray rounded shadow">
     <div class="card-body">
         {% if rated %}
         <div class="alert alert-success" role="alert">
@@ -19,14 +22,16 @@
         <p>Back to <a href="{% url 'car_detail' car.slug %}">car details</a></p>
         {% else %}
         {% if user.is_authenticated %}
-
-        <h3>Leave a rate review:</h3>
-        <p>Rating as: {{ user.username }}</p>
-        <form method="post" style="margin-top: 1.3em;">
-            {{ rate_form | crispy }}
-            {% csrf_token %}
-            <button type="submit" class="btn btn-signup btn-lg">Submit</button>
-        </form>
+            <h3>Leave a rate review:</h3>
+            <p>Rating as: {{ user.username }}</p>
+            <form method="post" style="margin-top: 1.3em;">
+                {{ rate_form | crispy }}
+                {% csrf_token %}
+                <div class="container text-center">
+                    <button type="submit" class="btn btn-success m-2">Submit</button>
+                    <a href="{% url 'car_detail' car.slug %}" class="btn btn-primary m-2">Go Back</a>
+                </div>
+            </form>
         {% endif %}
         {% endif %}
     </div>
