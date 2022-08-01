@@ -2,27 +2,33 @@
 {% load static %}
 {% block content %}
 
-<div>
-    <h2>Delete your car.</h2>
+<div class="container text-center">
+    <h2 class="m-2">Delete your car.</h2>
 </div>
 
-<div class="card-body">
-        <p>{{ car.brand}}</p>
-        <p>{{ car.model }}</p>
-        <p>{{ car.year }}</p>
-        <img class="card-img-top rounded" style="width: 350px; height: 200px" src=" {{ car.car_image.url }}">                
+<div class="container text-center d-flex flex-column">
+    <div class="card-body">
+        <p class="mb-1">Brand: {{ car.brand}}</p>
+        <p class="mb-1">Model: {{ car.model }}</p>
+        <p class="mb-1">Year: {{ car.year }}</p>
+        <img class="card-img-top rounded mt-1" style="width: 250px; height: 150px" src=" {{ car.car_image.url }}">                
+    </div>
 </div>
 
-<form method="POST" action="">
-    {% csrf_token %}
-    <div>
-        <p>Attention! Are you sure?</p>
-        <p>Do you want to delete your car post?</p>
+<div class="container text-center">
+    <div class="col-md-4 mb-4 offset-md-4 bck-grd-gray rounded shadow">
+        <form method="POST" action="">
+            {% csrf_token %}
+            <div>
+                <p>Attention! Are you sure?</p>
+                <p>Do you want to delete your car post?</p>
+            </div>
+            <div>
+                <input type="submit" value="Delete" class="btn btn-danger m-2">
+                <a href="{% url 'membercars' %}" class="btn btn-primary m-2">Go Back</a>
+            </div>
+        </form>
     </div>
-    <div>
-        <input type="submit" value="Delete" class="btn btn-lg btn-danger">
-        <a href="{% url 'membercars' %}" class="btn btn-lg btn-success">Go Back</a>
-    </div>
-</form>
+</div>       
 
 {%endblock%}
