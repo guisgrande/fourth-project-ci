@@ -2,40 +2,39 @@
 {% load i18n %}
 {% block content %}
 
-<div>
-    <h2>Member Area</h2>
+<div class="container text-center">
+    <h2 class="m-2">Member Area</h2>
 </div>
 
 {% if user.is_authenticated %}
 {% load account %}
 
-<div>
-    <h3>Hello {% user_display user %},</h3>
-    <p>Be welcome to the club. Enjoy your ride and be part of our community!</p>
+<div class="container text-center">
+    <h3 class="m-1">Hello {% user_display user %},</h3>
+    <p>Be welcome. Enjoy your ride and be part of our community!</p>
 </div>
 
-<div>
-    <div>
-        <button><a href="{% url 'add_car' %}">Add a new car</a></button>
+<div class="container text-center">
+    <!-- Add car and event -->
+    <div class="row p-1">
+        <div class="col-md-6 mt-4 offset-md-3 bck-grd-gray rounded shadow">
+            <a class="btn btn-one m-2" href="{% url 'add_car' %}">Add a new car</a>
+            <a class="btn btn-one m-2" href="{% url 'add_event' %}">Add a new event</a>
+        </div>
     </div>
-    <div>
-        <button><a href="{% url 'add_event' %}">Add a new event</a></button>
+    <!-- User cars and events list -->
+    <div class="row p-1">
+        <div class="col-md-6 mt-4 offset-md-3 bck-grd-gray rounded shadow">
+            <a class="btn btn-one m-2" href="{% url 'membercars' %}">My cars</a>
+            <a class="btn btn-one m-2" href="{% url 'memberevents' %}">My events</a>
+        </div>
     </div>
+
 </div>
 
-<div>
-    <div>
-        <button><a href="{% url 'membercars' %}">My cars</a></button>
-    </div>
-
-    <div>
-        <button><a href="{% url 'memberevents' %}">My events</a></button>
-    </div>
-</div>
-
-<div>
-    <h5>Account settings</h5>
-    <button><a href="{% url 'delete' %}">Delete account</a></button>
+<div class="container text-center">
+    <p class="mt-5">Account settings</p>
+    <a class="btn btn-three"href="{% url 'delete' %}">Delete account</a>
 </div>
 
 {% else %}
