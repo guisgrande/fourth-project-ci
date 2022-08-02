@@ -1,5 +1,9 @@
 /* !! Style for fonts and text classes !! */
 
+body {
+    font-family: 'Quicksand', sans-serif;
+}
+
 .txt-white {
     color: white;
 }

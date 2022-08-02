@@ -12,6 +12,7 @@
         integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap" rel="stylesheet">
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous">
@@ -31,32 +32,34 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarText">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link hover-link" aria-current="page" href="{% url 'home' %}">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link hover-link" href="{% url 'garage' %}">Garage</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link hover-link" href="{% url 'events' %}">Events</a>
-                    </li>
-                    {% if user.is_authenticated %}
-                    <li class="nav-item">
-                        <a class="nav-link hover-link" href="{% url 'account_logout' %}">Logout</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link hover-link" href="{% url 'members' %}">Member</a>
-                    </li>
-                    {% else %}
-                    <li class="nav-item">
-                        <a class="nav-link hover-link" href="{% url 'account_signup' %}">Signup</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link hover-link" href="{% url 'account_login' %}">Signin</a>
-                    </li>
-                    {% endif %}
-                </ul>
+                <strong>
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link hover-link" aria-current="page" href="{% url 'home' %}">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link hover-link" href="{% url 'garage' %}">Garage</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link hover-link" href="{% url 'events' %}">Events</a>
+                        </li>
+                        {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link hover-link" href="{% url 'account_logout' %}">Logout</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link hover-link" href="{% url 'members' %}">Member</a>
+                        </li>
+                        {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link hover-link" href="{% url 'account_signup' %}">Signup</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link hover-link" href="{% url 'account_login' %}">Signin</a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </strong>
             </div>
         </div>
     </nav>
