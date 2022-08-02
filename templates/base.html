@@ -21,7 +21,6 @@
 <body class="d-flex flex-column h-100 main-bg">
 
     <!-- Navigation -->
-
     <nav class="navbar navbar-expand-lg navbar-light bck-grd-gray">
         <div class="container-fluid">
             <a class="navbar-brand" href="{% url 'home' %}">
@@ -62,73 +61,96 @@
         </div>
     </nav>
 
+    <!-- Messages -->
+    <div class="container-fluid d-flex justify-content-center bck-grd-gray">
+        <div class="row">
+            <div class="col">
+                {% for message in messages %}
+                <div class="alert {{ message.tags }} alert-dismissible fade show" id="msg" role="alert">
+                    {{ message | safe }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
     <main class="flex-shrink-0 main-bg">
         {% block content %}
         <!-- Content -->
         {% endblock content %}
     </main>
 
-<!-- Footer -->
-<footer class="footer mt-auto">
+    <!-- Footer -->
+    <footer class="footer mt-auto">
 
-    <!-- Separator line -->
-    <div id="footer-line">
-    </div>
+        <!-- Separator line -->
+        <div id="footer-line">
+        </div>
 
-    <!-- Container for footer content -->
-    <div class="container-fluid mt-3">
-        <div class="row">
-            <!-- Website pages links-->
-            <div class="col">
-                <ul id="list-web-link" class="list-clear">
-                    <li>
-                        <a class="footer-link" href="{% url 'home' %}">Home</a>
-                    </li>
-                    <li>
-                        <a class="footer-link" href="{% url 'garage' %}">Garage</a>
-                    </li>
-                    <li>
-                        <a class="footer-link" href="{% url 'events' %}">Events</a>
-                    </li>
-                    {% if user.is_authenticated %}
-                    <li>
-                        <a class="footer-link" href="{% url 'account_logout' %}">Logout</a>
-                    </li>
-                    <li>
-                        <a class="footer-link" href="{% url 'members' %}">Member</a>
-                    </li>
-                    {% else %}
-                    <li>
-                        <a class="footer-link" href="{% url 'account_signup' %}">Signup</a>
-                    </li>
-                    <li>
-                        <a class="footer-link" href="{% url 'account_login' %}">Signin</a>
-                    </li>
-                    {% endif %}
-                </ul>
-            </div>
+        <!-- Container for footer content -->
+        <div class="container-fluid mt-3">
+            <div class="row">
+                <!-- Website pages links-->
+                <div class="col">
+                    <ul id="list-web-link" class="list-clear">
+                        <li>
+                            <a class="footer-link" href="{% url 'home' %}">Home</a>
+                        </li>
+                        <li>
+                            <a class="footer-link" href="{% url 'garage' %}">Garage</a>
+                        </li>
+                        <li>
+                            <a class="footer-link" href="{% url 'events' %}">Events</a>
+                        </li>
+                        {% if user.is_authenticated %}
+                        <li>
+                            <a class="footer-link" href="{% url 'account_logout' %}">Logout</a>
+                        </li>
+                        <li>
+                            <a class="footer-link" href="{% url 'members' %}">Member</a>
+                        </li>
+                        {% else %}
+                        <li>
+                            <a class="footer-link" href="{% url 'account_signup' %}">Signup</a>
+                        </li>
+                        <li>
+                            <a class="footer-link" href="{% url 'account_login' %}">Signin</a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </div>
 
-            <!-- Social icons links -->
-            <div class="col d-flex align-items-center justify-content-around">
-                <ul class="list-clear p-0 d-flex justify-content-around">
-                    <li id="social-list" class="shadow rounded bck-grd-black m-1">
-                        <a class="social-link" href="https://facebook.com" target="_blank" rel="noopener" aria-label="Check our Facebook page 
-                        (opens in a new tab)"><i class="bi bi-facebook"></i></a>
-                    </li>
-                    <li id="social-list" class="shadow rounded bck-grd-black m-1">
-                        <a class="social-link" href="https://instagram.com" target="_blank" rel="noopener" aria-label="Check our Instagram page 
-                        (opens in a new tab)"><i class="bi bi-instagram"></i></a>
-                    </li>
-                    <li id="social-list" class="shadow rounded bck-grd-black m-1">
-                        <a class="social-link" href="https://youtube.com" target="_blank" rel="noopener" aria-label="Check our Youtube page 
-                        (opens in a new tab)"><i class="bi bi-youtube"></i></a>
-                    </li>
-                </ul>
+                <!-- Social icons links -->
+                <div class="col d-flex align-items-center justify-content-around">
+                    <ul class="list-clear p-0 d-flex justify-content-around">
+                        <li id="social-list" class="shadow rounded bck-grd-black m-1">
+                            <a class="social-link" href="https://facebook.com" target="_blank" rel="noopener" aria-label="Check our Facebook page 
+                            (opens in a new tab)"><i class="bi bi-facebook"></i></a>
+                        </li>
+                        <li id="social-list" class="shadow rounded bck-grd-black m-1">
+                            <a class="social-link" href="https://instagram.com" target="_blank" rel="noopener" aria-label="Check our Instagram page 
+                            (opens in a new tab)"><i class="bi bi-instagram"></i></a>
+                        </li>
+                        <li id="social-list" class="shadow rounded bck-grd-black m-1">
+                            <a class="social-link" href="https://youtube.com" target="_blank" rel="noopener" aria-label="Check our Youtube page 
+                            (opens in a new tab)"><i class="bi bi-youtube"></i></a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
-    </div>
 
-</footer>
+    </footer>
+
+<!-- Messages JS function -->
+    <script>
+    setTimeout(function () {
+        let messages = document.getElementById('msg');
+        let alert = new bootstrap.Alert(messages);
+        alert.close();
+    }, 3500);
+</script>
 
 </body>
 
