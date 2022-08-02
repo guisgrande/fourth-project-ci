@@ -19,7 +19,9 @@
         <div class="alert alert-success" role="alert">
             You rated this car! Thanks for your avaliation.
         </div>
-        <p>Back to <a href="{% url 'car_detail' car.slug %}">car details</a></p>
+        <div class="container text-center">
+            <p class="m-2">Back to <a class="btn-three" href="{% url 'car_detail' car.slug %}">car details</a></p>
+        </div>
         {% else %}
         {% if user.is_authenticated %}
             <h3>Leave a rate review:</h3>
