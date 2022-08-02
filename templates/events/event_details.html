@@ -2,13 +2,50 @@
 {% block content %}
 {% load crispy_forms_tags %}
 
-<div>
-    <h2>Event Detail</h2>
+<div class="container text-center">
+    <h2 class="m-2">Event Detail</h2>
 </div>
 
 <!-- Event post image -->
-<div class="card mb-4">
-    <img class="card-img-top" src=" {{ event.event_image.url }}">
+<div class="container text-center">
+    <div class="image-container">
+        <img class="card-img-top rounded shadow" alt="Event image" src=" {{ event.event_image.url }}">
+        <!-- Go and Maybe actions -->
+        <div class="image-flash">
+            <!-- GO button -->
+            <strong>
+                {% if user.is_authenticated %}
+                <form class="d-inline" action="{% url 'presence_go_event' event.slug %}" method="POST">
+                    {% csrf_token %}
+                    {% if presence_go_ok %}
+                    <button id="btn-go" class="btn txt-white p-2" type="submit" name="event_id" value="{{event.slug}}"><i class="bi bi-calendar2-check-fill"></i></button>
+                    {% else %}
+                    <button id="btn-go" class="btn txt-white p-2" type="submit" name="event_id" value="{{event.slug}}"><i class="bi bi-calendar2-check"></i></button>
+                    {% endif %}
+                </form>
+                {% else %}
+                <span class="txt-white p-2"><i class="bi bi-calendar2-check"></i></span>
+                {% endif %}
+            <span class="txt-white p-2"> {{ event.number_of_go }} </span>
+            </strong>
+            <!-- MAYBE button -->
+            <strong>
+                {% if user.is_authenticated %}
+                <form class="d-inline" action="{% url 'presence_maybe_event' event.slug %}" method="POST">
+                    {% csrf_token %}
+                    {% if presence_maybe_ok %}
+                    <button id="btn-maybe" class="btn txt-white p-2" type="submit" name="event_id" value="{{event.slug}}"><i class="bi bi-calendar2-fill"></i></button>
+                    {% else %}
+                    <button id="btn-maybe" class="btn txt-white p-2" type="submit" name="event_id" value="{{event.slug}}"><i class="bi bi-calendar2"></i></button>
+                    {% endif %}
+                </form>
+                {% else %}
+                <span class="txt-white p-2"><i class="bi bi-calendar2 p-1"></i></span>
+                {% endif %}
+            <span class="txt-white p-2"> {{ event.number_of_maybe }} </span>
+            </strong>
+        </div>
+    </div>
 </div>
 
 <!-- Event post intro -->
@@ -31,45 +68,6 @@
         <h3>Description</h3>
         <p>{{ event.description }}</p>
     </div>
-</div>
-
-<!-- Presence section -->
-<div class="col-1">
-    <strong>
-        {% if user.is_authenticated %}
-        <form class="d-inline" action="{% url 'presence_go_event' event.slug %}" method="POST">
-            {% csrf_token %}
-            {% if presence_go_ok %}
-            <button type="submit" name="event_id" value="{{event.slug}}"><i class="fa fa-star">GO</i></button>
-            {% else %}
-            <button type="submit" name="event_id" value="{{event.slug}}"><i class="far fa-star">GO</i></button>
-            {% endif %}
-        </form>
-        {% else %}
-        <span><i class="far fa-star">GO</i></span>
-        {% endif %}
-    <!-- The number of likes goes before the closing strong tag -->
-    <span>{{ event.number_of_go }} </span>
-    </strong>
-</div>
-
-<div class="col-1">
-    <strong>
-        {% if user.is_authenticated %}
-        <form class="d-inline" action="{% url 'presence_maybe_event' event.slug %}" method="POST">
-            {% csrf_token %}
-            {% if presence_maybe_ok %}
-            <button type="submit" name="event_id" value="{{event.slug}}"><i class="fa fa-star">MAYBE</i></button>
-            {% else %}
-            <button type="submit" name="event_id" value="{{event.slug}}"><i class="far fa-star">MAYBE</i></button>
-            {% endif %}
-        </form>
-        {% else %}
-        <span><i class="far fa-star">MAYBE</i></span>
-        {% endif %}
-    <!-- The number of likes goes before the closing strong tag -->
-    <span>{{ event.number_of_maybe }} </span>
-    </strong>
 </div>
 
 <!-- Comments section -->
