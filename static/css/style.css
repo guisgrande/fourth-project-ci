@@ -148,7 +148,7 @@
 /* Index page style */
 
 .hero-image {
-    background-image: url(/static/images/autoclassic-hero.jpg);
+    background-image: url('https://res.cloudinary.com/guisgrande/image/upload/v1659453663/static/images/autoclassic-hero.77d487db14c6.jpg');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -166,7 +166,7 @@
 /* Error pages style */
 
 #error-image {
-    background-image: url(/static/images/autoclassic-error.png);
+    background-image: url('https://res.cloudinary.com/guisgrande/image/upload/v1659453665/static/images/autoclassic-error.478d46c246f0.png');
 }
 
 /* !! Media queries !! */
