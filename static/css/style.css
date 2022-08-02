@@ -62,6 +62,18 @@
 
 /* Button to card element (car and event) */
 
+#btn-go:hover {
+    color: #2f8f17;
+}
+
+#btn-maybe:hover {
+    color: #FFA14A;
+}
+
+#btn-fav:hover {
+    color: #FBBF34;
+}
+
 .btn-card {
     background-color: #FBBF34;
     font-weight: bold;
@@ -84,9 +96,6 @@
     left: 1%;
     background-color: #00000080;
 }
-
-/* Button to user car and events list (view, edit, delete) */
-
 
 /* !! Style for navbar elements !! */
 
