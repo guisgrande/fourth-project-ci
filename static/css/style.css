@@ -163,12 +163,6 @@
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
 }
 
-/* Error pages style */
-
-#error-image {
-    background-image: url('https://res.cloudinary.com/guisgrande/image/upload/v1659453665/static/images/autoclassic-error.478d46c246f0.png');
-}
-
 /* !! Media queries !! */
 
 @media screen and (max-width: 400px) {
