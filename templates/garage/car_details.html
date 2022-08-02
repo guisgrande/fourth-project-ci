@@ -94,7 +94,7 @@
         <div class="col-md-4 card mb-4 mt-3">
             <div class="card-body d-flex align-items-center">
                 {% if user.is_authenticated %}
-                {% csrf_token %}
+                    {% csrf_token %}
                     {% if rated %}
                     <div class="container text-center">
                         <p> You already rated this car.</p>
@@ -104,6 +104,10 @@
                         <a class="btn btn-one" href="{% url 'rate_car' car.slug %}" style="font-size: 14px;">Rate this car.</a>
                     </div>
                     {% endif %}
+                {% else %}
+                <div class="container text-center">
+                    <p> To rate this car, you need to be logged in.</p>
+                </div> 
                 {% endif %}
             </div>
         </div>
@@ -137,22 +141,26 @@
             </div>
         </div>
         <div class="col-md-4 card mb-4  mt-3 ">
-            <div class="card-body">
+            <div class="card-body d-flex align-items-center">
                 {% if commented %}
                 <div class="alert alert-success" role="alert">
                     Your comment is awaiting approval
                 </div>
                 {% else %}
-                {% if user.is_authenticated %}
+                    {% if user.is_authenticated %}
 
-                <h3>Leave a comment:</h3>
-                <p>Posting as: {{ user.username }}</p>
-                <form method="post" class="mb-2" style="margin-top: 1.3em;">
-                    {{ comment_form | crispy }}
-                    {% csrf_token %}
-                    <button type="submit" class="btn btn-one mt-2" style="font-size: 14px;">Submit</button>
-                </form>
-                {% endif %}
+                    <h3>Leave a comment:</h3>
+                    <p>Posting as: {{ user.username }}</p>
+                    <form method="post" class="mb-2" style="margin-top: 1.3em;">
+                        {{ comment_form | crispy }}
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-one mt-2" style="font-size: 14px;">Submit</button>
+                    </form>
+                    {% else %}
+                    <div class="container text-center">
+                        <p> To make a comment, you need to be logged in.</p>
+                    </div>
+                    {% endif %}
                 {% endif %}
             </div>
         </div>
