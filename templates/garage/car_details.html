@@ -18,9 +18,9 @@
                 <form class="d-inline" action="{% url 'favourite_car' car.slug %}" method="POST">
                     {% csrf_token %}
                     {% if favourited %}
-                    <button class="btn txt-white p-2" type="submit" name="car_id" value="{{car.slug}}"><i class="fa fa-star"></i></button>
+                    <button id="btn-fav" class="btn txt-white p-2" type="submit" name="car_id" value="{{car.slug}}"><i class="fa fa-star"></i></button>
                     {% else %}
-                    <button class="btn txt-white p-2" type="submit" name="car_id" value="{{car.slug}}"><i class="far fa-star"></i></button>
+                    <button id="btn-fav" class="btn txt-white p-2" type="submit" name="car_id" value="{{car.slug}}"><i class="far fa-star"></i></button>
                     {% endif %}
                 </form>
                 {% else %}
