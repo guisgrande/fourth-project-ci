@@ -94,8 +94,11 @@ class CarDetail(View):
         if len_rate == 0:
             len_rate = "0"
 
-        if car_rate.filter(id=self.request.user.id).exists():
-            rated = True
+        if request.user.is_authenticated:
+            if car_rate.filter(name=self.request.user).exists():
+                rated = True
+        else:
+            rated = False
 
         if car.favourite.filter(id=self.request.user.id).exists():
             favourited = True
@@ -119,7 +122,7 @@ class CarDetail(View):
         comment_form = CommentForm(data=request.POST)
         favourited = False
 
-        #Favourite
+        # Favourite
         if car.favourite.filter(id=self.request.user.id).exists():
             favourited = True
 
@@ -131,7 +134,7 @@ class CarDetail(View):
             comment.save()
         else:
             comment_form = CommentForm()
-        
+
         return render(request, "garage/car_details.html", {
             "car": car,
             "car_comments": car_comments,
@@ -172,6 +175,10 @@ class RateCarView(LoginRequiredMixin, View):
         car_rate = car.car_rate.all()
         rate_form = RateForm(data=request.POST)
 
+        if car_rate.filter(name=self.request.user).exists():
+            rated = True
+            return HttpResponseRedirect(reverse('car_detail', args=[slug]))
+        
         # Rate
         if rate_form.is_valid():
             rate = rate_form.save(commit=False)
