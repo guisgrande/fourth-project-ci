@@ -49,68 +49,75 @@
 </div>
 
 <!-- Event post intro -->
-<div>
-    <p>Created by {{ event.username }}</p>
-    <p>Last update - {{ event.updated_on}}</p>
+<div class="container text-center">
+    <p class="m-2">Created by {{ event.username }}</p>
+    <p class="m-2">Last update - {{ event.updated_on}}</p>
 </div>
 
 <!-- Event post details  -->
-<div class="card mb-6">
-    <div class="card-body">
-        <h2>{{ event.event_id }}</h2>
-        <p>Title: {{ event.event_title}}</p>
-        <p>Start date: {{ event.start_date }}</p>
-        <p>Start date: {{ event.start_time }}</p>
-        <p>Local: {{ event.local }}</p>
-        <p>Category: {{ event.category }}</p>        
-    </div>
-    <div class="card-body">
-        <h3>Description</h3>
-        <p>{{ event.description }}</p>
+<div class="container text-center">
+    <div class="card mb-4">
+        <div class="card-body">
+            <h3>Event ID: {{ event.event_id }}</h3>
+            <p>Title: {{ event.event_title}}</p>
+            <p>Start date: {{ event.start_date }}</p>
+            <p>Start date: {{ event.start_time }}</p>
+            <p>Local: {{ event.local }}</p>
+            <p>Category: {{ event.category }}</p>        
+        </div>
+        <div class="card-body">
+            <h4>Description</h4>
+            <p>{{ event.description }}</p>
+        </div>
     </div>
 </div>
 
 <!-- Comments section -->
-<div class="row">
-    <div class="col-md-8 card mb-4  mt-3 ">
-        <h3>Comments:</h3>
-        <div class="card-body">
-            <!-- For loop to iterate through each comment in comments -->
-            {% for comment in event_comments %}
-            <div class="comments" style="padding: 10px;">
-                <p class="font-weight-bold">
-                    {{ comment.name }}
-                    <span class=" text-muted font-weight-normal">
-                        {{ comment.created_on }}
-                    </span> wrote:
-                </p>
-                {{ comment.body | linebreaks }}
+<div class="container text-center">
+    <div class="row">
+        <div class="col-md-8 card mb-4  mt-3 ">
+            <h3 class="m-2"><i class="bi bi-chat-square-text"></i> Comments</h3>
+            <div>
+                {% with event_comments.count as total_comments %}
+                    <p class="border p-1"><i class="bi bi-chat-square-text-fill p-1"></i> {{ total_comments }} </p>
+                {% endwith %}
             </div>
-            <!-- For loop ends here -->
-            {% endfor %}
+            <div class="card-body">
+                <!-- For loop to iterate through each comment in comments -->
+                {% for comment in event_comments %}
+                <div class="comments border rounded p-1">
+                    <p class="font-weight-bold">
+                        {{ comment.name }}
+                        <span class=" text-muted font-weight-normal">
+                            {{ comment.created_on }}
+                        </span> wrote:
+                    </p>
+                    {{ comment.body | linebreaks }}
+                </div>
+                <!-- For loop ends here -->
+                {% endfor %}
+            </div>
+        </div>
+        <div class="col-md-4 card mb-4 mt-3">
+            <div class="card-body">
+                {% if commented %}
+                <div class="alert alert-success" role="alert">
+                    Your comment is awaiting approval
+                </div>
+                {% else %}
+                {% if user.is_authenticated %}
+                <h3>Leave a comment:</h3>
+                <p>Posting as: {{ user.username }}</p>
+                <form method="post" class="mb-2" style="margin-top: 1.3em;">
+                    {{ comment_form | crispy }}
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-one mt-2" style="font-size: 14px;">Submit</button>
+                </form>
+                {% endif %}
+                {% endif %}
+            </div>
         </div>
     </div>
-    <div class="col-md-4 card mb-4  mt-3 ">
-        <div class="card-body">
-            {% if commented %}
-            <div class="alert alert-success" role="alert">
-                Your comment is awaiting approval
-            </div>
-            {% else %}
-            {% if user.is_authenticated %}
-
-            <h3>Leave a comment:</h3>
-            <p>Posting as: {{ user.username }}</p>
-            <form method="post" style="margin-top: 1.3em;">
-                {{ comment_form | crispy }}
-                {% csrf_token %}
-                <button type="submit" class="btn btn-signup btn-lg">Submit</button>
-            </form>
-            {% endif %}
-            {% endif %}
-        </div>
-    </div>
-</div>
 </div>
 
 {%endblock%}
