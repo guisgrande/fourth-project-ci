@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, reverse
 from django.views import generic, View
 from django.contrib.auth.models import User
 from django.contrib.messages.views import SuccessMessageMixin
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib import messages
 from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect
@@ -233,7 +233,7 @@ class AddCarPost(SuccessMessageMixin, LoginRequiredMixin, generic.CreateView):
         return super(AddCarPost, self).form_valid(form)
 
 
-class EditCarPost(SuccessMessageMixin, LoginRequiredMixin, generic.UpdateView):
+class EditCarPost(SuccessMessageMixin, LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView):
     """
     Logged in user can edit your car details.
     From My Cars list page.
@@ -252,9 +252,16 @@ class EditCarPost(SuccessMessageMixin, LoginRequiredMixin, generic.UpdateView):
     template_name = 'garage/add_car.html'
     success_url = reverse_lazy('members')
     success_message = "All right! You updated your car details. Thanks."
+    
+    def test_func(self):
+        """
+        Prevent another user from updating other's car post
+        """
+        car_post = self.get_object()
+        return car_post.username == self.request.user
 
 
-class DeleteCarPost(SuccessMessageMixin, LoginRequiredMixin, generic.DeleteView):
+class DeleteCarPost(SuccessMessageMixin, LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView):
     """
     Logged in user can delete your car.
     From My Cars list page.
@@ -263,6 +270,13 @@ class DeleteCarPost(SuccessMessageMixin, LoginRequiredMixin, generic.DeleteView)
     success_url = reverse_lazy('members')
     success_message = "It's done! You deleted your car post."
     template_name = 'garage/delete_car.html'
+
+    def test_func(self):
+        """
+        Prevent another user from delete other's car post
+        """
+        car_post = self.get_object()
+        return car_post.username == self.request.user
 
     def delete(self, request, *args, **kwargs):
         messages.warning(self.request, self.success_message)

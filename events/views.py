@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, reverse
 from django.views import generic, View
 from django.contrib.auth.models import User
 from django.contrib.messages.views import SuccessMessageMixin
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib import messages
 from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect
@@ -194,7 +194,7 @@ class AddEventPost(SuccessMessageMixin, LoginRequiredMixin, generic.CreateView):
         return super(AddEventPost, self).form_valid(form)
 
 
-class EditEventPost(SuccessMessageMixin, LoginRequiredMixin, generic.UpdateView):
+class EditEventPost(SuccessMessageMixin, LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView):
     """
     Logged in user can edit your event details.
     From My Event list page.
@@ -213,8 +213,15 @@ class EditEventPost(SuccessMessageMixin, LoginRequiredMixin, generic.UpdateView)
     success_url = reverse_lazy('members')
     success_message = "All right! You updated your event details. Thanks."
 
+    def test_func(self):
+        """
+        Prevent another user from edit other's event post
+        """
+        event_post = self.get_object()
+        return event_post.username == self.request.user
 
-class DeleteEventPost(SuccessMessageMixin, LoginRequiredMixin, generic.DeleteView):
+
+class DeleteEventPost(SuccessMessageMixin, LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView):
     """
     Logged in user can delete your event.
     From My Events list page.
@@ -223,6 +230,13 @@ class DeleteEventPost(SuccessMessageMixin, LoginRequiredMixin, generic.DeleteVie
     success_url = reverse_lazy('members')
     success_message = "It's done! You deleted your event post."
     template_name = 'events/delete_event.html'
+
+    def test_func(self):
+        """
+        Prevent another user from delete other's car post
+        """
+        event_post = self.get_object()
+        return event_post.username == self.request.user
 
     def delete(self, request, *args, **kwargs):
         messages.warning(self.request, self.success_message)
