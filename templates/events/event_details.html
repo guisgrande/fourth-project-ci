@@ -105,15 +105,19 @@
                     Your comment is awaiting approval
                 </div>
                 {% else %}
-                {% if user.is_authenticated %}
-                <h3>Leave a comment:</h3>
-                <p>Posting as: {{ user.username }}</p>
-                <form method="post" class="mb-2" style="margin-top: 1.3em;">
-                    {{ comment_form | crispy }}
-                    {% csrf_token %}
-                    <button type="submit" class="btn btn-one mt-2" style="font-size: 14px;">Submit</button>
-                </form>
-                {% endif %}
+                    {% if user.is_authenticated %}
+                    <h3>Leave a comment:</h3>
+                    <p>Posting as: {{ user.username }}</p>
+                    <form method="post" class="mb-2" style="margin-top: 1.3em;">
+                        {{ comment_form | crispy }}
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-one mt-2" style="font-size: 14px;">Submit</button>
+                    </form>
+                    {% else %}
+                    <div class="container text-center">
+                        <p> To make a comment, you need to be logged in.</p>
+                    </div>
+                    {% endif %}
                 {% endif %}
             </div>
         </div>
