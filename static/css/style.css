@@ -163,6 +163,11 @@
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
 }
 
+/* Error pages style */
+
+#error-image {
+    background-image: url(/static/images/autoclassic-error.png);
+}
 
 /* !! Media queries !! */
 
