@@ -7,7 +7,7 @@ from django.contrib import messages
 from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect
 from .models import Event
-from .forms import CommentForm
+from .forms import CommentForm, EventForm
 from django.db.models import Q
 
 
@@ -171,15 +171,7 @@ class AddEventPost(SuccessMessageMixin, LoginRequiredMixin, generic.CreateView):
     Logged in user can create a event post.
     """
     model = Event
-    fields = [
-        'event_title',
-        'category',
-        'start_date',
-        'start_time',
-        'description',
-        'local',
-        'event_image',
-        ]
+    form_class = EventForm
     template_name = 'events/add_event.html'
     success_url = reverse_lazy('members')
     success_message = "You event was added to Events!"
