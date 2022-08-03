@@ -1,4 +1,8 @@
-# Auto Classi Club
+# Auto Classic
+
+The Auto Classic is a website for people who are passionate about classic and vintage cars. Where users can share their vehicles and suggest events for car gatherings. 
+
+To create a community of classic car owners and enthusiasts, to socialize, evaluate cars, give their opinion, and increase networking for future opportunities.
 
 - Here is the link to the final project > [Auto Classic Club](https://auto-classic.herokuapp.com/)
 
