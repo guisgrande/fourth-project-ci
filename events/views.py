@@ -192,15 +192,7 @@ class EditEventPost(SuccessMessageMixin, LoginRequiredMixin, UserPassesTestMixin
     From My Event list page.
     """
     model = Event
-    fields = [
-        'event_title',
-        'category',
-        'start_date',
-        'start_time',
-        'description',
-        'local',
-        'event_image',
-        ]
+    form_class = EventForm
     template_name = 'events/add_event.html'
     success_url = reverse_lazy('members')
     success_message = "All right! You updated your event details. Thanks."
