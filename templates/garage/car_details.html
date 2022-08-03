@@ -10,7 +10,11 @@
 <!-- Car post image section -->
 <div class="container text-center">
     <div class="image-container">
-        <img id="image-detail" class="card-img-top rounded shadow" src=" {{ car.car_image.url }}">
+        {% if "placeholder" in car.car_image.url %}
+        <img class="card-img-top rounded" alt="Car image placeholder" src="{% static 'images/car-placeholder.png' %}">
+        {% else %}
+        <img class="card-img-top rounded" alt="Car image" src=" {{ car.car_image.url }}">
+        {% endif %}    
         <!-- Favorite -->
         <div class="image-flash">
             <strong>

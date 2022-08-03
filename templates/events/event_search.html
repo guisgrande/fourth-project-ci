@@ -42,7 +42,11 @@
             <div class="card mb-4 m-3">
                 <div class="card-body m-1">
                     <div class="image-container">
+                        {% if "placeholder" in event.event_image.url %}
+                        <img class="card-img-top rounded" alt="Event image placeholder" src="{% static 'images/event-placeholder.jpg' %}">
+                        {% else %}
                         <img class="card-img-top rounded" alt="Event image" src=" {{ event.event_image.url }}">
+                        {% endif %}
                         <div class="image-flash">
                             <span class="txt-white p-2"><i class="bi bi-calendar2-check p-1"></i> {{ event.number_of_go }}</span>
                             <span class="txt-white p-2"><i class="bi bi-calendar2 p-1"></i> {{ event.number_of_maybe }}</span>

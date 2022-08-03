@@ -42,7 +42,11 @@
             <div class="card mb-4 m-3">
                 <div class="card-body m-1">
                     <div class="image-container">
+                        {% if "placeholder" in car.car_image.url %}
+                        <img class="card-img-top rounded" alt="Car image placeholder" src="{% static 'images/car-placeholder.png' %}">
+                        {% else %}
                         <img class="card-img-top rounded" alt="Car image" src=" {{ car.car_image.url }}">
+                        {% endif %}    
                         <div class="image-flash">
                             <span class="txt-white p-2"><i class="far fa-star p-1"></i> {{ car.number_of_favourites }}</span>
                         </div>

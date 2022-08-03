@@ -9,7 +9,11 @@
             <p>Model: {{ car.model }}</p>
             <p>Year: {{ car.year }}</p>
             <p>Add by user: {{ car.username }}</p>
-            <img class="card-img-top rounded" style="width: 250px; height: 150px" src=" {{ car.car_image.url }}">                
+            {% if "placeholder" in car.car_image.url %}
+            <img class="card-img-top rounded" style="width: 250px; height: 150px" alt="Car image placeholder" src="{% static 'images/car-placeholder.png' %}">
+            {% else %}
+            <img class="card-img-top rounded" style="width: 250px; height: 150px" alt="Car image" src=" {{ car.car_image.url }}">
+            {% endif %}             
     </div>
 </div>
 

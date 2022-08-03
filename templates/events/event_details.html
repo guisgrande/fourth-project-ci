@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
+{% load static %}
 {% load crispy_forms_tags %}
 
 <div class="container text-center">
@@ -9,7 +10,11 @@
 <!-- Event post image -->
 <div class="container text-center">
     <div class="image-container">
-        <img class="card-img-top rounded shadow" alt="Event image" src=" {{ event.event_image.url }}">
+        {% if "placeholder" in event.event_image.url %}
+        <img class="card-img-top rounded" alt="Event image placeholder" src="{% static 'images/event-placeholder.jpg' %}">
+        {% else %}
+        <img class="card-img-top rounded" alt="Event image" src=" {{ event.event_image.url }}">
+        {% endif %}
         <!-- Go and Maybe actions -->
         <div class="image-flash">
             <!-- GO button -->
