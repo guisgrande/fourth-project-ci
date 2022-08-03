@@ -8,7 +8,7 @@ from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect
 from django.db.models import Avg
 from .models import Car, RateCar
-from .forms import CommentForm, RateForm
+from .forms import CarForm, CommentForm, RateForm
 from django.db.models import Q
 
 
@@ -216,16 +216,7 @@ class AddCarPost(SuccessMessageMixin, LoginRequiredMixin, generic.CreateView):
     Logged in user can create a car post.
     """
     model = Car
-    fields = [
-        'brand',
-        'model',
-        'year',
-        'price',
-        'hp',
-        'speed',
-        'description',
-        'car_image',
-        ]
+    form_class = CarForm
     template_name = 'garage/add_car.html'
     success_url = reverse_lazy('members')
     success_message = "You have added car to the garage!"
@@ -246,16 +237,7 @@ class EditCarPost(SuccessMessageMixin, LoginRequiredMixin, UserPassesTestMixin, 
     From My Cars list page.
     """
     model = Car
-    fields = [
-        'brand',
-        'model',
-        'year',
-        'price',
-        'hp',
-        'speed',
-        'description',
-        'car_image',
-        ]
+    form_class = CarForm
     template_name = 'garage/add_car.html'
     success_url = reverse_lazy('members')
     success_message = "All right! You updated your car details. Thanks."
