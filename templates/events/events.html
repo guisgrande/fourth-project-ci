@@ -43,36 +43,36 @@
 </div>
 
 <!-- All events card list display -->
-<div class="col-12 mt-3 left">
+<div class="container-fluid">
     <div class="row">
-    {% for event in event_list %}
-        <div class="col-md-4">
-            <div class="card mb-4 m-3">
-                <div class="card-body m-1">
-                    <div class="image-container">
-                        {% if "placeholder" in event.event_image.url %}
-                        <img class="card-img-top rounded" alt="Event image placeholder" src="{% static 'images/event-placeholder.jpg' %}">
-                        {% else %}
-                        <img class="card-img-top rounded" alt="Event image" src=" {{ event.event_image.url }}">
-                        {% endif %}
-                        <div class="image-flash">
-                            <span class="txt-white p-2"><i class="bi bi-calendar2-check p-1"></i> {{ event.number_of_go }}</span>
-                            <span class="txt-white p-2"><i class="bi bi-calendar2 p-1"></i> {{ event.number_of_maybe }}</span>
+        {% for event in event_list %}
+            <div class="col-md-4 p-0">
+                <div class="card m-3">
+                    <div class="card-body m-1 p-1 text-center">
+                        <div class="image-container">
+                            {% if "placeholder" in event.event_image.url %}
+                            <img class="card-img-top rounded" alt="Event image placeholder" src="{% static 'images/event-placeholder.jpg' %}">
+                            {% else %}
+                            <img class="card-img-top rounded" alt="Event image" src=" {{ event.event_image.url }}">
+                            {% endif %}
+                            <div class="image-flash">
+                                <span class="txt-white p-2"><i class="bi bi-calendar2-check p-1"></i> {{ event.number_of_go }}</span>
+                                <span class="txt-white p-2"><i class="bi bi-calendar2 p-1"></i> {{ event.number_of_maybe }}</span>
+                            </div>
                         </div>
+                        <p class="card-text mt-2">Title: {{ event.event_title }}</p>
+                        <p class="card-text">Category: {{ event.category }}</p>
+                        <p class="card-text">Local: {{ event.local }}</p>
+                        <p class="card-text">Date: {{ event.start_date }}</p>
+                        <a class="btn btn-card" href="{% url 'event_detail' event.slug %}">View more</a>                  
                     </div>
-                    <p class="card-text mt-2">Title: {{ event.event_title }}</p>
-                    <p class="card-text">Category: {{ event.category }}</p>
-                    <p class="card-text">Local: {{ event.local }}</p>
-                    <p class="card-text">Date: {{ event.start_date }}</p>
-                    <a class="btn btn-card" href="{% url 'event_detail' event.slug %}">View more</a>                  
                 </div>
             </div>
-        </div>
-    {% if forloop.counter|divisibleby:3 %}
-    </div> 
-    <div class="row">        
-    {% endif %}
-    {% endfor %}
+            {% if forloop.counter|divisibleby:3 %}
+                </div>
+                <div class="row">
+            {% endif %}
+        {% endfor %}
     </div>
 </div>
 
