@@ -1,32 +1,32 @@
 {% extends "base.html" %}
-
 {% load i18n %}
 
 {% block head_title %}{% trans "Signup" %}{% endblock %}
 
 {% block content %}
+
 <div class="container text-center">
-  <div class="row">
-    <div class="col-md-4 mt-4 offset-md-4 bck-grd-gray rounded shadow">
+    <div class="row d-flex justify-content-center">
+        <div class="col m-4 bck-grd-gray rounded shadow">
 
-      <h1 class="p-2">{% trans "Sign Up" %}</h1>
+            <h1 class="p-3"><i class="bi bi-person-plus"></i> {% trans "Sign Up" %}</h1>
 
-      <form class="signup p-2 m-1" id="signup_form" method="post" action="{% url 'account_signup' %}">
-        {% csrf_token %}
-        {{ form.as_p }}
-        {% if redirect_field_value %}
-        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-        {% endif %}
-        <button class="btn btn-one" type="submit">{% trans "Sign Up" %}</button>
-      </form>
+            <form class="signup p-3 m-1" id="signup_form" method="post" action="{% url 'account_signup' %}">
+                {% csrf_token %}
+                {{ form.as_p }}
+                {% if redirect_field_value %}
+                <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                {% endif %}
+                <button class="btn btn-one" type="submit">{% trans "Sign Up" %}</button>
+            </form>
 
+        </div>
     </div>
-  </div>
 </div>
 
-<div class="container text-center mt-5 p-1">
-  <p>Already a member? Then please.</p>
-  {% blocktrans %}<a class="btn-three" href="{{ login_url }}">Sign in</a>{% endblocktrans %}
+<div class="container text-center mt-5 p-1"> 
+    <p>Already a member? Then please.</p>
+    {% blocktrans %}<a class="btn-three" href="{{ login_url }}">Sign in</a>{% endblocktrans %}
 </div>
 
 {% endblock %}
