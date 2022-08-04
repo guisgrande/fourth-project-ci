@@ -8,12 +8,12 @@
         <div class="px-4 text-center">
             <div class="col-12 px-4 py-5 d-flex align-items-center justify-content-around">
                 <div class="glass-bck">
-                    <h1 class="m-1 txt-white txt-shadow-y">Auto Classic Club</h1>
+                    <h1 class="m-3 txt-white txt-shadow-y">Auto Classic Club</h1>
                 </div>
             </div>
             <div class="col-12 px-4 py-5 d-flex align-items-center justify-content-around">
                 <div class="glass-bck">
-                    <p class="m-1 txt-white txt-shadow-y">Made for all car lovers, with the most incredible machines in history. Accelerate on this journey.</p>
+                    <p class="m-3 txt-white txt-shadow-y">Made for all car lovers, with the most incredible machines in history. Accelerate on this journey.</p>
                 </div> 
             </div>
         </div>
@@ -21,30 +21,28 @@
 </header>
 
 <!-- About section -->
-<div class="container-fluid">
-    <div class="px-4 m-3 text-center">
-        <h2 class="txt-shadow-y">About</h2>
+<div class="container pb-4">
+    <div class="m-3 text-center">
+        <h2 class="txt-shadow-y m-4">About</h2>
     </div>
-    <div class="px-4 m-2 text-center">
+    <div class="m-2 text-center">
         <p>The Auto Classic club is a community created to facilitate the promotion of classic cars and interaction among site members.</p>
-    </div>
-    <div class="px-4 m-1 text-center">
         <p>Members can add their cars, suggest events, comment and leave their opinion, rate other cars.</p>
         <p>And most importantly create connections with the community.</p>
     </div>
 </div>
 
 <!-- Garage cars section -->
-<div class="bck-grd-black">
-    <div class="col-12 mt-3 left">
-        <div class="px-4 m-3 text-center">
-            <h2 class="txt-shadow-y txt-white pt-3">Garage</h2>
+<div class="container-fluid bck-grd-black">
+    <div class="col">
+        <div class="text-center">
+            <h2 class="txt-shadow-y txt-white p-4">Garage</h2>
         </div>
         <div class="row">
         {% for car in car_list %}
-            <div class="col-md-6">
-                <div class="card mb-4 m-3">
-                        <div class="card-body m-1">
+            <div class="col-md-6 p-0">
+                <div class="card m-3">
+                        <div class="card-body m-1 p-1 text-center">
                             <div class="image-container">
                                 {% if "placeholder" in car.car_image.url %}
                                 <img class="card-img-top rounded" alt="Car image placeholder" src="{% static 'images/car-placeholder.png' %}">
@@ -68,24 +66,25 @@
                 <div class="row">
             {% endif %}
         {% endfor %}
-        <div class="px-4 mt-1 mb-3 text-center">
-            <a class="btn btn-two" href="{% url 'garage' %}">Explore</a>
+            <div class="container pt-5 pb-4 text-center">
+                <a class="btn btn-two" href="{% url 'garage' %}">Explore</a>
+            </div>
         </div>
     </div>
 </div>
 
 <!-- Events section -->
-<div class="bck-grd-gray">
-    <div class="col-12 mt-3 left">
-        <div class="px-4 m-3 text-center">
-            <h2 class="txt-shadow-y pt-3">Events</h2>
+<div class="container-fluid bck-grd-gray">
+    <div class="col">
+        <div class="text-center">
+            <h2 class="txt-shadow-y p-4">Events</h2>
         </div>
     </div>
     <div class="row">
         {% for event in event_list %}
-            <div class="col-md-6">
-                <div class="card mb-4 m-3">
-                    <div class="card-body m-1">
+            <div class="col-md-6 p-0">
+                <div class="card m-3">
+                    <div class="card-body m-1 p-1 text-center">
                         <div class="image-container">
                             {% if "placeholder" in event.event_image.url %}
                             <img class="card-img-top rounded" alt="Event image placeholder" src="{% static 'images/event-placeholder.jpg' %}">
@@ -110,34 +109,34 @@
                 <div class="row">
             {% endif %}
         {% endfor %}
-        <div class="px-4 mt-1 mb-3 text-center">
+        <div class="container pt-5 pb-5 text-center">
             <a class="btn btn-one" href="{% url 'events' %}">Check out</a>
         </div>
     </div>
 </div>
 
 <!-- Join us section -->
-<div class="bck-grd-black">
-    <div class="col-12 p-3 left">
+<div class="container-fluid bck-grd-black">
+    <div class="container-fluid pb-4">
         {% if user.is_authenticated %}
         {% load account %}
-        <div class="px-4 m-3 text-center">
-            <h2 class="txt-shadow-y txt-white pt-3">Hello, {% user_display user %}</h2>
+        <div class="text-center">
+            <h2 class="txt-shadow-y txt-white p-4">Hello, {% user_display user %}</h2>
         </div>
-        <div class="px-4 m-1 text-center">
+        <div class="m-1 text-center">
             <p class="txt-white">Welcome again, access your area and keep up with the news.</p>
         </div>
-        <div class="px-4 mt-1 mb-3 text-center">
+        <div class="pt-3 pb-3 text-center">
             <a class="btn btn-two" href="{% url 'members' %}">Your area</a>
         </div>
         {% else %}
-        <div class="px-4 m-3 text-center">
-            <h2 class="txt-shadow-y txt-white pt-3">Join us</h2>
+        <div class="text-center">
+            <h2 class="txt-shadow-y txt-white p-4">Join us</h2>
         </div>
-        <div class="px-4 m-1 text-center">
+        <div class="m-1 text-center">
             <p class="txt-white">Be part of our community, registration is fast and easy. Start sharing and interacting with our members.</p>
         </div>
-        <div class="px-4 mt-1 mb-3 text-center">
+        <div class="pt-3 pb-3 text-center">
             <a class="btn btn-two" href="{% url 'account_signup' %}">Register</a>
         </div>
         {% endif %}
