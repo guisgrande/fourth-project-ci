@@ -9,7 +9,7 @@ body {
 }
 
 .txt-shadow-y {
-    text-shadow: 2px 2px 4px #FBBF34
+    text-shadow: 1px 1px 1px #FBBF34
 }
 
 /* !! Style for backgrounds classes !! */
@@ -162,6 +162,7 @@ body {
 .glass-bck {
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
     backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
     border-radius: 5px;
     border:1px solid rgba(255, 255, 255, 0.5);
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
