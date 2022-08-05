@@ -16,12 +16,12 @@
             Sort by
         </a>
         <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="/garage/?sort=date">By date: New to old</a></li>
-            <li><a class="dropdown-item" href="/garage/?sort=-date">By date: Old to new</a></li>
-            <li><a class="dropdown-item" href="/garage/?sort=brand">By brand: A to Z</a></li>
-            <li><a class="dropdown-item" href="/garage/?sort=-brand">By brand: Z to A</a></li>
-            <li><a class="dropdown-item" href="/garage/?sort=model">By model: A to Z</a></li>
-            <li><a class="dropdown-item" href="/garage/?sort=-model">By model: Z to A</a></li>
+            <li><a class="dropdown-item" sort="created_on" href="/garage/?sort=date">By date: New to old</a></li>
+            <li><a class="dropdown-item" sort="created_on" href="/garage/?sort=-date">By date: Old to new</a></li>
+            <li><a class="dropdown-item" sort="created_on" href="/garage/?sort=brand">By brand: A to Z</a></li>
+            <li><a class="dropdown-item" sort="created_on" href="/garage/?sort=-brand">By brand: Z to A</a></li>
+            <li><a class="dropdown-item" sort="created_on" href="/garage/?sort=model">By model: A to Z</a></li>
+            <li><a class="dropdown-item" sort="created_on" href="/garage/?sort=-model">By model: Z to A</a></li>
         </ul>
     </div>
 
@@ -44,9 +44,9 @@
 
 <!-- All cars card list display -->
 <div class="container-fluid">
-    <div class="row">
+    <div class="row" id="cars-container">
         {% for car in car_list %}
-            <div class="col-md-4 p-0">
+            <div class="col-md-4 p-0 single-car">
                 <div class="card m-3">
                         <div class="card-body m-1 p-1 text-center">
                             <div class="image-container">
@@ -74,5 +74,62 @@
         {% endfor %}
     </div>
 </div>
+
+<!-- Load more cars buttons -->
+<div class="container-fluid mt-4 mb-4 text-center">
+    <button id="load-more" class="btn-sm btn-dark" data-limit="3" data-total="{{ total_car_list }}">Load More</button>
+    <button id="load-end" class="btn-sm btn-outline-dark" hidden disabled>No more cars</button>
+</div>
+
+<!-- Script to Load more cars -->
+<script>
+
+    // Function to on click load more button
+    $(document).ready(function(){
+        $('#load-more').on('click', function(){
+            // Get data (limit and total) from button attr and total of cars displayed
+            var _current_car=$(".single-car").length;
+            var _limit=$(this).attr("data-limit");
+            var _total=$(this).attr("data-total");
+
+            // Get sort value from URL
+            var current_url = window.location.href;
+            var url_now = new URL(current_url)
+            var _sort = url_now.searchParams.get("sort");
+            console.log(_current_car, _limit, _total, _sort)
+
+            if(_sort == null){
+                    _sort = "-created_on"
+                }
+            
+            // AJAX to send data and execute function
+            $.ajax({
+                url: '/load-more-cars/',
+                data: {
+                    limit: _limit,
+                    offset: _current_car,
+                    sort: _sort
+                },
+                dataType: 'json',
+                beforeSend:function(){
+                    console.log("BEFORE")
+                     $('#load-more').attr('disabled', true);
+                },
+                success:function(res){
+                    console.log("SUCCESS")
+                    $('#cars-container').append(res.car_list),
+                    $('#load-more').attr('disabled', false);
+                    
+                    var _total_showing=$('.single-car').length;
+                    if(_total_showing == _total){
+                        $('#load-more').attr('hidden', true),
+                        $('#load-end').attr('hidden', false);
+                    }
+                },
+            });
+        });
+    });
+
+</script>
 
 {%endblock%}
