@@ -5,10 +5,11 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib import messages
 from django.urls import reverse_lazy
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from .models import Event
 from .forms import CommentForm, EventForm
 from django.db.models import Q
+from django.template.loader import render_to_string
 
 
 def events(request):
@@ -17,6 +18,8 @@ def events(request):
     By default ordered by date, new one show first.
     Sort request to display in a diferent order.
     """
+    start_display = 6
+    total_event_list = Event.objects.filter(status=1).count()
     event_list = Event.objects.filter(status=1)
     sort = None
 
@@ -28,15 +31,43 @@ def events(request):
             if sortkey == '-date':
                 sortkey = 'created_on'
             sort = sortkey
-            event_list = event_list.order_by(sortkey)
-        else:
-            event_list = event_list.order_by('-created_on')
+            event_list = Event.objects.filter(status=1).order_by(sortkey)[:start_display]
+    else:
+        event_list = Event.objects.filter(status=1).order_by('-created_on')[:start_display]
 
     context = {
         "event_list": event_list,
+        "total_event_list": total_event_list,
     }
 
     return render(request, 'events/events.html', context)
+
+
+def load_more_events(request):
+    """
+    Function to load more events at garage page,
+    Action occures when user click on load more button.
+    If have more events to load, the function will add more events.
+    Data sent by JavaScript function.
+    """
+    sortkey = request.GET['sort']
+    if request.GET:
+        if 'sort' in request.GET:
+            sortkey = request.GET['sort']
+            if sortkey == 'date':
+                sortkey = '-created_on'
+            if sortkey == '-date':
+                sortkey = 'created_on'
+    else:
+        sortkey = '-created_on'
+
+    offset = int(request.GET['offset'])
+    limit = int(request.GET['limit'])
+    event_list = Event.objects.filter(status=1).order_by(sortkey)[offset:offset+limit]
+
+    event = render_to_string('ajax/event_load.html', {'event_list': event_list})
+
+    return JsonResponse({'event_list': event})
 
 
 def search_event(request):
