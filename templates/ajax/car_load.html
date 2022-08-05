@@ -1,0 +1,27 @@
+{% for car in car_list %}
+<div class="col-md-4 p-0 single-car">
+    <div class="card m-3">
+            <div class="card-body m-1 p-1 text-center">
+                <div class="image-container">
+                    {% if "placeholder" in car.car_image.url %}
+                    <img class="card-img-top rounded" alt="Car image placeholder" src="https://res.cloudinary.com/guisgrande/image/upload/v1659703114/static/images/car-placeholder_pr9ggf.png">
+                    {% else %}
+                    <img class="card-img-top rounded" alt="Car image" src=" {{ car.car_image.url }}">
+                    {% endif %}                                
+                    <div class="image-flash">
+                        <span class="txt-white p-2"><i class="far fa-star p-1"></i> {{ car.number_of_favourites }}</span>
+                    </div>
+                </div>
+                <p class="card-text mt-2">Brand: {{ car.brand}}</p>
+                <p class="card-text">Model: {{ car.model }}</p>
+                <p class="card-text">Year: {{ car.year }}</p>
+                <p class="card-text">Created by: {{ car.username }}</p>
+                <a class="btn btn-card" href="{% url 'car_detail' car.slug %}">View more</a>                   
+            </div>
+    </div>
+</div>
+{% if forloop.counter|divisibleby:3 %}
+    </div>
+    <div class="row">
+{% endif %}
+{% endfor %}
