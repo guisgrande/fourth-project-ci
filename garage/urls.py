@@ -11,4 +11,5 @@ urlpatterns = [
     path('favourite/<slug:slug>/', views.FavouriteCar.as_view(), name='favourite_car'),
     path('rate-car/<slug:slug>/', views.RateCarView.as_view(), name='rate_car'),
     path('search-car/', views.search_car, name='search_car'),
+    path('load-more-cars/', views.load_more_cars, name='load_more_cars'),
 ]
