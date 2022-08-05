@@ -5,11 +5,12 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib import messages
 from django.urls import reverse_lazy
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from django.db.models import Avg
 from .models import Car, RateCar
 from .forms import CarForm, CommentForm, RateForm
 from django.db.models import Q
+from django.template.loader import render_to_string
 
 
 def garage(request):
@@ -18,6 +19,8 @@ def garage(request):
     By default ordered by date, new one show first.
     Sort request to display in a diferent order.
     """
+    start_display = 6
+    total_car_list = Car.objects.filter(status=1).count()
     car_list = Car.objects.filter(status=1)
     sort = None
 
@@ -29,15 +32,43 @@ def garage(request):
             if sortkey == '-date':
                 sortkey = 'created_on'
             sort = sortkey
-            car_list = car_list.order_by(sortkey)
-        else:
-            car_list = car_list.order_by('-created_on')
+            car_list = Car.objects.filter(status=1).order_by(sortkey)[:start_display]
+    else:
+        car_list = Car.objects.filter(status=1).order_by('-created_on')[:start_display]
 
     context = {
         "car_list": car_list,
+        "total_car_list": total_car_list,
     }
-
+    
     return render(request, 'garage/garage.html', context)
+
+
+def load_more_cars(request):
+    """
+    Function to load more cars at garage page,
+    Action occures when user click on load more button.
+    If have more cars to load, the function will add more cars.
+    Data sent by JavaScript function.
+    """
+    sortkey = request.GET['sort']
+    if request.GET:
+        if 'sort' in request.GET:
+            sortkey = request.GET['sort']
+            if sortkey == 'date':
+                sortkey = '-created_on'
+            if sortkey == '-date':
+                sortkey = 'created_on'
+    else:
+        sortkey = '-created_on'
+
+    offset = int(request.GET['offset'])
+    limit = int(request.GET['limit'])
+    car_list = Car.objects.filter(status=1).order_by(sortkey)[offset:offset+limit]
+
+    car = render_to_string('ajax/car_load.html', {'car_list': car_list})
+
+    return JsonResponse({'car_list': car})
 
 
 def search_car(request):
