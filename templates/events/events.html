@@ -44,9 +44,9 @@
 
 <!-- All events card list display -->
 <div class="container-fluid">
-    <div class="row">
+    <div class="row" id="events-container">
         {% for event in event_list %}
-            <div class="col-md-4 p-0">
+            <div class="col-md-4 p-0 single-event">
                 <div class="card m-3">
                     <div class="card-body m-1 p-1 text-center">
                         <div class="image-container">
@@ -75,5 +75,62 @@
         {% endfor %}
     </div>
 </div>
+
+<!-- Load more events buttons -->
+<div class="container-fluid mt-4 mb-4 text-center">
+    <button id="load-more" class="btn-sm btn-dark" data-limit="3" data-total="{{ total_event_list }}">Load More</button>
+    <button id="load-end" class="btn-sm btn-outline-dark" hidden disabled>No more events</button>
+</div>
+
+<!-- Script to Load more events -->
+<script>
+
+    // Function to on click load more button
+    $(document).ready(function(){
+        $('#load-more').on('click', function(){
+            // Get data (limit and total) from button attr and total of events displayed
+            var _current_event=$(".single-event").length;
+            var _limit=$(this).attr("data-limit");
+            var _total=$(this).attr("data-total");
+
+            // Get sort value from URL
+            var current_url = window.location.href;
+            var url_now = new URL(current_url)
+            var _sort = url_now.searchParams.get("sort");
+            console.log(_current_event, _limit, _total, _sort)
+
+            if(_sort == null){
+                    _sort = "-created_on"
+                }
+            
+            // AJAX to send data and execute function
+            $.ajax({
+                url: '/load-more-events/',
+                data: {
+                    limit: _limit,
+                    offset: _current_event,
+                    sort: _sort
+                },
+                dataType: 'json',
+                beforeSend:function(){
+                    console.log("BEFORE")
+                     $('#load-more').attr('disabled', true);
+                },
+                success:function(res){
+                    console.log("SUCCESS")
+                    $('#events-container').append(res.event_list),
+                    $('#load-more').attr('disabled', false);
+                    
+                    var _total_showing=$('.single-event').length;
+                    if(_total_showing == _total){
+                        $('#load-more').attr('hidden', true),
+                        $('#load-end').attr('hidden', false);
+                    }
+                },
+            });
+        });
+    });
+
+</script>
 
 {%endblock%}
