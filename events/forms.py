@@ -4,15 +4,23 @@ from django import forms
 
 
 class DateInput(forms.DateInput):
+    """
+    Form class set up date input.
+    """
     input_type = 'date'
 
 
 class TimeInput(forms.DateInput):
+    """
+    Form class set up time input.
+    """
     input_type = 'time'
 
 
 class EventForm(forms.ModelForm):
-
+    """
+    Form class to create event post.
+    """
     event_image = CloudinaryFileField(
         options = { 
             'crop': 'limit', 'width': 1280, 'height': 720,
@@ -36,6 +44,9 @@ class EventForm(forms.ModelForm):
 
 
 class CommentForm(forms.ModelForm):
+    """
+    Form class to comment event post.
+    """
     class Meta:
         model = CommentEvent
         fields = ('body',)
