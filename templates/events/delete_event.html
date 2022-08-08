@@ -12,9 +12,9 @@
         <p class="mb-1">Category: {{ event.category }}</p>
         <p class="mb-1">Date: {{ event.start_date }}</p>
         {% if "placeholder" in event.event_image.url %}
-        <img class="card-img-top rounded" style="width: 350px; height: 200px" alt="Event image placeholder" src="{% static 'images/event-placeholder.jpg' %}">
+        <img class="card-img-top rounded" style="width: 250px; height: 150px" alt="Event image placeholder" src="{% static 'images/event-placeholder.jpg' %}">
         {% else %}
-        <img class="card-img-top rounded" style="width: 350px; height: 200px" alt="Event image" src=" {{ event.event_image.url }}">
+        <img class="card-img-top rounded" style="width: 250px; height: 150px" alt="Event image" src=" {{ event.event_image.url }}">
         {% endif %}
     </div>
 </div>
