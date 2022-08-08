@@ -17,29 +17,40 @@
     </div>
 </div>
 
-<div class="col-md-4 mb-4 offset-md-4 bck-grd-gray rounded shadow">
-    <div class="card-body">
-        {% if rated %}
-        <div class="alert alert-success" role="alert">
-            You rated this car! Thanks for your avaliation.
+<div class="container text-center">
+    <div class="row d-flex justify-content-center">
+        <div class="col m-4 bck-grd-gray rounded shadow">
+            {% if rated %}
+            <div class="alert alert-success" role="alert">
+                You rated this car! Thanks for your avaliation.
+            </div>
+            <div class="container text-center">
+                <p class="m-2">Back to <a class="btn-three" href="{% url 'car_detail' car.slug %}">car details</a></p>
+            </div>
+            {% else %}
+            {% if user.is_authenticated %}
+                <h3>Leave a rate review:</h3>
+                <p>Rating as: {{ user.username }}</p>
+                <form method="post" style="margin-top: 1.3em;">
+                    {% for field in rate_form  %}
+                    {% csrf_token %}
+                    <div class="row p-2">
+                        <div class="col d-flex justify-content-end">
+                            <b class="m-1">{{ field.label_tag }}</b>
+                        </div>
+                        <div class="col d-flex justify-content-start">
+                            <b class="m-1">{{ field }}</b>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    <div class="container text-center mt-3">
+                        <button type="submit" class="btn btn-success m-2">Submit</button>
+                        <a href="{% url 'car_detail' car.slug %}" class="btn btn-primary m-2">Go Back</a>
+                    </div>
+                </form>
+            {% endif %}
+            {% endif %}
         </div>
-        <div class="container text-center">
-            <p class="m-2">Back to <a class="btn-three" href="{% url 'car_detail' car.slug %}">car details</a></p>
-        </div>
-        {% else %}
-        {% if user.is_authenticated %}
-            <h3>Leave a rate review:</h3>
-            <p>Rating as: {{ user.username }}</p>
-            <form method="post" style="margin-top: 1.3em;">
-                {{ rate_form | crispy }}
-                {% csrf_token %}
-                <div class="container text-center">
-                    <button type="submit" class="btn btn-success m-2">Submit</button>
-                    <a href="{% url 'car_detail' car.slug %}" class="btn btn-primary m-2">Go Back</a>
-                </div>
-            </form>
-        {% endif %}
-        {% endif %}
     </div>
 </div>
 
