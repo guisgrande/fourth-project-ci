@@ -8,8 +8,21 @@ body {
     color: white;
 }
 
+.txt-yellow {
+    color: #FBBF34;
+}
+
+.txt-green {
+    color: #2f8f17;
+}
+
+.txt-orange {
+    color: #FFA14A;
+}
+
+
 .txt-shadow-y {
-    text-shadow: 1px 1px 1px #FBBF34
+    text-shadow: 1px 1px 1px #FBBF34;
 }
 
 /* !! Style for backgrounds classes !! */
@@ -64,7 +77,7 @@ body {
     color: #FFA14A;
 }
 
-/* Button to card element (car and event) */
+/* Button and Image style to card element (car and event) */
 
 #btn-go:hover {
     color: #2f8f17;
@@ -95,9 +108,9 @@ body {
 .image-flash {
     position: absolute;
     border: 1px solid rgba(0, 0, 0, 0.26);
-    border-radius: 10px;
-    bottom: 1%;
-    left: 1%;
+    border-radius: 4px;
+    bottom: 0%;
+    left: 0%;
     background-color: #00000080;
 }
 
