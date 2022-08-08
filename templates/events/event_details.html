@@ -23,7 +23,7 @@
                 <form class="d-inline" action="{% url 'presence_go_event' event.slug %}" method="POST">
                     {% csrf_token %}
                     {% if presence_go_ok %}
-                    <button id="btn-go" class="btn txt-white p-2" type="submit" name="event_id" value="{{event.slug}}"><i class="bi bi-calendar2-check-fill"></i></button>
+                    <button id="btn-go" class="btn txt-green p-2" type="submit" name="event_id" value="{{event.slug}}"><i class="bi bi-calendar2-check-fill"></i></button>
                     {% else %}
                     <button id="btn-go" class="btn txt-white p-2" type="submit" name="event_id" value="{{event.slug}}"><i class="bi bi-calendar2-check"></i></button>
                     {% endif %}
@@ -39,7 +39,7 @@
                 <form class="d-inline" action="{% url 'presence_maybe_event' event.slug %}" method="POST">
                     {% csrf_token %}
                     {% if presence_maybe_ok %}
-                    <button id="btn-maybe" class="btn txt-white p-2" type="submit" name="event_id" value="{{event.slug}}"><i class="bi bi-calendar2-fill"></i></button>
+                    <button id="btn-maybe" class="btn txt-orange p-2" type="submit" name="event_id" value="{{event.slug}}"><i class="bi bi-calendar2-fill"></i></button>
                     {% else %}
                     <button id="btn-maybe" class="btn txt-white p-2" type="submit" name="event_id" value="{{event.slug}}"><i class="bi bi-calendar2"></i></button>
                     {% endif %}
