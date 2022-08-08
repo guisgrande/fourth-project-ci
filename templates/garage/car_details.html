@@ -69,11 +69,11 @@
             <h3 class="m-2"><i class="bi bi-check-square"></i> Rate reviews</h3>
             <div>
                 <p class="border p-1"><i class="bi bi-check-square-fill"></i> {{ len_rate }} </p>
-                <p>Price: {{ avg_total.avg_price }}</p>
-                <p>Aesthetics: {{ avg_total.avg_aest }}</p>
-                <p>Speed: {{ avg_total.avg_speed }}</p>
-                <p>Drivability: {{ avg_total.avg_driv }}</p>
-                <p>Overall: {{ avg_total.avg_overall }}</p>
+                <p><i class="bi bi-cash-coin txt-orange"></i> Price: <strong>{{ avg_total.avg_price }}</strong></p>
+                <p><i class="bi bi-eye txt-orange"></i> Aesthetics: <strong>{{ avg_total.avg_aest }}</strong></p>
+                <p><i class="bi bi-speedometer txt-orange"></i> Speed: <strong>{{ avg_total.avg_speed }}</strong></p>
+                <p><i class="bi bi-sign-turn-right txt-orange"></i> Drivability: <strong>{{ avg_total.avg_driv }}</strong></p>
+                <p><i class="bi bi-car-front txt-orange"></i> Overall: <strong>{{ avg_total.avg_overall }}</strong></p>
             </div>
             <p>
                 <a class="btn btn-two" data-bs-toggle="collapse" href="#collapseRate" role="button" aria-expanded="false" aria-controls="collapseRate" style="font-size: 14px;">All Rate Reviews</a>
