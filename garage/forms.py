@@ -1,5 +1,4 @@
 from .models import Car, CommentCar, RateCar
-from cloudinary.forms import CloudinaryFileField   
 from django import forms
 
 
@@ -13,10 +12,6 @@ class CarForm(forms.ModelForm):
     price = forms.FloatField(widget=forms.NumberInput(attrs={'min': '0'}))
     hp = forms.FloatField(widget=forms.NumberInput(attrs={'min': '0'}))
     speed = forms.FloatField(widget=forms.NumberInput(attrs={'min': '0'}))
-    car_image = CloudinaryFileField(
-        options = { 
-            'crop': 'limit', 'width': 1280, 'height': 720,
-    })
 
     class Meta:
         model = Car

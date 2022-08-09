@@ -1,5 +1,4 @@
 from .models import Event, CommentEvent
-from cloudinary.forms import CloudinaryFileField
 from django import forms
 
 
@@ -21,11 +20,6 @@ class EventForm(forms.ModelForm):
     """
     Form class to create event post.
     """
-    event_image = CloudinaryFileField(
-        options = { 
-            'crop': 'limit', 'width': 1280, 'height': 720,
-    })
-
     class Meta:
         model = Event
         fields = [
