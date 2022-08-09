@@ -132,7 +132,7 @@ body {
     height: 8px;
 }
 
-#social-list {
+.social-list {
     border: 1px solid #FF6607;
 }
 
@@ -192,11 +192,11 @@ body {
 }
 
 /* Querie for footer elements */
-#list-web-link {
+.list-web-link {
     padding: 5px;
 }
 
-#list-web-link>li>a {
+.list-web-link>li>a {
     font-size: 12px;
 }
 
