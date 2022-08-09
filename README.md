@@ -134,7 +134,6 @@ The colors chosen to compose the website are the following.
 
 <details>
     <summary>Colour scheme</summary>
-    
     <div align="center">
         <img src="documentation/images/COLORS.png">
     </div>
@@ -153,6 +152,289 @@ The site's font was chosen from google fonts. I chose the Quicksand (Light 300) 
 ## Features
 
 ### Existing Features
+
+#### __Favicon__
+
+- Favicon is loaded on every page, the little logo is also present in the site banner.
+
+#### __Navbar__
+
+- Navbar that is present on all pages for user navigation through the website, is present the logo/banner with the site name that redirects to the home page,
+the link to home page, a link to garage (all cars), a link to events (all events), the next two links alternate if the user is logged in or not.
+- If the user does not have an account or is logged out, links to signup (register a new account) and signin (for the user to log in) are available.
+user is logged in, the links are available to logout (confirmation page) and link to members (user area). 
+to orange, giving a highlight to which page he will be redirected with the click.
+
+<div align="center">
+    <img src="documentation/screenshots/navbar-default.png">
+    <img src="documentation/screenshots/navbar-logged.png">
+    <img src="documentation/screenshots/navbar-hover.png">
+</div>
+
+- Navbar is responsive, for mobiles it automatically groups to drowdown menu.
+
+<div align="center">
+    <img src="documentation/screenshots/navbar-mobile-closed.PNG">
+</div>
+<div align="center">
+    <img src="documentation/screenshots/navbar-mobile-show.PNG">
+</div>
+
+#### __Footer__
+
+- The footer is shown only when reaching the end of the page, it counts with a list with the links that are present in the navbar with the same change in case the user is logged in or not. 
+- Is also present three links that redirect the users to the social networks of the page to increase their interaction with the community.
+
+<div align="center">
+    <img src="documentation/screenshots/footer-default.PNG">
+</div>
+<div align="center">
+    <img src="documentation/screenshots/footer-logged.PNG">
+</div>
+
+- The links present in the footer count with hover effect to increase the highlight of which selection will be executed with the click.
+
+<div align="center">
+    <img src="documentation/screenshots/footer-links-hover.png" width="150">
+    <img src="documentation/screenshots/footer-social-hover.png" width="150">
+</div>
+
+#### __Hero image__
+
+- Present on the index page, and one of the first images that the user sees when he logs into the website, it has a background image of an old car and with the name of the site and a brief description of the site's purpose.
+
+<div align="center">
+    <img src="documentation/screenshots/index-hero.PNG">
+</div>
+
+#### __About section__
+
+- This section has a short introductory text about what is being made available on the website.
+
+<div align="center">
+    <img src="documentation/screenshots/index-about.PNG">
+</div>
+
+#### __Latest cars__
+
+- Has a card display of the last four cars added to the site, for users to get an idea of what the content is like. Each car has a button to see more details.
+- At the end of this section, a button to explore all cars, with hover effect.
+
+<div align="center">
+    <img src="documentation/screenshots/index-garage.PNG">
+</div>
+
+#### __Latest events__
+
+- Counts with the card exhibition of the last events added in the site, for the users to visualize how the events are. Each event has a button to see more details.
+- At the end of this section, a button to explore all events, with hover effect.
+
+<div align="center">
+    <img src="documentation/screenshots/index-events.PNG">
+</div>
+
+#### __Join the club__
+
+- The last section of the index page is a text calling the user to action and a button to create an account. In case he is a recurrent user that already has an account and is logged in this text is changed to a greeting and a button (hover effect) to redirect to the memeber area.
+
+<div align="center">
+    <img src="documentation/screenshots/index-join-us.PNG">
+    <img src="documentation/screenshots/index-user.PNG">
+</div>
+
+#### __Sign up__
+
+- Registration page, with a simple form with the field for username, e-mail (optional) and for password twice, a button to register. A short text that calls who already has a registration to the login page.
+
+<div align="center">
+    <img src="documentation/screenshots/member-signup.PNG">
+</div>
+
+#### __Sign in__
+
+- Access page, with two fields to be filled in (username and password). a button to log in. A short text with a callout for those who don't have an account.
+
+<div align="center">
+    <img src="documentation/screenshots/member-signin.PNG">
+</div>
+
+#### __Logout__
+
+- Page for logged in users who have selected the logout option, it asks if they really want to perform this action.
+
+<div align="center">
+    <img src="documentation/screenshots/member-signout.PNG">
+</div>
+
+#### __User area__
+
+- Area for logged in users, display greeting text with user name, four buttons for action: add car, add event, view cars, view events. At the end of the page has the setting account, with option to delete the account.
+
+<div align="center">
+    <img src="documentation/screenshots/member-area.PNG">
+</div>
+
+- If the user tries to access the page with the url without being logged in, it shows a different screen saying that he must create an account or log in to his existing account.
+
+<div align="center">
+    <img src="documentation/screenshots/notuser-memberarea.PNG">
+</div>
+
+#### __My cars__
+
+- Page for logged in users that shows a list of the cars added by the user. Each car has three action options: view more (car info), edit (to edit car information) and delete (to delete car).
+
+<div align="center">
+    <img src="documentation/screenshots/member-car-list.PNG">
+</div>
+
+#### __My events__
+
+- Page for logged in users that shows a list of the cars added by the user. Each event has three action options: view more (event info), edit (to edit event information) and delete (to delete event)
+
+<div align="center">
+    <img src="documentation/screenshots/member-event-list.PNG">
+</div>
+
+#### __Delete account__
+
+- Area for the user to confirm that he really wants to delete the account. Rephrase the question informing that all data will be deleted when confirming. 
+- A button to cancel and a link back to the member area.
+
+<div align="center">
+    <img src="documentation/screenshots/member-delete-account.PNG">
+</div>
+
+#### __Add car__
+
+- Page for logged in users that provides the form for adding a new car.
+
+<div align="center">
+    <img src="documentation/screenshots/car-add.png">
+</div>
+
+#### __Edit car__
+
+- Page for logged in users that allows editing of a previously added car, only the user himself can change it. The same page as the add car, but the information is already filled in as it was added and can be modified.
+
+<div align="center">
+    <img src="documentation/screenshots/car-edit.png">
+</div>
+
+#### __Delete car__
+
+- A page for logged in users that enables them to delete information about their added car, shows a summary of the car's information and a question confirming if they want to continue with the action, which is irreversible.
+
+<div align="center">
+    <img src="documentation/screenshots/delete-car.PNG">
+</div>
+
+#### __Add event__
+
+- Page for logged in users that provides the form for adding a new event.
+
+<div align="center">
+    <img src="documentation/screenshots/event-add.png">
+</div>
+
+#### __Edit event__
+
+- Page for logged in users that allows editing of a previously added event, only the user himself can change it. The same page as the add event, but the information is already filled in as it was added and can be modified.
+
+<div align="center">
+    <img src="documentation/screenshots/event-edit.png">
+</div>
+
+#### __Delete event__
+
+- Page for logged in users that enables them to delete the information of their added event, shows the summarized event information and a question confirming if they want to continue with the action that is irreversible.
+
+<div align="center">
+    <img src="documentation/screenshots/delete-event.PNG">
+</div>
+
+#### __Garage page__
+
+- Page shows all cars added in the website, by default shows the most recent first. has a search field, a field to sort the list according to the available option.
+- Each car is visible in a card with the following information (picture, brand, model, year, username, number of favourites and a button to more details).
+
+<div align="center">
+    <img src="documentation/screenshots/garage-page.PNG">
+</div>
+
+- By default the page loads only the last 6 cars, but the load more button loads 3 more posts with each click. Until there are no more and it changes to "no more cars".
+
+<div align="center">
+    <img src="documentation/screenshots/garage-load.PNG">
+</div>
+
+#### __Car info__
+
+- Page with all car informations in more details, and the following sections: favorite, rate review, comment. these sections are presented in different ways for logged in and non logged in users.
+- Not logged in user can only see the total of favorites and can not interact, can only see the total of reviews and the score and can not evaluate, can only read the comments and can not comment.
+- Logged in user can see everything that the non logged in user can see, but he can interact with the page, by favoriting or un-favoriting a car, he can rate a car (only once per car), and he can send comments.
+
+<div align="center">
+    <img src="documentation/screenshots/cardetails-one.PNG">
+    <img src="documentation/screenshots/cardetails-two.PNG">
+</div>
+
+#### __Rate car__
+
+- Shows the average points and a button to show all reviews. Next to it a button is displayed for logged in users if they haven't voted and a message if they have already voted on the car. 
+
+<div align="center">
+    <img src="documentation/screenshots/rate-details.PNG">
+    <img src="documentation/screenshots/car-rated.PNG">
+</div>
+
+- If the user is not logged in. Message that is displayed.
+
+<div align="center">
+    <img src="documentation/screenshots/notuser-rate.PNG">
+</div>
+
+- Rate form and confirmation
+
+<div align="center">
+    <img src="documentation/screenshots/rate-form.PNG">
+    <img src="documentation/screenshots/rate-confirm.PNG">
+</div>
+
+#### __Events page__
+
+- Page shows all events added in the website, by default shows the most recent first. it has a search field, a field to sort the list according to the available option.
+- Each event is visible in a card with the following information (image, title, category, date, location, number of go/maybe and comments, a button to more details).
+    
+<div align="center">
+    <img src="documentation/screenshots/events-page.PNG">
+</div>
+
+- By default the page loads only the last 6 events, but the load more button loads 3 more posts with each click. Until there are no more and it changes to "no more events".
+
+<div align="center">
+    <img src="documentation/screenshots/events-load.PNG">
+</div>
+
+#### __Event info__
+
+- Page with all event informations in more details, and the following sections: go or maybe go and comment. these sections are presented in different ways for logged in and not logged in users.
+- Not logged in user can only see the total go or maybe go and can't interact, can only read the comments and can't comment.
+- Logged in user can see everything that the non logged in user can see, but he can interact with the page, selecting go or maybe go to an event, and can send comments.
+
+<div align="center">
+    <img src="documentation/screenshots/eventdetails-one.PNG">
+    <img src="documentation/screenshots/eventdetails-two.PNG">
+</div>
+
+#### __Comments__
+
+- The comments have the same layout for cars and events. Only logged in users can comment. A message that the comment has been sent for approval will appear as soon as you submit the comment.
+
+<div align="center">
+    <img src="documentation/screenshots/comment-display.PNG">
+    <img src="documentation/screenshots/comment-aprove.PNG">
+</div>
 
 ### Features Left to Implement
 
