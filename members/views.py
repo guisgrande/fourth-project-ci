@@ -22,7 +22,9 @@ def membercars(request):
     """
     current_user = request.user.id
     context = {}
-    context['user_car_list'] = Car.objects.filter(username_id=current_user).order_by('-created_on')
+    context['user_car_list'] = Car.objects.filter(
+        username_id=current_user
+        ).order_by('-created_on')
     return render(request, "members/user_cars.html", context)
 
 
@@ -34,7 +36,9 @@ def memberevents(request):
     """
     current_user = request.user.id
     context = {}
-    context['user_event_list'] = Event.objects.filter(username_id=current_user).order_by('-created_on')
+    context['user_event_list'] = Event.objects.filter(
+        username_id=current_user
+        ).order_by('-created_on')
     return render(request, "members/user_events.html", context)
 
 
