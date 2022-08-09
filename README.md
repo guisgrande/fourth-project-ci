@@ -83,7 +83,41 @@ He will be able to access his area (Members) to add new posts, modify the ones a
 
 #### Wireframes
 
+The wireframe was created using the Figma tool. During the elaboration of the wireframes, I added what the front end should look like. At the end of the development some changes were made.
+
+- To visualize full desktop wireframe project > [Figma - Auto Classic Desktop](https://www.figma.com/file/zKQz8GjUEB8L82Sxj5U5SQ/PP4?node-id=35%3A3)
+
+<details>
+    <summary>Wireframes - Desktop</summary>
+    <div align="center">
+        <img src="documentation/images/wireframe-desktop-one.PNG">
+        <img src="documentation/images/wireframe-desktop-two.PNG">
+        <img src="documentation/images/wireframe-desktop-three.PNG">
+        <img src="documentation/images/wireframe-desktop-four.PNG">
+    </div>
+</details>
+
+- To visualize full mobile wireframe project > [Figma - Auto Classic Mobile](https://www.figma.com/file/zKQz8GjUEB8L82Sxj5U5SQ/PP4?node-id=0%3A1)
+
+<details>
+    <summary>Wireframes - Mobile</summary>
+    <div align="center">
+        <img src="documentation/images/wireframes-mobile.PNG">
+    </div>
+</details>
+
 #### Database diagram
+
+The base data for Auto Classic starts from the logged in user who can create a Car or Event post. 
+
+The Car database relates to the RateCar and CommentCar database. And the Event database relates to the CommentEvent database.
+
+<details>
+    <summary>Diagram</summary>
+    <div align="center">
+        <img src="documentation/images/database-diagram.png">
+    </div>
+</details>
 
 ### Surface
 
