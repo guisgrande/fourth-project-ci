@@ -7,6 +7,7 @@ from cloudinary.models import CloudinaryField
 
 STATUS = ((0, "Draft"), (1, "Published"))
 
+
 class Event(models.Model):
     """
     Class to represent Event database model
@@ -34,9 +35,11 @@ class Event(models.Model):
         User, related_name='presence_go',
         blank=True)
     presence_maybe = models.ManyToManyField(
-        User, related_name='presence_maybe',
-        blank=True)
-    
+        User,
+        related_name='presence_maybe',
+        blank=True
+        )
+
     ROAD = 'Road Trip'
     TRACK = 'Track Day'
     EXPO = 'Exposition'
@@ -46,25 +49,25 @@ class Event(models.Model):
 
     EVENT_CATEGORIES = [
         (ROAD, 'Road Trip'),
-	    (TRACK, 'Track Day'),
-	    (EXPO, 'Exposition'),
-	    (TRADE, 'Trade Event'),
-	    (MEET, 'Meeting Event'),
-	    (OTHER, 'Other Events')
-    ]
+        (TRACK, 'Track Day'),
+        (EXPO, 'Exposition'),
+        (TRADE, 'Trade Event'),
+        (MEET, 'Meeting Event'),
+        (OTHER, 'Other Events')
+        ]
 
     category = models.CharField(
         max_length=15,
         choices=EVENT_CATEGORIES,
         blank=False, default=OTHER
         )
-        
+
     slug = models.SlugField(unique=True)
     status = models.IntegerField(choices=STATUS, default=0)
 
     class Meta:
         """
-        Class to show newest event first 
+        Class to show newest event first
         """
         ordering = ['-created_on']
 
@@ -76,7 +79,7 @@ class Event(models.Model):
         Function to count number of presence go
         """
         return self.presence_go.count()
-    
+
     def number_of_maybe(self):
         """
         Function to count number of presence maybe
@@ -96,10 +99,16 @@ class CommentEvent(models.Model):
     """
     Class model to comments, for event posts.
     """
-    event = models.ForeignKey(Event, on_delete=models.CASCADE,
-                             related_name="event_comments")
-    name = models.ForeignKey(User, on_delete=models.CASCADE,
-                             related_name="event_comments")
+    event = models.ForeignKey(
+        Event,
+        on_delete=models.CASCADE,
+        related_name="event_comments"
+        )
+    name = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name="event_comments"
+        )
     body = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
     approved = models.BooleanField(default=False)

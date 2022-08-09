@@ -15,7 +15,7 @@ class EventsAdmin(SummernoteModelAdmin):
 
 @admin.register(CommentEvent)
 class CommentEventAdmin(admin.ModelAdmin):
-    
+
     list_display = ('name', 'body', 'event', 'created_on', 'approved')
     list_filter = ('approved', 'created_on')
     search_fields = ('name', 'event', 'body')

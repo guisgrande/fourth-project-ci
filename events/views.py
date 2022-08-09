@@ -31,9 +31,13 @@ def events(request):
             if sortkey == '-date':
                 sortkey = 'created_on'
             sort = sortkey
-            event_list = Event.objects.filter(status=1).order_by(sortkey)[:start_display]
+            event_list = Event.objects.filter(
+                status=1
+                ).order_by(sortkey)[:start_display]
     else:
-        event_list = Event.objects.filter(status=1).order_by('-created_on')[:start_display]
+        event_list = Event.objects.filter(
+            status=1
+            ).order_by('-created_on')[:start_display]
 
     context = {
         "event_list": event_list,
@@ -63,9 +67,14 @@ def load_more_events(request):
 
     offset = int(request.GET['offset'])
     limit = int(request.GET['limit'])
-    event_list = Event.objects.filter(status=1).order_by(sortkey)[offset:offset+limit]
+    event_list = Event.objects.filter(
+        status=1
+        ).order_by(sortkey)[offset:offset+limit]
 
-    event = render_to_string('ajax/event_load.html', {'event_list': event_list})
+    event = render_to_string(
+        'ajax/event_load.html',
+        {'event_list': event_list}
+        )
 
     return JsonResponse({'event_list': event})
 
@@ -73,12 +82,14 @@ def load_more_events(request):
 def search_event(request):
     """
     Function to search events from events page and display in a new template
-    Request POST from form and return Searched word to 
+    Request POST from form and return Searched word to
     look into title, local or category fields before return search results
     """
     if request.method == 'POST':
         searched = request.POST['searched']
-        queries = Q(event_title__contains=searched) | Q(local__contains=searched) | Q(category__contains=searched)
+        queries = Q(event_title__contains=searched) | Q(
+            local__contains=searched
+            ) | Q(category__contains=searched)
         event_list = Event.objects.filter(queries)
 
         context = {
@@ -99,7 +110,9 @@ class EventDetail(View):
     def get(self, request, slug, *args, **kwargs):
         queryset = Event.objects.filter(status=1)
         event = get_object_or_404(queryset, slug=slug)
-        event_comments = event.event_comments.filter(approved=True).order_by("-created_on")
+        event_comments = event.event_comments.filter(
+            approved=True
+            ).order_by("-created_on")
 
         # Presence confirm
         presence_go_ok = False
@@ -123,7 +136,9 @@ class EventDetail(View):
     def post(self, request, slug, *args, **kwargs):
         queryset = Event.objects.filter(status=1)
         event = get_object_or_404(queryset, slug=slug)
-        event_comments = event.event_comments.filter(approved=True).order_by("-created_on")
+        event_comments = event.event_comments.filter(
+            approved=True
+            ).order_by("-created_on")
         comment_form = CommentForm(data=request.POST)
 
         # Comment form confirmation
@@ -144,7 +159,7 @@ class EventDetail(View):
 
         if event.presence_maybe.filter(id=self.request.user.id).exists():
             presence_maybe_ok = True
-        
+
         return render(request, "events/event_details.html", {
             "event": event,
             "presence_go_ok": presence_go_ok,
@@ -158,7 +173,7 @@ class EventDetail(View):
 class PresenceGoEvent(LoginRequiredMixin, View):
     """
     Class to logged user tag go an event.
-    """ 
+    """
     def post(self, request, slug, *args, **kwargs):
         event = get_object_or_404(Event, slug=slug)
         go_filter = event.presence_go.filter(id=request.user.id)
@@ -179,7 +194,7 @@ class PresenceGoEvent(LoginRequiredMixin, View):
 class PresenceMaybeEvent(LoginRequiredMixin, View):
     """
     Class to logged user tag maybe go an event.
-    """ 
+    """
     def post(self, request, slug, *args, **kwargs):
         event = get_object_or_404(Event, slug=slug)
         go_filter = event.presence_go.filter(id=request.user.id)
@@ -197,7 +212,11 @@ class PresenceMaybeEvent(LoginRequiredMixin, View):
         return HttpResponseRedirect(reverse('event_detail', args=[slug]))
 
 
-class AddEventPost(SuccessMessageMixin, LoginRequiredMixin, generic.CreateView):
+class AddEventPost(
+    SuccessMessageMixin,
+    LoginRequiredMixin,
+    generic.CreateView
+):
     """
     Logged in user can create a event post.
     """
@@ -217,7 +236,12 @@ class AddEventPost(SuccessMessageMixin, LoginRequiredMixin, generic.CreateView):
         return super(AddEventPost, self).form_valid(form)
 
 
-class EditEventPost(SuccessMessageMixin, LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView):
+class EditEventPost(
+    SuccessMessageMixin,
+    LoginRequiredMixin,
+    UserPassesTestMixin,
+    generic.UpdateView
+):
     """
     Logged in user can edit your event details.
     From My Event list page.
@@ -236,7 +260,12 @@ class EditEventPost(SuccessMessageMixin, LoginRequiredMixin, UserPassesTestMixin
         return event_post.username == self.request.user
 
 
-class DeleteEventPost(SuccessMessageMixin, LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView):
+class DeleteEventPost(
+    SuccessMessageMixin,
+    LoginRequiredMixin,
+    UserPassesTestMixin,
+    generic.DeleteView
+):
     """
     Logged in user can delete your event.
     From My Events list page.
