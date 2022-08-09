@@ -56,13 +56,34 @@ To run agile most efficiently, the following Sprints were determined as per the 
 
 ### Scope
 
+For the scope of this project the following key points were determined.
+- Create a webpage application using the Django framework.
+- Use bootstrap to make the site responsive, and custom CSS and Java Script to complement.
+- Allow the user to create an account in order to upload content.
+- Allow logged in users to interact with other posts through comments and actions.
+- Allow users to manipulate their content (CRUD Operations).
+- The frontend should be simple and present the content in a clear way.
+- The website should be functional, easy to navigate and intuitive.
+
 ### Structure
+
+Auto Classic, will have five distinct pages for the first-time user.
+- Home page, Garage (Cars), Events, Signup, and Signin.
+
+Unlogged users will be able to navigate through these five pages and will be able to see the details of each Car or Event by clicking on its link. But they will not be able to interact.
+
+When the user creates an account and is logged in, the following pages will be displayed.
+- Home page, Garage (Cars), Events, Logout, Members.
+
+Logged-in users will be able to access the site completely. Being able to access the details of the cars and events post and interact with them.
+
+He will be able to access his area (Members) to add new posts, modify the ones already added, or delete them.
 
 ### Skeleton
 
 #### Wireframes
 
-### Flowchart
+#### Database diagram
 
 ### Surface
 
