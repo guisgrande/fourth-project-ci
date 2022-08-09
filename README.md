@@ -123,9 +123,32 @@ The Car database relates to the RateCar and CommentCar database. And the Event d
 
 #### Colour scheme
 
+The colors chosen to compose the website are the following.
+
+- The colors white/black will be used for the background and to create contrast between the sections.
+- The gray will be used in the forms and cards to stand out from the background.
+- Orange will be used to highlight the nav bar/footer/buttons.
+- Yellow will be used for title effects, and view more button.
+
+- Bootstrap default colors were also used for some buttons on the forms.
+
+<details>
+    <summary>Colour scheme</summary>
+    
+    <div align="center">
+        <img src="documentation/images/COLORS.png">
+    </div>
+</details>
+
 #### Typography
 
+The site's font was chosen from google fonts. I chose the Quicksand (Light 300) font. It was used throughout the entire site, including titles and body. The only element with a different font is the custom banner.
+
 #### Imagery
+
+- For the auto classic project, I selected images that can enhance the user's visual response and convey the idea of the website. the images were selected from unsplash (credit mentioned in the readme).
+- The first image of the front of a classic car in black and white that was used as a hero image on the home page.
+- I selected two default images (placeholders) that are loaded in case the user doesn't add any image in the car or event post, one image for each respectively.
 
 ## Features
 
