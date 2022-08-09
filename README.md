@@ -157,6 +157,10 @@ The site's font was chosen from google fonts. I chose the Quicksand (Light 300) 
 
 - Favicon is loaded on every page, the little logo is also present in the site banner.
 
+<div align="center">
+    <img src="documentation/screenshots/favicon.PNG">
+</div>
+
 #### __Navbar__
 
 - Navbar that is present on all pages for user navigation through the website, is present the logo/banner with the site name that redirects to the home page,
@@ -379,6 +383,13 @@ to orange, giving a highlight to which page he will be redirected with the click
     <img src="documentation/screenshots/cardetails-two.PNG">
 </div>
 
+- Favourite button
+
+<div align="center">
+    <img src="documentation/screenshots/favourite.PNG">
+    <img src="documentation/screenshots/favoutired.PNG">
+</div>
+
 #### __Rate car__
 
 - Shows the average points and a button to show all reviews. Next to it a button is displayed for logged in users if they haven't voted and a message if they have already voted on the car. 
@@ -404,7 +415,7 @@ to orange, giving a highlight to which page he will be redirected with the click
 #### __Events page__
 
 - Page shows all events added in the website, by default shows the most recent first. it has a search field, a field to sort the list according to the available option.
-- Each event is visible in a card with the following information (image, title, category, date, location, number of go/maybe and comments, a button to more details).
+- Each event is visible in a card with the following information (image, title, category, date, location, number of go/maybe, a button to more details).
     
 <div align="center">
     <img src="documentation/screenshots/events-page.PNG">
@@ -414,6 +425,14 @@ to orange, giving a highlight to which page he will be redirected with the click
 
 <div align="center">
     <img src="documentation/screenshots/events-load.PNG">
+</div>
+
+- Presence vote buttons
+
+<div align="center">
+    <img src="documentation/screenshots/presence-not-selected.PNG">
+    <img src="documentation/screenshots/presence-go.PNG">
+    <img src="documentation/screenshots/presence-maybe.PNG">
 </div>
 
 #### __Event info__
@@ -436,7 +455,15 @@ to orange, giving a highlight to which page he will be redirected with the click
     <img src="documentation/screenshots/comment-aprove.PNG">
 </div>
 
+#### __Custom error pages__
+
+- If any of the following errors occur (Error 400, 403, 404 or 500) a custom page will be displayed that will show text specifying the reason for the error and a link back to the home page. All pages have the same layout, only the explanatory text changes.
+
 ### Features Left to Implement
+
+- A section for service providers, such as repair, parts, washing, mechanic, insurance and others, where they can offer their services with better conditions for website users.
+- The possibility for users to send private messages to other users, so they can make offers or communicate in a more practical way than comments.
+- Add more functionalities in the user area like interaction notifications, more information options like profile (photo, description, interests).
 
 ## Testing
     
@@ -459,10 +486,10 @@ to orange, giving a highlight to which page he will be redirected with the click
 
 ## Credits
 
+### Code
+
 ### Content
 
 ### Media
-
-### Inspiration
 
 ## Acknowledgements
