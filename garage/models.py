@@ -32,14 +32,16 @@ class Car(models.Model):
             'width': '1080', 'height': '720', 'crop': 'fill', 'gravity': "auto"
         })
     favourite = models.ManyToManyField(
-        User, related_name='favourite_car',
-        blank=True)
+        User,
+        related_name='favourite_car',
+        blank=True
+        )
     slug = models.SlugField(unique=True)
     status = models.IntegerField(choices=STATUS, default=0)
 
     class Meta:
         """
-        Class to show newest car first 
+        Class to show newest car first
         """
         ordering = ['-created_on']
 
@@ -73,10 +75,16 @@ class RateCar(models.Model):
         (5, '5'),
     )
 
-    car = models.ForeignKey(Car, on_delete=models.CASCADE,
-                             related_name="car_rate")
-    name = models.ForeignKey(User, on_delete=models.CASCADE,
-                             related_name="car_rate")
+    car = models.ForeignKey(
+        Car,
+        on_delete=models.CASCADE,
+        related_name="car_rate"
+        )
+    name = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name="car_rate"
+        )
     created_on = models.DateTimeField(auto_now_add=True)
     rated = models.BooleanField(default=False)
 
@@ -85,7 +93,7 @@ class RateCar(models.Model):
     speed = models.IntegerField(choices=RATE_VALUE, default=5)
     drivability = models.IntegerField(choices=RATE_VALUE, default=5)
     overall = models.IntegerField(choices=RATE_VALUE, default=5)
-    
+
     class Meta:
         ordering = ["created_on"]
 
@@ -97,10 +105,16 @@ class CommentCar(models.Model):
     """
     Class model to comments, for car posts.
     """
-    car = models.ForeignKey(Car, on_delete=models.CASCADE,
-                             related_name="car_comments")
-    name = models.ForeignKey(User, on_delete=models.CASCADE,
-                             related_name="car_comments")
+    car = models.ForeignKey(
+        Car,
+        on_delete=models.CASCADE,
+        related_name="car_comments"
+        )
+    name = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name="car_comments"
+        )
     body = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
     approved = models.BooleanField(default=False)

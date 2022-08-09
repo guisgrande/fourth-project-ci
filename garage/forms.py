@@ -6,9 +6,15 @@ class CarForm(forms.ModelForm):
     """
     Form class to create car post.
     """
-    brand = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Ex: Ford, Porsche, ...'}))
-    model = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Ex: Mustang, 911, ...'}))
-    year = forms.IntegerField(widget=forms.NumberInput(attrs={'min': '1807', 'max': '2022', 'step':'1'}))
+    brand = forms.CharField(widget=forms.TextInput(
+        attrs={'placeholder': 'Ex: Ford, Porsche, ...'}
+        ))
+    model = forms.CharField(widget=forms.TextInput(
+        attrs={'placeholder': 'Ex: Mustang, 911, ...'}
+        ))
+    year = forms.IntegerField(widget=forms.NumberInput(
+        attrs={'min': '1807', 'max': '2022', 'step': '1'}
+        ))
     price = forms.FloatField(widget=forms.NumberInput(attrs={'min': '0'}))
     hp = forms.FloatField(widget=forms.NumberInput(attrs={'min': '0'}))
     speed = forms.FloatField(widget=forms.NumberInput(attrs={'min': '0'}))

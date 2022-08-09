@@ -32,15 +32,19 @@ def garage(request):
             if sortkey == '-date':
                 sortkey = 'created_on'
             sort = sortkey
-            car_list = Car.objects.filter(status=1).order_by(sortkey)[:start_display]
+            car_list = Car.objects.filter(
+                status=1
+                ).order_by(sortkey)[:start_display]
     else:
-        car_list = Car.objects.filter(status=1).order_by('-created_on')[:start_display]
+        car_list = Car.objects.filter(
+            status=1
+            ).order_by('-created_on')[:start_display]
 
     context = {
         "car_list": car_list,
         "total_car_list": total_car_list,
     }
-    
+
     return render(request, 'garage/garage.html', context)
 
 
@@ -64,7 +68,9 @@ def load_more_cars(request):
 
     offset = int(request.GET['offset'])
     limit = int(request.GET['limit'])
-    car_list = Car.objects.filter(status=1).order_by(sortkey)[offset:offset+limit]
+    car_list = Car.objects.filter(
+        status=1
+        ).order_by(sortkey)[offset:offset+limit]
 
     car = render_to_string('ajax/car_load.html', {'car_list': car_list})
 
@@ -74,7 +80,7 @@ def load_more_cars(request):
 def search_car(request):
     """
     Function to search cars from garage page and display in a new template
-    Request POST from form and return Searched word to 
+    Request POST from form and return Searched word to
     look into brand or model fields before return search results
     """
     if request.method == 'POST':
@@ -102,14 +108,26 @@ class CarDetail(View):
     def get(self, request, slug, *args, **kwargs):
         queryset = Car.objects.filter(status=1)
         car = get_object_or_404(queryset, slug=slug)
-        car_comments = car.car_comments.filter(approved=True).order_by("-created_on")
+        car_comments = car.car_comments.filter(
+            approved=True
+            ).order_by("-created_on")
         car_rate = car.car_rate.filter(rated=True).order_by("-created_on")
-        
-        avg_price = car.car_rate.aggregate(price=Avg('price'))['price']
-        avg_aest = car.car_rate.aggregate(aesthetics=Avg('aesthetics'))['aesthetics']
-        avg_speed = car.car_rate.aggregate(speed=Avg('speed'))['speed']
-        avg_driv = car.car_rate.aggregate(drivability=Avg('drivability'))['drivability']
-        avg_overall = car.car_rate.aggregate(overall=Avg('overall'))['overall']
+
+        avg_price = car.car_rate.aggregate(
+            price=Avg('price')
+            )['price']
+        avg_aest = car.car_rate.aggregate(
+            aesthetics=Avg('aesthetics')
+            )['aesthetics']
+        avg_speed = car.car_rate.aggregate(
+            speed=Avg('speed')
+            )['speed']
+        avg_driv = car.car_rate.aggregate(
+            drivability=Avg('drivability')
+            )['drivability']
+        avg_overall = car.car_rate.aggregate(
+            overall=Avg('overall')
+            )['overall']
         avg_total = {
             "avg_price": avg_price,
             "avg_aest": avg_aest,
@@ -145,11 +163,13 @@ class CarDetail(View):
             "favourited": favourited,
             "comment_form": CommentForm(),
             })
-    
+
     def post(self, request, slug, *args, **kwargs):
         queryset = Car.objects.filter(status=1)
         car = get_object_or_404(queryset, slug=slug)
-        car_comments = car.car_comments.filter(approved=True).order_by("-created_on")
+        car_comments = car.car_comments.filter(
+            approved=True
+            ).order_by("-created_on")
         comment_form = CommentForm(data=request.POST)
         favourited = False
 
@@ -192,14 +212,14 @@ class RateCarView(LoginRequiredMixin, View):
 
         if car_rate.filter(name=self.request.user).exists():
             rated = True
-        
+
         return render(request, "garage/rate_car.html", {
             "car": car,
             "car_rate": car_rate,
             "rated": rated,
             "rate_form": RateForm()
             })
-        
+
     def post(self, request, slug, *args, **kwargs):
         queryset = Car.objects.filter(status=1)
         car = get_object_or_404(queryset, slug=slug)
@@ -209,7 +229,7 @@ class RateCarView(LoginRequiredMixin, View):
         if car_rate.filter(name=self.request.user).exists():
             rated = True
             return HttpResponseRedirect(reverse('car_detail', args=[slug]))
-        
+
         # Rate
         if rate_form.is_valid():
             rate = rate_form.save(commit=False)
@@ -231,7 +251,7 @@ class RateCarView(LoginRequiredMixin, View):
 class FavouriteCar(LoginRequiredMixin, View):
     """
     Class to logged user favourite or unfavorite car post.
-    """ 
+    """
     def post(self, request, slug, *args, **kwargs):
         car = get_object_or_404(Car, slug=slug)
         if car.favourite.filter(id=request.user.id).exists():
@@ -262,7 +282,12 @@ class AddCarPost(SuccessMessageMixin, LoginRequiredMixin, generic.CreateView):
         return super(AddCarPost, self).form_valid(form)
 
 
-class EditCarPost(SuccessMessageMixin, LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView):
+class EditCarPost(
+    SuccessMessageMixin,
+    LoginRequiredMixin,
+    UserPassesTestMixin,
+    generic.UpdateView
+):
     """
     Logged in user can edit your car details.
     From My Cars list page.
@@ -272,7 +297,7 @@ class EditCarPost(SuccessMessageMixin, LoginRequiredMixin, UserPassesTestMixin, 
     template_name = 'garage/add_car.html'
     success_url = reverse_lazy('members')
     success_message = "All right! You updated your car details. Thanks."
-    
+
     def test_func(self):
         """
         Prevent another user from updating other's car post
@@ -281,7 +306,12 @@ class EditCarPost(SuccessMessageMixin, LoginRequiredMixin, UserPassesTestMixin, 
         return car_post.username == self.request.user
 
 
-class DeleteCarPost(SuccessMessageMixin, LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView):
+class DeleteCarPost(
+    SuccessMessageMixin,
+    LoginRequiredMixin,
+    UserPassesTestMixin,
+    generic.DeleteView
+):
     """
     Logged in user can delete your car.
     From My Cars list page.
