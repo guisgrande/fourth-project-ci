@@ -3,6 +3,7 @@ from django.views import generic, View
 from events.models import Event
 from garage.models import Car
 
+
 class IndexView(generic.ListView):
     """
     Class used to display index content list.
@@ -11,7 +12,7 @@ class IndexView(generic.ListView):
     template_name = 'index.html'
     context_object_name = 'car_list'
     paginate_by = 4
-    
+
     def get_context_data(self, **kwargs):
         context = super(IndexView, self).get_context_data(**kwargs)
         context.update({
