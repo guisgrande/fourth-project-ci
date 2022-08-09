@@ -23,7 +23,13 @@ class Event(models.Model):
     start_time = models.TimeField(null=True, blank=True)
     local = models.CharField(max_length=300)
     description = models.TextField(max_length=500)
-    event_image = CloudinaryField('image', default='placeholder')
+    event_image = CloudinaryField(
+        'image',
+        default='placeholder',
+        blank=True,
+        transformation={
+            'width': '1080', 'height': '720', 'crop': 'fill', 'gravity': "auto"
+        })
     presence_go = models.ManyToManyField(
         User, related_name='presence_go',
         blank=True)

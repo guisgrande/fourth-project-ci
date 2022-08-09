@@ -24,7 +24,13 @@ class Car(models.Model):
     hp = models.FloatField(max_length=4)
     speed = models.FloatField(max_length=6)
     description = models.TextField(max_length=500, null=True)
-    car_image = CloudinaryField('image', default='placeholder')
+    car_image = CloudinaryField(
+        'image',
+        default='placeholder',
+        blank=True,
+        transformation={
+            'width': '1080', 'height': '720', 'crop': 'fill', 'gravity': "auto"
+        })
     favourite = models.ManyToManyField(
         User, related_name='favourite_car',
         blank=True)
