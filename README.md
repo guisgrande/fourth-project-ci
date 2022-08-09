@@ -19,6 +19,32 @@ To create a community of classic car owners and enthusiasts, to socialize, evalu
 - The website was designed to be responsive and to meet all screen sizes.
 - The website should prioritize the display of the posts and present the content in a good way.
 
+#### Agile
+
+For the development of this project, the Agile methodology was applied. As a support tool, I used the GitHub projects.
+
+- To visualize the project access this link > [Agile Auto Classic](https://github.com/guisgrande/fourth-project-ci/projects/1)
+
+As you can see, we used a simple Kanban board with the fields (To do, Doing, Done). To do the next ones that will be executed, Doing the ones that are currently being developed and Done the ones that were finished.
+
+The final structure after the elaboration was 5 different epics and a total of 26 User Stories distributed among them. In the following image, I detail the EPICs and their respective US.
+
+<details>
+    <summary>Agile Structure</summary>
+    <div align="center">
+        <img src="documentation/images/agile-setup.png">
+    </div>
+</details> 
+
+To run agile most efficiently, the following Sprints were determined as per the following image. The User Stories __#08 Recovery password__ and __#09 Edit username__ were not implemented in the project at this moment, being on stand by for future updates.
+
+<details>
+    <summary>Agile Sprints</summary>
+    <div align="center">
+        <img src="documentation/images/agile-sprints.png">
+    </div>
+</details>
+
 #### User stories
 
 - As a user, I want to understand the content of the website, so I can know if it's of my interest.
