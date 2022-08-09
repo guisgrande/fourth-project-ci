@@ -1,12 +1,14 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html class="h-100">
+<html class="h-100" lang="en">
 
 <head>
     <title>Auto Classic Club</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A club for vintage cars enthusiasts.">
+    <meta name="keywords" content="cars, classic, vintage, old cars, car events">
+    
     <!-- Font Awesome icons (free version) link-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <!-- Fav icon and Google Fonts links -->
@@ -39,34 +41,32 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarText">
-                <strong>
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link hover-link" aria-current="page" href="{% url 'home' %}">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link hover-link" href="{% url 'garage' %}">Garage</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link hover-link" href="{% url 'events' %}">Events</a>
-                        </li>
-                        {% if user.is_authenticated %}
-                        <li class="nav-item">
-                            <a class="nav-link hover-link" href="{% url 'account_logout' %}">Logout</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link hover-link" href="{% url 'members' %}">Member</a>
-                        </li>
-                        {% else %}
-                        <li class="nav-item">
-                            <a class="nav-link hover-link" href="{% url 'account_signup' %}">Signup</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link hover-link" href="{% url 'account_login' %}">Signin</a>
-                        </li>
-                        {% endif %}
-                    </ul>
-                </strong>
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link hover-link fw-bold" aria-current="page" href="{% url 'home' %}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link hover-link fw-bold" href="{% url 'garage' %}">Garage</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link hover-link fw-bold" href="{% url 'events' %}">Events</a>
+                    </li>
+                    {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link hover-link fw-bold" href="{% url 'account_logout' %}">Logout</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link hover-link fw-bold" href="{% url 'members' %}">Member</a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link hover-link fw-bold" href="{% url 'account_signup' %}">Signup</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link hover-link fw-bold" href="{% url 'account_login' %}">Signin</a>
+                    </li>
+                    {% endif %}
+                </ul>
             </div>
         </div>
     </nav>
@@ -134,15 +134,15 @@
                 <!-- Social icons links -->
                 <div class="col d-flex align-items-center justify-content-around">
                     <ul class="list-clear p-0 d-flex justify-content-around">
-                        <li id="social-list" class="shadow rounded bck-grd-black m-1">
+                        <li class="shadow rounded bck-grd-black m-1 social-list">
                             <a class="social-link" href="https://facebook.com" target="_blank" rel="noopener" aria-label="Check our Facebook page 
                             (opens in a new tab)"><i class="bi bi-facebook"></i></a>
                         </li>
-                        <li id="social-list" class="shadow rounded bck-grd-black m-1">
+                        <li class="shadow rounded bck-grd-black m-1 social-list">
                             <a class="social-link" href="https://instagram.com" target="_blank" rel="noopener" aria-label="Check our Instagram page 
                             (opens in a new tab)"><i class="bi bi-instagram"></i></a>
                         </li>
-                        <li id="social-list" class="shadow rounded bck-grd-black m-1">
+                        <li class="shadow rounded bck-grd-black m-1 social-list">
                             <a class="social-link" href="https://youtube.com" target="_blank" rel="noopener" aria-label="Check our Youtube page 
                             (opens in a new tab)"><i class="bi bi-youtube"></i></a>
                         </li>
