@@ -94,12 +94,11 @@
 
             // Get sort value from URL
             var current_url = window.location.href;
-            var url_now = new URL(current_url)
+            var url_now = new URL(current_url);
             var _sort = url_now.searchParams.get("sort");
-            console.log(_current_car, _limit, _total, _sort)
 
             if(_sort == null){
-                    _sort = "-created_on"
+                    _sort = "-created_on";
                 }
             
             // AJAX to send data and execute function
@@ -112,11 +111,9 @@
                 },
                 dataType: 'json',
                 beforeSend:function(){
-                    console.log("BEFORE")
                      $('#load-more').attr('disabled', true);
                 },
                 success:function(res){
-                    console.log("SUCCESS")
                     $('#cars-container').append(res.car_list),
                     $('#load-more').attr('disabled', false);
                     
@@ -129,7 +126,7 @@
             });
         });
     });
-
+    
 </script>
 
 {%endblock%}
