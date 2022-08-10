@@ -53,10 +53,10 @@
                     </li>
                     {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link hover-link fw-bold" href="{% url 'account_logout' %}">Logout</a>
+                        <a class="nav-link hover-link fw-bold" href="{% url 'members' %}">Member</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link hover-link fw-bold" href="{% url 'members' %}">Member</a>
+                        <a class="nav-link hover-link fw-bold" href="{% url 'account_logout' %}">Logout</a>
                     </li>
                     {% else %}
                     <li class="nav-item">
@@ -115,10 +115,10 @@
                         </li>
                         {% if user.is_authenticated %}
                         <li>
-                            <a class="footer-link" href="{% url 'account_logout' %}">Logout</a>
+                            <a class="footer-link" href="{% url 'members' %}">Member</a>
                         </li>
                         <li>
-                            <a class="footer-link" href="{% url 'members' %}">Member</a>
+                            <a class="footer-link" href="{% url 'account_logout' %}">Logout</a>
                         </li>
                         {% else %}
                         <li>
