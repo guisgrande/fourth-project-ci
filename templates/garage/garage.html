@@ -16,12 +16,12 @@
             Sort by
         </a>
         <ul class="dropdown-menu">
-            <li><a class="dropdown-item" sort="created_on" href="/garage/?sort=date">By date: New to old</a></li>
-            <li><a class="dropdown-item" sort="created_on" href="/garage/?sort=-date">By date: Old to new</a></li>
-            <li><a class="dropdown-item" sort="created_on" href="/garage/?sort=brand">By brand: A to Z</a></li>
-            <li><a class="dropdown-item" sort="created_on" href="/garage/?sort=-brand">By brand: Z to A</a></li>
-            <li><a class="dropdown-item" sort="created_on" href="/garage/?sort=model">By model: A to Z</a></li>
-            <li><a class="dropdown-item" sort="created_on" href="/garage/?sort=-model">By model: Z to A</a></li>
+            <li><a class="dropdown-item" href="/garage/?sort=date">By date: New to old</a></li>
+            <li><a class="dropdown-item" href="/garage/?sort=-date">By date: Old to new</a></li>
+            <li><a class="dropdown-item" href="/garage/?sort=brand">By brand: A to Z</a></li>
+            <li><a class="dropdown-item" href="/garage/?sort=-brand">By brand: Z to A</a></li>
+            <li><a class="dropdown-item" href="/garage/?sort=model">By model: A to Z</a></li>
+            <li><a class="dropdown-item" href="/garage/?sort=-model">By model: Z to A</a></li>
         </ul>
     </div>
 
@@ -69,9 +69,11 @@
             </div>
             {% if forloop.counter|divisibleby:3 %}
                 </div>
-                <div class="row" id="cars-container">
+                <div class="row">
             {% endif %}
         {% endfor %}
+    </div>
+    <div class="row" id="cars-container">        
     </div>
 </div>
 
