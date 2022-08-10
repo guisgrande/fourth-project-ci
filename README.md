@@ -6,6 +6,10 @@ To create a community of classic car owners and enthusiasts, to socialize, evalu
 
 - Here is the link to the final project > [Auto Classic Club](https://auto-classic.herokuapp.com/)
 
+<div align="center">
+    <img src="documentation/images/responsive.PNG">
+</div>
+
 ## Contents
 
 ## UX/UI Design
@@ -458,6 +462,11 @@ to orange, giving a highlight to which page he will be redirected with the click
 #### __Custom error pages__
 
 - If any of the following errors occur (Error 400, 403, 404 or 500) a custom page will be displayed that will show text specifying the reason for the error and a link back to the home page. All pages have the same layout, only the explanatory text changes.
+
+<div align="center">
+    <img src="documentation/screenshots/403page.PNG">
+    <img src="documentation/screenshots/404page.PNG">
+</div>
 
 ### Features Left to Implement
 
