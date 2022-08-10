@@ -592,7 +592,7 @@ All the tests performed in the project are documented in the file TESTING.md > [
 
 ## Technologies and tools
 
-- Programming languages used: Python 3.6, Java Script, HTML5 and CSS3.
+- Programming languages used: Python 3.8, Java Script, HTML5 and CSS3.
 
 - [Gitpod](https://www.gitpod.io/) - Used to create/edit the code of the project.
 - [Github](https://github.com/) - Used to create repository, for version control and Agile project.
@@ -667,7 +667,7 @@ Some tutorials and codes I used in my project
 - [Stack Overflow 03](https://stackoverflow.com/questions/67571260/how-to-use-auto-generated-slug-as-post-url-link-in-django).
     - Helped me to code a funtion to autosave the slug when the user save any post or update them. On files `garage/models.py` and `events/models.py`.
 
-- [Reddit 01](https://stackoverflow.com/questions/67571260/how-to-use-auto-generated-slug-as-post-url-link-in-django).
+- [Reddit 01](https://www.reddit.com/r/webdev/comments/cjfmg8/django_deleting_user_accounts/).
     - Helped me to code a funtion that allows the user to delete his account. On file `members/views.py`.
 
 ### Content
