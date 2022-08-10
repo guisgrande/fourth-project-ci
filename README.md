@@ -575,15 +575,98 @@ to orange, giving a highlight to which page he will be redirected with the click
 
 ## Technologies and tools
 
-- [Gitpod](https://www.gitpod.io/) - to create/edit the code of the project.
-- [Github](https://github.com/) - to create repository, hosting files and deployment of the website.
+- Programming languages used: Python 3.6, Java Script, HTML5 and CSS3.
+
+- [Gitpod](https://www.gitpod.io/) - Used to create/edit the code of the project.
+- [Github](https://github.com/) - Used to create repository, for version control and Agile project.
+- [Heroku](https://heroku.com/) -  Used to deploy the project.
+
+- [Django](https://www.djangoproject.com/) -  Used in the development of this project. Main python Framework.
+    - The following python modules were used on this project:
+    ```
+    asgiref==3.5.2
+    cloudinary==1.29.0
+    dj-database-url==0.5.0
+    dj3-cloudinary-storage==0.0.6
+    Django==3.2.14
+    django-allauth==0.51.0
+    django-crispy-forms==1.14.0
+    django-summernote==0.8.20.0
+    gunicorn==20.1.0
+    oauthlib==3.2.0
+    psycopg2==2.9.3
+    PyJWT==2.4.0
+    python3-openid==3.2.0
+    pytz==2022.1
+    requests-oauthlib==1.3.1
+    sqlparse==0.4.2
+    ```
+
+- [Bootstrap](https://getbootstrap.com/) - Used to . CSS/JS Framework for developing responsiveness and styling.
+- [PostgreSQL](https://www.postgresql.org/) - Used as database for this project. Straight from Heroku.
+- [Cloudinary](https://cloudinary.com/) - Used to upload images and cloud hosting service.
+- [Jquery Ajax](https://api.jquery.com/jquery.ajax/) - Used to load more content at garage and events pages.
+
+- [Ludichart](https://www.lucidchart.com/) - Used to create the database diagram and agile images.
+- [Figma](https://figma.com/) - Used to creat the wireframes.
+- [Coolors](https://coolors.co/) - Used to choice of colors and for the palette used in the README.
+- [Google Fonts](https://fonts.google.com/) - Used for font selection.
+- [Font Awesome](https://fontawesome.com/) - Used for the favourite icon.
+- [Bootstrap Icons](https://icons.getbootstrap.com/) - Used for all others icons.
+- [Favicon.io](https://favicon.io/) - Used to implement the favicon on the website.
+
+- [DevTools - Chrome](https://developer.chrome.com/docs/devtools/) - to assist in the development of the project.
+- Lighthouse (Chrome Devtools) - Used to performance test.
+- [WAVE](https://wave.webaim.org/) - Used to acecessibility test.
+
+- [PEP8](http://pep8online.com/) - Used to test/validate Python code.
+- [JShint](https://jshint.com/) - Used to test Java Script code.
+- [Jigsaw](https://jigsaw.w3.org/css-validator/) - Used to test CSS code.
+- [Validator](https://validator.w3.org/) - Used to test HTML code.
 
 ## Credits
 
 ### Code
 
+Here are the information sources I used to finish the project and develop the necessary applications for it to work well.
+- [Code Institute](https://codeinstitute.net/ie/).
+    - First of all thank you for the instructions provided in the Code Institue course and classes, which were essential from start to finish.
+- [Django Documentation](https://docs.djangoproject.com/en/4.1/).
+    - That helped me to solve doubts about Django and the framework's features.
+- [Bootstrap Documentation](https://getbootstrap.com/docs/5.2/getting-started/introduction/).
+    - Served as a guide to better apply the functionalities of this great framework.
+
+Some tutorials and codes I used in my project
+- [Youtube 01 - Code Artisan Lab](https://www.youtube.com/watch?v=QVRm4_njFIQ&t=4s).
+    - __Load more pagination with jQuery ajax | Django eCommerce Website | Django Tutorials__ - This video helped me implement the "load more" functionality in `garage.html` and `events.html`. The code was essential for this application, and some adjustments were made for my specific project.
+
+- [Youtube 02 - Codemy.com](https://www.youtube.com/watch?v=AGtae4L5BbI&t=378s).
+    - __Create A Search Bar - Django Wednesdays #9__ - This video helped me implement the "search bar" functionality in `garage.html` and `events.html`. The code was essential for this application, and some adjustments were made for my specific project.
+
+- [Stack Overflow 01](https://stackoverflow.com/questions/979975/get-the-values-from-the-get-parameters-javascript).
+- [Stack Overflow 02 PT](https://pt.stackoverflow.com/questions/76394/como-fa%C3%A7o-para-pegar-url-atual-em-javascript).
+    - Helped me selecting content present in the url, used send sort data to Ajax loadmore function. On pages `garage.html` and `events.html`.
+
+- [Stack Overflow 03](https://stackoverflow.com/questions/67571260/how-to-use-auto-generated-slug-as-post-url-link-in-django).
+    - Helped me to code a funtion to autosave the slug when the user save any post or update them. On files `garage/models.py` and `events/models.py`.
+
+- [Reddit 01](https://stackoverflow.com/questions/67571260/how-to-use-auto-generated-slug-as-post-url-link-in-django).
+    - Helped me to code a funtion that allows the user to delete his account. On file `members/views.py`.
+
 ### Content
+
+- [Unsplash](https://unsplash.com/).
+    - All images used to create the demo content for the site were all selected from the Unsplash site. Both the images used in the car posts and in the events. I thank the professionals who provided the images and for the excellent work.
 
 ### Media
 
+- The photos used for Hero (Home page) and placeholder images was taken from [Unsplash](https://unsplash.com/).
+- The image used for README.md responsive mockup was taken from [Techsini](https://techsini.com/multi-mockup/index.php).
+- The favicon, Auto Classic banner logo and image used at erro pages were taken from [Canva](https://www.canva.com/)
+
 ## Acknowledgements
+
+- Code Institute for all the support and the team always ready to help.
+- My mentor [Ben Kavanagh](https://github.com/BAK2K3) for all the instructions, advice and knowledge that helped me to improve the project.
+- My parents, my wife and my friends for motivating me to achieve my best.
+- Everyone in the Slack community for tips and opinions. 
