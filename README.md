@@ -476,10 +476,27 @@ to orange, giving a highlight to which page he will be redirected with the click
 
 ## Testing
     
+All the tests performed in the project are documented in the file TESTING.md > [Access here](TESTING.md)
+    
 ### Fixed Bugs
 
-### Unfixed Bugs 
+
+|   Bugs    | Solutions  |  Commits |
+|    ---    |     ---    |    ---   |
+|    TypeError, not loading admin page     |     Fixed typo in STATICFILES_STORAGE    |    [Commit](https://github.com/guisgrande/fourth-project-ci/commit/96f69895e834db2a61ef4aee1fe0cd1c4b8c1d0d)   |
+|    TypeError, `__str__` returned non-string    |     Inside def `__str__` I used str() to conver car_id and event_id to string |    [Commit](https://github.com/guisgrande/fourth-project-ci/commit/a7e7539933b7a9fbad4fbfaca533b6fe6998a93d)   |
+|    Form for car and event weren't loading Cloudinary images when saved    |     Add `enctype='multipart/form-data'` inside form tag to save image with data   |    [Commit](https://github.com/guisgrande/fourth-project-ci/commit/92aacc11c0a41e0565f87904ba8f61e5503a9e4d)   |
+|    Comments were not being saved after submitted     |     Error in the code of the function to save the comments, I fixed it applying the correct variables     |    [Commit](https://github.com/guisgrande/fourth-project-ci/commit/d011c4038565797105c5d1905f6143ad053ffcc4)   |
+|    TypeError, not loading crispy forms    |    Type the correct app name insde `INSTALLED_APPS`    |    [Commit](https://github.com/guisgrande/fourth-project-ci/commit/015161657369a07282a550366a95d239a13c3e18)   |
+|    Different image sizes     |     Add  `transformation={width': '1080', 'height': '720', 'crop': 'fill', 'gravity': "auto"}` to images fields at `models.py`   |    [Commit](https://github.com/guisgrande/fourth-project-ci/commit/1e8bc69d9ce992d5bb3ff303481c300baa6672e8)   |
+|    Html error events page   |     A `<div>` with ID inside forloop was generating more than one element with same ID, add new div outside for loop with the necessary ID    |    [Commit](https://github.com/guisgrande/fourth-project-ci/commit/220126ff330adb9bb82a5a472ef6f0e8b99fd182)   |
+|    Html error garage page   |     Wrong tag "sort" inside list elements, remove them all. A `<div>` with ID inside forloop was generating more than one elemente with same ID, add new div outside for loop with the necessary ID    |    [Commit](https://github.com/guisgrande/fourth-project-ci/commit/f58c55e581295ad54c2d809b1b4ec1b4f007d49c)   |
     
+   
+### Unfixed Bugs 
+
+- So far the only bug identified that hasn't been fixed is the Django admin site search. When searching for some specific post an error occurs as a result not completing the search.
+
 ## Deployment
 
 - To create this project I used GitHub and GitPod.
