@@ -482,11 +482,96 @@ to orange, giving a highlight to which page he will be redirected with the click
     
 ## Deployment
 
+- To create this project I used GitHub and GitPod.
+- I used the [Code Institute Gitpod Full Template](https://github.com/Code-Institute-Org/gitpod-full-template), clicking on the "Use this template" button. From there I created the repository on Github with my username.
+- These commands were used for version control during project:
+    * git status - to check the status of the files to be commited.
+    * git add filename - to add files before committing.
+    * git commit -m "message" - to commit changes to the local repository.
+    * git push - to push all committed changes to the GitHub repository.
+
 ### Deployment
+
+1. Create Django project and app
+
+    - I installed django using the command `pip3 install 'django<4' gunicorn`;
+    - I installed supporting database libraries dj_database_url and psycopg2, using `pip3 install dj_database_url psycopg2`;
+    - I installed Cloudinary library to upload the images, using `pip3 install dj3-cloudinary-storage`;
+    - I created the requirements.txt file using the command `pip3 freeze --local > requirements.txt`;
+    - I created my Django project with the command `django-admin startproject project_name .`;
+    - I created my Django app with the command `python3 manage.py startapp app_name`;
+    - I used the comands `python3 manage.py makemigrations` and `python3 manage.py migrate`;
+    - To test and run the project I used `python3 manage.py runserver`.
+
+2. Create Heroku app
+
+    - I opened the heroku website and logged into my account
+    - I created a new app with the project name, chose the region Europe
+    - I opened the Resources section and searched for Heroku Postgres and selected it
+    - I opened the Settings section and then Config VARS, after I initially added the keys needed to start development `DATABASE_URL`/`SECRET_KEY`/`CLOUDINARY_URL`;
+    - Still in Config VARS I added the following keys: `PORT` with a value of `8000` and `DISABLE_COLLECTSTATIC` with a value of `1`;
+
+3. Set up Django settings.py and necessary folders/files
+
+    - Set up to connect the environment variables
+    ```
+    from pathlib import Path
+    import os
+    import dj_database_url
+    from django.contrib.messages import constants as messages
+    if os.path.isfile('env.py'):
+        import env
+    ```
+    - Inside `INSTALLED_APPS` I added the necessary apps
+    
+    - For the database I replaced it with the following code
+    ```
+    DATABASES = {
+    'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
+    }
+    ```
+    
+    - For the static files I replaced it with the following code to conect to Cloudinary
+    ```
+    STATIC_URL = '/static/'
+    STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
+    STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+    MEDIA_URL = '/media/'
+    DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+    ```
+    - Create a Procfile and add the following text
+    ```
+    web: gunicorn autoclassic.wsgi
+    ```
+    
+4. Final deployment.
+
+    - In `settings.py` inside the Django project I changed `DEBUG = False`;
+    - Also in the settings.py file I added `X_FRAME_OPTIONS = "SAMEORIGIN"`;
+    - In Heroku I went back to Settings > Config VARS and removed the `DISABLE_COLLECTSTATIC` var;
+    - In Heroku I navigated to the Deploy section;
+    - I clicked to connect to GitHub and searched for my repository for this project;
+    - I clicked on manual deploy to build the App;
+    - When finished, I clicked the View button, which redirected me to the live site.
 
 ### Fork
 
+- Forks let you make changes to a project without affecting the original repository. Follow this steps:
+1. Go to the repository page, can be accessed [here](https://github.com/guisgrande/fourth-project-ci).
+2. On top right, you select the Fork option and proceed.
+3. A duplicate will be created inside your repository.
+
 ### Clone
+
+- Clone let you create an identical repository to the original. Follow this steps:
+1. Go to the repository page, can be accessed [here](https://github.com/guisgrande/fourth-project-ci).
+2. Click on code drop down menu.
+3. Choose if you want to clone using HTTPS, SSH or GitHub CLI. Then select de copy button.
+4. Open your Git Bash in your IDE.
+5. Type git clone and then paste the URL you copied before.
+6. Press Enter to create your clone.
 
 ## Technologies and tools
 
