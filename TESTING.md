@@ -212,6 +212,75 @@ List of pages validated by the tool [PEP8](http://pep8online.com/)
 
 The five too long line errors found on settings were related to links from `STATICFILES_STORAGE` and `AUTH_PASSWORD_VALIDATORS`. 
 
+## Responsiveness and Browser Compability Testing
+
+I ran tests using DevTools to verify that the website was responsive on multiple screen sizes. On all these devices listed below the website responded properly.
+
+   - Mobile: Iphone XR, Iphone SE, Nexus 4, Nexus 5, Moto G4, LG Optimus L70, Galaxy S8. Pixel 2, Pixel 5.
+
+   - Tablet: Ipad Air, Ipad Mini, Galaxy Tab S4.
+
+   - Desktop and Laptops: 13', 15' and 21'. 
+
+<details>
+    <summary>Prints from DevTolls (Chrome) - Iphone XR</summary>
+    <img src="documentation/testing/responsive-iphone-xr-home.PNG">
+    <img src="documentation/testing/responsive-iphone-xr-garage.PNG">
+    <img src="documentation/testing/responsive-iphone-xr-events.PNG">
+    <img src="documentation/testing/responsive-iphone-xr-signup.PNG">
+    <img src="documentation/testing/responsive-iphone-xr-signin.PNG">
+    <img src="documentation/testing/responsive-iphone-xr-logout.PNG">
+    <img src="documentation/testing/responsive-iphone-xr-member.PNG">
+    <img src="documentation/testing/responsive-iphone-xr-membercars.PNG">
+    <img src="documentation/testing/responsive-iphone-xr-memberevents.PNG">
+    <img src="documentation/testing/responsive-iphone-xr-addcar.PNG">
+    <img src="documentation/testing/responsive-iphone-xr-addevent.PNG">
+    <img src="documentation/testing/responsive-iphone-xr-deletecar.PNG">
+    <img src="documentation/testing/responsive-iphone-xr-deleteevent.PNG">
+    <img src="documentation/testing/responsive-iphone-xr-cardetails.PNG">
+    <img src="documentation/testing/responsive-iphone-xr-eventdetails.PNG">
+</details> 
+
+<details>
+    <summary>Prints from DevTolls (Chrome) - Ipad Air</summary>
+    <img src="documentation/testing/responsive-ipad-home.PNG">
+    <img src="documentation/testing/responsive-ipad-garage.PNG">
+    <img src="documentation/testing/responsive-ipad-events.PNG">
+    <img src="documentation/testing/responsive-ipad-signup.PNG">
+    <img src="documentation/testing/responsive-ipad-signin.PNG">
+    <img src="documentation/testing/responsive-ipad-logout.PNG">
+    <img src="documentation/testing/responsive-ipad-member.PNG">
+    <img src="documentation/testing/responsive-ipad-membercars.PNG">
+    <img src="documentation/testing/responsive-ipad-memberevents.PNG">
+    <img src="documentation/testing/responsive-ipad-addcar.PNG">
+    <img src="documentation/testing/responsive-ipad-addevents.PNG">
+    <img src="documentation/testing/responsive-ipad-deletecar.PNG">
+    <img src="documentation/testing/responsive-ipad-deleteevent.PNG">
+    <img src="documentation/testing/responsive-ipad-cardetail.PNG">
+    <img src="documentation/testing/responsive-ipad-eventdetail.PNG">
+</details>
+
+The website worked correctly in Chrome, Firefox, Edge browsers in the desktop tests. It also worked correctly in tests using Safari on the iPhone.
+
+<details>
+    <summary>Prints from Firefox and Edge browsers</summary>
+    <img src="documentation/testing/firefox-edge-home.PNG">
+    <img src="documentation/testing/firefox-edge-garage.PNG">
+    <img src="documentation/testing/firefox-edge-events.PNG">
+    <img src="documentation/testing/firefox-edge-signup.PNG">
+    <img src="documentation/testing/firefox-edge-signin.PNG">
+    <img src="documentation/testing/firefox-edge-logout.PNG">
+    <img src="documentation/testing/firefox-edge-member.PNG">
+    <img src="documentation/testing/firefox-edge-membercars.PNG">
+    <img src="documentation/testing/firefox-edge-memberevents.PNG">
+    <img src="documentation/testing/firefox-edge-addcar.PNG">
+    <img src="documentation/testing/firefox-edge-addevent.PNG">
+    <img src="documentation/testing/firefox-edge-deletecar.PNG">
+    <img src="documentation/testing/firefox-edge-deleteevent.PNG">
+    <img src="documentation/testing/firefox-edge-cardetail.PNG">
+    <img src="documentation/testing/firefox-edge-eventdetail.PNG">
+</details>
+
 ## Performance Testing
 
 ## Acessibility Testing
