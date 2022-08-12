@@ -223,7 +223,7 @@ I ran tests using DevTools to verify that the website was responsive on multiple
    - Desktop and Laptops: 13', 15' and 21'. 
 
 <details>
-    <summary>Prints from DevTolls (Chrome) - Iphone XR</summary>
+    <summary>Screenshots from DevTolls (Chrome) - Iphone XR</summary>
     <img src="documentation/testing/responsive-iphone-xr-home.PNG">
     <img src="documentation/testing/responsive-iphone-xr-garage.PNG">
     <img src="documentation/testing/responsive-iphone-xr-events.PNG">
@@ -242,7 +242,7 @@ I ran tests using DevTools to verify that the website was responsive on multiple
 </details> 
 
 <details>
-    <summary>Prints from DevTolls (Chrome) - Ipad Air</summary>
+    <summary>Screenshots from DevTolls (Chrome) - Ipad Air</summary>
     <img src="documentation/testing/responsive-ipad-home.PNG">
     <img src="documentation/testing/responsive-ipad-garage.PNG">
     <img src="documentation/testing/responsive-ipad-events.PNG">
@@ -263,7 +263,7 @@ I ran tests using DevTools to verify that the website was responsive on multiple
 The website worked correctly in Chrome, Firefox, Edge browsers in the desktop tests. It also worked correctly in tests using Safari on the iPhone.
 
 <details>
-    <summary>Prints from Firefox and Edge browsers</summary>
+    <summary>Screenshots from Firefox and Edge browsers</summary>
     <img src="documentation/testing/firefox-edge-home.PNG">
     <img src="documentation/testing/firefox-edge-garage.PNG">
     <img src="documentation/testing/firefox-edge-events.PNG">
@@ -282,6 +282,121 @@ The website worked correctly in Chrome, Firefox, Edge browsers in the desktop te
 </details>
 
 ## Performance Testing
+
+Testing done using Lighthouse DevTools to check and test Performance, Accessibility, Best Practices and SEO.
+
+<details>
+    <summary>Screenshots from Lighthouse DevTools result pages</summary>
+    <div align="center">
+        Home page
+    </div>
+    <div align="center">
+        <img src="documentation/testing/lighthouse-home.png">
+    </div>
+    <div align="center">
+        Garage page
+    </div>
+    <div align="center">
+        <img src="documentation/testing/lighthouse-garage.png">
+    </div>
+    <div align="center">
+        Event page
+    </div>
+    <div align="center">
+        <img src="documentation/testing/lighthouse-events.png">
+    </div>
+    <div align="center">
+        Car details
+    </div>
+    <div align="center">
+        <img src="documentation/testing/lighthouse-car-detail.png">
+    </div>
+    <div align="center">
+        Event details
+    </div>
+    <div align="center">
+        <img src="documentation/testing/lighthouse-event-details.png">
+    </div>
+    <div align="center">
+        Signup Page
+    </div>
+    <div align="center">
+        <img src="documentation/testing/lighthouse-signup.png">
+    </div>
+    <div align="center">
+        Signin Page
+    </div>
+    <div align="center">
+        <img src="documentation/testing/lighthouse-signin.png">
+    </div>
+    <div align="center">
+        Logout Page
+    </div>
+    <div align="center">
+        <img src="documentation/testing/lighthouse-signout.png">
+    </div>
+    <div align="center">
+        Member Area Page
+    </div>
+    <div align="center">
+        <img src="documentation/testing/lighthouse-member.png">
+    </div>
+    <div align="center">
+        Member Cars List Page
+    </div>
+    <div align="center">
+        <img src="documentation/testing/lighthouse-member-carlist.png">
+    </div>
+    <div align="center">
+        Member Events List Page
+    </div>
+    <div align="center">
+        <img src="documentation/testing/lighthouse-member-eventlist.png">
+    </div>
+    <div align="center">
+        Delete Account Page
+    </div>
+    <div align="center">
+        <img src="documentation/testing/lighthouse-delete-account.png">
+    </div>
+    <div align="center">
+        Add Car Page
+    </div>
+    <div align="center">
+        <img src="documentation/testing/lighthouse-add-car.png">
+    </div>
+    <div align="center">
+        Add Event Page
+    </div>
+    <div align="center">
+        <img src="documentation/testing/lighthouse-add-event.png">
+    </div>
+    <div align="center">
+        Edit Car Page
+    </div>
+    <div align="center">
+        <img src="documentation/testing/lighthouse-edit-car.png">
+    </div>
+    <div align="center">
+        Edit Event Page
+    </div>
+    <div align="center">
+        <img src="documentation/testing/lighthouse-edit-event.png">
+    </div>
+    <div align="center">
+        Delete Car Page
+    </div>
+    <div align="center">
+        <img src="documentation/testing/lighthouse-delete-car.png">
+    </div>
+    <div align="center">
+        Delete Event Page
+    </div>
+    <div align="center">
+        <img src="documentation/testing/lighthouse-delete-event.png">
+    </div>
+</details>
+
 
 ## Acessibility Testing
 
