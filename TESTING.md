@@ -406,6 +406,26 @@ Accessibility test carried out using the [Wave Tool](https://wave.webaim.org/)
 
 ## User Story Testing
 
+Checked each user story, with the intention of analyzing if it meets the requirement.
+
+   - User Story 1: As a user, I want to understand the content of the website, so I can know if it's of my interest.
+   - Outcome: When the user first visits the webpage, it is possible to understand what options and content presents on the website. __Passed__.
+
+   - User Story 2: As a user, I want to easily navigate the site, so I can load the page with the content I want to access.
+   - Outcome: When the user visits the website, there is a navigation bar with a clear description of each page, and the titles of each page are easy to understand. __Passed__.
+    
+   - User Story 3: As a user, I want to have access to all the links, so I can connect to the website's social networks.
+   - Outcome: When the user visit the webpage, all the links in the footer are working correctly to connect to the social networks. __Passed__.
+    
+   - User Story 4: As a user, I want to create an account and login/logout, so I can interact with the website and community, access my account and close it on multiple devices.
+   - Outcome: When user navigate to Signup, can create his account without restrictions by following the website navigation and can log in and out of his account on any device, and once logged in can access the site's functionalities. __Passed__.
+    
+   - User Story 5: As a user, I want to add new posts, edit and delete them, so I can upload my content and manipulate it if necessary.
+   - Outcome: When the user creates his account and is logged in, he can access his area to create new posts, edit and delete them if he wants.  . __Passed__.
+
+   - User Story 6: As a user, I want to interact with the other posts, so I can give my opinion and interact with my favorites.
+   - Outcome: When the user creates his account and is logged in, he can leave his comments on the posts he wants. __Passed__.
+
 ## Manual Testing
 
 ### Navigation bar
