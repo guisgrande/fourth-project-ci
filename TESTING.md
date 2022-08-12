@@ -400,6 +400,10 @@ Testing done using Lighthouse DevTools to check and test Performance, Accessibil
 
 ## Acessibility Testing
 
+Accessibility test carried out using the [Wave Tool](https://wave.webaim.org/)
+- The tool indicated contrast errors on pages: Logout, Members and on the contrast of the borao-tres (present on several pages). The necessary modifications were made to meet the minimum contrast required.
+- Changes made in the following commits: [First change](https://github.com/guisgrande/fourth-project-ci/commit/52e186fe8973e30e2eace3e0f564dad39c9fa9bd) and [Second change](https://github.com/guisgrande/fourth-project-ci/commit/482c9c84b1714c82d9fe3f120ce0ec15f91dcbc2)
+
 ## User Story Testing
 
 ## Manual Testing
