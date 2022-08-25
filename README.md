@@ -12,6 +12,76 @@ To create a community of classic car owners and enthusiasts, to socialize, evalu
 
 ## Contents
 
+<details>
+    <summary>Summary</summary>
+
+- [UX/UI Design](#uxui-design).
+     * [Strategy](#strategy).
+       * [Site owner goals](#site-owner-goals).
+       * [Agile](#agile).
+       * [User stories](#user-stories).
+     * [Scope](#scope).
+     * [Structure](#structure).
+     * [Skeleton](#skeleton).
+       * [Wireframes](#wireframes).
+       * [Database diagram](#database-diagram).
+     * [Surface](#surface).
+       * [Colour scheme](#colour-scheme).
+       * [Typography](#typography).
+       * [Imagery](#imagery).
+
+- [Features](#features).
+   * [Existing Features](#existing-features).
+     	* [Favicon](#favicon).
+     	* [Navbar](#navbar).
+     	* [Footer](#footer).
+        * [Hero image](#hero-image).
+        * [About section](#about-section).
+        * [Latest cars](#latest-cars).
+        * [Latest events](#latest-events).
+        * [Join the club](#join-the-club).
+        * [Sign up](#sign-up).
+        * [Sign in](#sign-in).
+        * [Logout](#logout).
+        * [User area](#user-area).
+        * [My cars](#my-cars).
+        * [My events](#my-events).
+        * [Delete account](#delete-account).
+        * [Add car](#add-car).
+        * [Edit car](#edit-car).
+        * [Delete car](#delete-car).
+        * [Add event](#add-event).
+        * [Edit event](#edit-event).
+        * [Delete event](#delete-event).
+        * [Garage page](#garage-page).
+        * [Car info](#car-info).
+        * [Rate car](#rate-car).
+        * [Events page](#events-page).
+        * [Event info](#event-info).
+        * [Comments](#comments).
+        * [Custom error pages](#custom-error-pages).
+   * [Features Left to Implement](#features-left-to-implement).
+ 
+- [Testing](#testing).
+   * [Fixed Bugs](#fixed-bugs).
+   * [Unfixed Bugs](#unfixed-bugs).
+ 
+- [Deployment](#deployment).
+   * [Deployment](#deployment).
+   * [Fork](#fork).
+   * [Clone](#clone).
+  
+- [Technologies and tools](#technologies-and-tools).
+
+- [Credits](#credits). 
+   * [Code](#code).
+   * [Content](#content).
+   * [Media](#media).
+ 
+- [Acknowledgements](#acknowledgements).
+ 
+</details> 
+
 ## UX/UI Design
 
 ### Strategy
