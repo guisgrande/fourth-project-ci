@@ -1,5 +1,40 @@
 # Auto Classic - Testing
 
+<details>
+    <summary>Summary</summary>
+
+- [Validation](#validation).
+
+- [Responsiveness and Browser Compability Testing](#responsiveness-and-browser-compability-testing).
+ 
+- [Performance Testing](#performance-testing).
+ 
+- [Acessibility Testing](#acessibility-testing).
+  
+- [User Story Testing](#user-story-testing).
+
+- [Manual Testing](#manual-testing).
+    * [Navigation bar](#navigation-bar).
+    * [Footer](#footer).
+    * [Home page](#home-page).
+    * [Accounts pages](#accounts-pages).
+    * [Garage page](#garage-page).
+    * [Events page](#events-page).
+    * [Car detail page](#car-detail-page).
+    * [Rate Car review page](#rate-car-review-page).
+    * [Event detail page](#event-detail-page).
+    * [Member page](#member-page).
+    * [Member car list page](#member-car-list-page).
+    * [Member event list page](#member-event-list-page).
+    * [Add car page](#add-car-page).
+    * [Add event page](#add-event-page).
+    * [Edit car page](#edit-car-page).
+    * [Edit event page](#edit-event-page).
+    * [Delete car page](#delete-car-page).
+    * [Delete event page](#delete-event-page).
+ 
+</details> 
+
 ## Validation
 
 Here is a report of the validations made on the code and their results
