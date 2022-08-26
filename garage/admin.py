@@ -13,7 +13,7 @@ class GarageAdmin(SummernoteModelAdmin):
         'model',
         'status',
         'created_on')
-    search_fields = ['username', 'brand', 'model']
+    search_fields = ['username__username', 'brand', 'model']
     list_filter = ('status', 'created_on')
     prepopulated_fields = {'slug': ('username', 'model', 'year',)}
     summernote_fields = ('description')
@@ -24,7 +24,7 @@ class CommentCarAdmin(admin.ModelAdmin):
 
     list_display = ('name', 'body', 'car', 'created_on', 'approved')
     list_filter = ('approved', 'created_on')
-    search_fields = ('name', 'car', 'body')
+    search_fields = ('name__username', 'body')
     actions = ['approve_comments']
 
     def approve_comments(self, request, queryset):
