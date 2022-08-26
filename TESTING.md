@@ -107,7 +107,10 @@ List of files validated by the tool [JS Hint](https://jshint.com/)
       alert.close();
   }, 3500);
 ```
-
+<div align="center">
+     <img src="documentation/testing/jshint-base.PNG">
+</div>
+    
 </details> 
 
 <details>
@@ -156,6 +159,9 @@ List of files validated by the tool [JS Hint](https://jshint.com/)
         });
     });
 ```
+<div align="center">
+     <img src="documentation/testing/jshint-garage.PNG">
+</div>
 
 </details>
 
@@ -205,14 +211,19 @@ List of files validated by the tool [JS Hint](https://jshint.com/)
         });
     });
 ```
+<div align="center">
+     <img src="documentation/testing/jshint-events.PNG">
+</div>
 
 </details> 
 
 |   File    |   Lines  |  Result |
 |    ---    |   ---  |   ---   |
 |    `base.html`    |   From 158 to 162  |   No errors   |
-|    `garage.html`    |   From 90 to 130  |   No errors   |
-|    `events.html`    |   From 92 to 132  |   No errors   |
+|    `garage.html`    |   From 90 to 130  |   No errors / Two warnings   |
+|    `events.html`    |   From 92 to 132  |   No errors / Two warnings  |
+
+The warnings that were returned in the JSHint do not inhibit the operation of the code and its functions. At the moment I am satisfied with the code.
 
 - __Python__
 
