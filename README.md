@@ -561,11 +561,12 @@ All the tests performed in the project are documented in the file TESTING.md > [
 |    Different image sizes     |     Add  `transformation={width': '1080', 'height': '720', 'crop': 'fill', 'gravity': "auto"}` to images fields at `models.py`   |    [Commit](https://github.com/guisgrande/fourth-project-ci/commit/1e8bc69d9ce992d5bb3ff303481c300baa6672e8)   |
 |    Html error events page   |     A `<div>` with ID inside forloop was generating more than one element with same ID, add new div outside for loop with the necessary ID    |    [Commit](https://github.com/guisgrande/fourth-project-ci/commit/220126ff330adb9bb82a5a472ef6f0e8b99fd182)   |
 |    Html error garage page   |     Wrong tag "sort" inside list elements, remove them all. A `<div>` with ID inside forloop was generating more than one elemente with same ID, add new div outside for loop with the necessary ID    |    [Commit](https://github.com/guisgrande/fourth-project-ci/commit/f58c55e581295ad54c2d809b1b4ec1b4f007d49c)   |
-    
-   
+|    Related field got invalid lookup: icontains, admin search box not working     |     Fixed search fields with the correct format    |    [Commit](https://github.com/guisgrande/fourth-project-ci/commit/12f6d37c3e39ada3951c3b5306a7608576e52265)   |
+
+
 ### Unfixed Bugs 
 
-- So far the only bug identified that hasn't been fixed is the Django admin site search. When searching for some specific post an error occurs as a result not completing the search.
+- So far all bugs found have been fixed. After the tests, I did not identify any problems that interfered with the functioning of the website.
 
 ## Deployment
 
